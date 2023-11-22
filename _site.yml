@@ -12,7 +12,7 @@ navbar:
     - text: "Plotly Graphs"
       href: dashboard.html
     - icon: fa-github fa-lg
-      href: http://github.com/nn2477/
+      href: https://github.com/nn2477/p8105-fp-rats.github.io
 output:
   html_document:
     theme: journal
