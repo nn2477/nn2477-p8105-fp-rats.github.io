@@ -1,0 +1,16 @@
+name: "P8105 Final"
+output_dir: "."
+navbar:
+  title: "Home"
+  right:
+    - text: "Proposal"
+      href: proposal.html
+    - text: "Ratstical: Exploratory Analysis"
+      href: ratstical.html
+    - text: "Plotly Graphs"
+      href: dashboard.html
+    - icon: fa-github fa-lg
+      href: http://github.com/nn2477/
+output:
+  html_document:
+    theme: journal
