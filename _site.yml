@@ -5,6 +5,8 @@ navbar:
   right:
     - text: "Proposal"
       href: proposal.html
+    - text: "index"
+      href: index.html
     - text: "Ratstical: Exploratory Analysis"
       href: ratstical.html
     - text: "Plotly Graphs"
