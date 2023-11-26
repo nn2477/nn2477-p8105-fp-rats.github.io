@@ -3,10 +3,10 @@ output_dir: "."
 navbar:
   title: "Home"
   right:
-    - text: "Proposal"
-      href: proposal.html
     - text: "Home"
       href: index.html
+    - text: "Proposal"
+      href: proposal.html
     - text: "Ratstical: Exploratory Analysis"
       href: ratstical.html
     - text: "Plotly Graphs"
