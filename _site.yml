@@ -4,7 +4,7 @@ navbar:
   title: "Home"
   right:
     - text: "Home"
-      href: home.html
+      href: index.html
     - text: "Proposal"
       href: proposal.html
     - text: "Data Cleaning/Tidying"
