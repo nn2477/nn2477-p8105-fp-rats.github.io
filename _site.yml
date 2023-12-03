@@ -4,9 +4,11 @@ navbar:
   title: "Home"
   right:
     - text: "Home"
-      href: index.html
+      href: home.html
     - text: "Proposal"
       href: proposal.html
+    - text: "Data Cleaning/Tidying"
+      href: tidying.html
     - text: "Ratstical: Exploratory Analysis"
       href: ratstical.html
     - text: "Plotly Graphs"
