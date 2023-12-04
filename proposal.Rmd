@@ -37,7 +37,7 @@ output:
 * 
 
 ### Analyses, Visualization,& Challenges 
-##### Planned Analyses
+#### Planned Analyses
 * General rat sighting analysis
 * Change in number of rat sightings by year 
 * Change in average number of rat sightings per month
@@ -49,13 +49,13 @@ output:
 * Population versus rat sightings 
   * Population density compared to rat sighting density by neighborhood 
 
-##### Visualizations
+#### Visualizations
 * Mapping latitude/longitude coordinates in a leaflet map to show rat sighting distributions across Manhattan neighborhoods or in combination with outside factors 
 * Box plots to compare monthly and annual averages in analyses for rat sightings compared to borough, population, SES, etc. 
 * Bar plots to compare avg annual rat sightings by neighborhood in Manhattan 
 * Density plots to show rat sighting and population density in Manhattan 
 
-##### Coding Challenges 
+#### Coding Challenges 
 * Data tidying 
 * Ensuring all neighborhoods and zip codes are coded correctly 
 * Plot reproducibility and readability 
