@@ -22,7 +22,7 @@ Our initial research question focused exclusively on the relationship between in
 Additionally, we first hoped to answer a question related to Mayor Eric Adams, who has his own repeated issues with rats around his Brooklyn row house. Mayor Adams entertained the prospect of using feral cat colonies to get New York’s rat population under control, and even went so far as to have Curtis Sliwa, a Guardian Angel with feral cats at the ready, show up to his rowhouse in January of this year. We hoped that we would be able to compare the presence of feral cat colonies to the number of rat sightings within a particular neighborhood, and gain a better understanding of whether Mayor Adams’ and Curtis Sliwa’s approach may have merit. Unfortunately, the data on feral cat colonies required to conduct this analysis was not readily available.
 
 
-#### Collaborators 
+### Collaborators 
 **Victoria Mello**  (vsm2118)
 
 **Eunsuh Cho** (ec3663)
