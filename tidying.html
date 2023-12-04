@@ -447,6 +447,39 @@ will keep these in our tidied data.</p>
 </div>
 <div id="population-data-cleaning" class="section level1">
 <h1>Population Data Cleaning</h1>
+<pre class="r"><code>population_data_manhattan = 
+  read_csv(&quot;./datasets/population_data.csv&quot;) %&gt;% 
+  janitor::clean_names() %&gt;% 
+  select(-countyicp, -vacancy, -raced, -hispand, -gq, -bpl, -bpld, -qincbus, -qincinvs, -qincothe, -qincreti, -qincss, -qinctot, -qftotinc, -qincwage, -qincwelf) %&gt;% 
+  filter(city == 4610) %&gt;% 
+  mutate(
+    across(c(race, hispan), as_factor),
+    race = ifelse(race == 1, &quot;White&quot;, race),
+    race = ifelse(race == 2, &quot;Black&quot;, race),
+    race = ifelse(race == 3, &quot;American Indian or Alaska Native&quot;, race),
+    race = ifelse(race == 4, &quot;Chinese&quot;, race),
+    race = ifelse(race == 5, &quot;Japanese&quot;, race),
+    race = ifelse(race == 6, &quot;Other Asian or Pacific Islander&quot;, race),
+    race = ifelse(race == 7, &quot;Other race&quot;, race),
+    race = ifelse(race == 8, &quot;Two major races&quot;, race),
+    race = ifelse(race == 9, &quot;Three or more major races&quot;, race),
+    hispan = ifelse(hispan == 0, &quot;Not Hispanic&quot;, hispan),
+    hispan = ifelse(hispan == 1, &quot;Mexican&quot;, hispan),
+    hispan = ifelse(hispan == 2, &quot;Puerto Rican&quot;, hispan),
+    hispan = ifelse(hispan == 3, &quot;Cuban&quot;, hispan),
+    hispan = ifelse(hispan == 4, &quot;Other&quot;, hispan))</code></pre>
+<div id="check-for-missing-values-1" class="section level2">
+<h2>Check for missing values</h2>
+<pre class="r"><code>missing_val_check_pop = 
+  population_data_manhattan %&gt;% 
+  summarise_all(~sum(is.na(.)))</code></pre>
+<p>No missing values however it is important to note that incwelfr =
+99999 and inctot = 9999999 indicate N/A values.</p>
+</div>
+<div id="exporting-clean-dataset-2" class="section level2">
+<h2>Exporting clean dataset</h2>
+<pre class="r"><code>write_csv(population_data_manhattan, &quot;datasets_clean/population_data_manhattan&quot;)</code></pre>
+</div>
 </div>
 
 

@@ -65,6 +65,7 @@ rat_sightings_data =
 ```
 
 ## Check for missing values
+
 ```{r}
 missing_val_check_rat = 
   rat_sightings_data %>% 
@@ -81,3 +82,43 @@ write_csv(rat_sightings_data, "datasets_clean/rat_sightings_data")
 ```
 
 # Population Data Cleaning
+
+```{r message=FALSE}
+population_data_manhattan = 
+  read_csv("./datasets/population_data.csv") %>% 
+  janitor::clean_names() %>% 
+  select(-countyicp, -vacancy, -raced, -hispand, -gq, -bpl, -bpld, -qincbus, -qincinvs, -qincothe, -qincreti, -qincss, -qinctot, -qftotinc, -qincwage, -qincwelf) %>% 
+  filter(city == 4610) %>% 
+  mutate(
+    across(c(race, hispan), as_factor),
+    race = ifelse(race == 1, "White", race),
+    race = ifelse(race == 2, "Black", race),
+    race = ifelse(race == 3, "American Indian or Alaska Native", race),
+    race = ifelse(race == 4, "Chinese", race),
+    race = ifelse(race == 5, "Japanese", race),
+    race = ifelse(race == 6, "Other Asian or Pacific Islander", race),
+    race = ifelse(race == 7, "Other race", race),
+    race = ifelse(race == 8, "Two major races", race),
+    race = ifelse(race == 9, "Three or more major races", race),
+    hispan = ifelse(hispan == 0, "Not Hispanic", hispan),
+    hispan = ifelse(hispan == 1, "Mexican", hispan),
+    hispan = ifelse(hispan == 2, "Puerto Rican", hispan),
+    hispan = ifelse(hispan == 3, "Cuban", hispan),
+    hispan = ifelse(hispan == 4, "Other", hispan))
+```
+
+## Check for missing values
+
+```{r}
+missing_val_check_pop = 
+  population_data_manhattan %>% 
+  summarise_all(~sum(is.na(.)))
+```
+
+No missing values however it is important to note that incwelfr = 99999 and inctot = 9999999 indicate N/A values. 
+
+## Exporting clean dataset
+
+```{r}
+write_csv(population_data_manhattan, "datasets_clean/population_data_manhattan")
+```
