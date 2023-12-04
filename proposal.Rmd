@@ -5,6 +5,24 @@ output:
     toc: true
     toc_float: true
 ---
-
 ![](https://pyxis.nymag.com/v1/imgs/4be/8b4/33d3b72dfa03e72acb21faf9938c192a03-4-13-Rats.2x.rsquare.w700.jpg)
 
+### Team Members 
+* Victoria Mello (vsm2118)
+
+* Eunsuh Cho (ec3663)
+
+* Maggie Watson (mgw2144)
+
+* Victoria Schliep (vas2145)
+
+* Nhu Nguyen (nn2477)
+
+### Title: Manhattan Rat Sighting Data Analysis 
+
+#### Data Source 
+* City of New York Rat Sighting Data 
+* IPUMS USA 2022 
+* City of New York Neighborhood Financial Health Digital Mapping and Data Tool 
+
+### Motivation 
