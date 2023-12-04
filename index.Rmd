@@ -8,7 +8,7 @@ output:
   - '<img src= "rat.jpg" alt="Header Image" width="100%" />'
 ---
 
-![](https://animal-human-relationship.pictures-of-cats.org/wp-content/uploads/2023/04/Rats-in-NYC.jpg.webp)
+![](https://animal-human-relationship.pictures-of-cats.org/wp-content/uploads/2023/04/Rats-in-NYC.jpg)
 
 
 
