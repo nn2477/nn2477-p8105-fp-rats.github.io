@@ -13,9 +13,9 @@ library(tidyverse)
 
 # Income Data Cleaning
 
-```{r message = FALSE}
+```{r message=FALSE}
 income_data_2020 = 
-  read_csv(file = "./datasets/Neighborhood_Financial_Health_Digital_Mapping_and_Data_Tool_20231125.csv") %>% 
+  read_csv("./datasets/Neighborhood_Financial_Health_Digital_Mapping_and_Data_Tool_20231125.csv") %>% 
   janitor::clean_names() %>% 
   select(puma, borough, neighborhoods, nyc_poverty_rate, median_income, perc_white, perc_black, perc_asian, perc_other, perc_hispanic)
 ```
@@ -32,6 +32,8 @@ income_data_2020 %>%
   summarise(count= n())
 ```
 
+There are no missing values in the dataset. There are 7 of each neghborhood names indicating that there are no typos in the dataset for neighborhood name. 
+
 ## Exporting clean dataset
 
 ```{r}
@@ -40,6 +42,42 @@ write_csv(income_data_2020, "datasets_clean/income_data_2020")
 
 # Rat Sighting Data Cleaning 
 
+```{r message=FALSE, warning=FALSE}
+rat_sightings_data = 
+  read_csv("./datasets/Rat_Sightings_20231125.csv", skip=1) %>% 
+  janitor::clean_names() %>% 
+  select(unique_key, created_date, closed_date, location_type, incident_zip, borough, latitude, longitude) %>% 
+   mutate(
+    borough = ifelse(borough == "MANHATTAN", "Manhattan", borough),
+    borough = ifelse(borough == "BRONX", "Bronx", borough),
+    borough = ifelse(borough == "QUEENS", "Queens", borough),
+    borough = ifelse(borough == "BROOKLYN", "Brooklyn", borough),
+    borough = ifelse(borough == "STATEN ISLAND", "Staten Island", borough)) %>% 
+  filter(borough != "Unspecified") %>% 
+  separate(col = created_date, into = c("month_created", "day_created", "year_created", "time_created")) %>% 
+  separate(col = closed_date, into = c("month_closed", "day_closed", "year_closed", "time_closed")) %>% 
+  select(-time_created, -time_closed) %>% 
+  filter(
+    year_created %in% 2015:2020,
+    year_closed %in% 2015:2020
+  ) %>% 
+  filter(incident_zip != 83)
+```
 
+## Check for missing values
+```{r}
+missing_val_check_rat = 
+  rat_sightings_data %>% 
+  summarise_all(~sum(is.na(.)))
+```
+
+There are 662 missing values for both longitude and latitude but we will keep these in our tidied data.
+
+
+## Exporting clean dataset
+
+```{r}
+write_csv(rat_sightings_data, "datasets_clean/rat_sightings_data")
+```
 
 # Population Data Cleaning
