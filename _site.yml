@@ -11,7 +11,7 @@ navbar:
       href: tidying.html
     - text: "Ratstical: Exploratory Analysis"
       href: ratstical.html
-    - text: "Report: The Rats Don't Run This City, We Do"
+    - text: "Synopsis Report"
       href: report.html
     - text: "Plotly Graphs"
       href: dashboard.html
