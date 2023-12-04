@@ -1,3 +1,4 @@
+---
 name: "P8105 Final"
 output_dir: "."
 navbar:
@@ -22,3 +23,4 @@ output:
     theme: journal
   header-includes:
   - '<img src="./images/rat.jpg" alt="Header Image" width="100%" />'
+---
