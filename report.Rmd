@@ -1,8 +1,35 @@
 ---
-title: "Ratstical: Exploratory Analysis"
+title: "Report"
 output: 
   html_document:
     toc: true
     toc_float: true
 ---
+### Names
 
+![](https://cdn.theatlantic.com/thumbor/RzlQuaHgqJQ-XdKfDOIvpRda_xI=/0x0:2400x3000/1330x1663/media/img/2023/03/01/Rats_opener4x5-1/original.jpg)
+
+Victoria Mello (vsm2118)
+
+Eunsuh Cho (ec3663)
+
+Maggie Watson (mgw2144)
+
+Victoria Schliep (vas2145)
+
+Nhu Nguyen (nn2477)
+
+
+### Abstract 
+
+### Introduction
+
+### Methods
+
+### Results
+
+### Discussion
+
+### Conclusion
+
+### References
