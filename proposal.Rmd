@@ -26,8 +26,9 @@ output:
 * City of New York Neighborhood Financial Health Digital Mapping and Data Tool 
 
 ### Motivation 
-
-* In October 2022, New York’s recently installed Commissioner of the Department of Sanitation, Jessica Tisch, boldly proclaimed “The rats don’t run this city, we do.” To New Yorkers, this statement was more wishful thinking than it was grounded in reality. Rats are as much of a fabric of the city as dollar slices and delayed trains. Putting the lovable pizza rat aside, the presence of rats presents a challenge to public health. They are known to carry diseases that can be spread directly and indirectly through humans, erode critical infrastructure, and generally impact quality of life.  For this project, we set out to determine the veracity of whether humans or rats really control New York. Additionally, we examined whether rats disproportionately impact the lives of marginalized groups: low-income individuals, racial and ethnic populations, and individuals with disabilities. Although every New Yorker has the occasional run-in with rats, we sought to understand whether certain groups face increased exposure. We hope that this project contributes to the overall question: who runs this city?
+* Rats have been a significant problem for NYC residents
+* Rats can cause damage to buildings and pose health problems
+* We want to analyze potential trends between rat density and NYC-population data regarding income
 
 ### Intended Final Products
 * A written report summarizing results of investigations

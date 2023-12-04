@@ -1,5 +1,5 @@
 ---
-title: "Rat World"
+title: "In A Rat World"
 output: 
   html_document:
     toc: true
@@ -8,7 +8,18 @@ output:
 
 ![](https://animal-human-relationship.pictures-of-cats.org/wp-content/uploads/2023/04/Rats-in-NYC.jpg)
 
+### Motivation
+In October 2022, New York’s recently installed Commissioner of the Department of Sanitation, Jessica Tisch, boldly proclaimed “The rats don’t run this city, we do.” To New Yorkers, this statement was more wishful thinking than it was grounded in reality. Rats are as much of a fabric of the city as dollar slices and delayed trains. Putting the lovable pizza rat aside, the presence of rats presents a challenge to public health. They are known to carry diseases that can be spread directly and indirectly through humans, erode critical infrastructure, and generally impact quality of life.  
 
+For this project, we set out to determine the veracity of whether humans or rats really control New York. Additionally, we examined whether rats disproportionately impact the lives of marginalized groups: low-income individuals, racial and ethnic populations, and individuals with disabilities. Although every New Yorker has the occasional run-in with rats, we sought to understand whether certain groups face increased exposure. We hope that this project contributes to the overall question: who runs this city?
+
+### Related Work
+There was a high amount of discourse on the subject of rats in New York City that inspired this project, specifically published data from Fordham University, where researchers found that there was a small but discernible genetic difference between rats living uptown versus downtown in Manhattan. Additionally, a new feature in the ‘Transit’ app, called Rat Detector, is taking a more citizen science approach to see where the most popular rat hubs are. It uses sightings reported by users to keep tabs on which stations have the most rats and even ranks the stations based on how many rat sightings it has. However, despite the amount of discourse on the subject, data analysis between rat sighting and income was very limited. Thus, our project focuses on bridging that information gap. 
+
+### Initial Questions
+Our initial research question focused exclusively on the relationship between income and the prevalence of rat sightings. However, once we looked into the data available to answer the questions, we recognized that we could include additional parameters beyond income, including race, immigration status, and disability status. Adding these parameters would provide more granularity to our understanding on how the prevalence of rats differ by various socioeconomic classes.
+
+Additionally, we first hoped to answer a question related to Mayor Eric Adams, who has his own repeated issues with rats around his Brooklyn row house. Mayor Adams entertained the prospect of using feral cat colonies to get New York’s rat population under control, and even went so far as to have Curtis Sliwa, a Guardian Angel with feral cats at the ready, show up to his rowhouse in January of this year. We hoped that we would be able to compare the presence of feral cat colonies to the number of rat sightings within a particular neighborhood, and gain a better understanding of whether Mayor Adams’ and Curtis Sliwa’s approach may have merit. Unfortunately, the data on feral cat colonies required to conduct this analysis was not readily available.
 
 
 #### Collaborators 
