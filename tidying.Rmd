@@ -6,4 +6,40 @@ output:
     toc_float: true
 ---
 
+# Loading Necessary Packages 
+```{r}
+library(tidyverse)
+```
 
+# Income Data Cleaning
+
+```{r message = FALSE}
+income_data_2020 = 
+  read_csv(file = "./datasets/Neighborhood_Financial_Health_Digital_Mapping_and_Data_Tool_20231125.csv") %>% 
+  janitor::clean_names() %>% 
+  select(puma, borough, neighborhoods, nyc_poverty_rate, median_income, perc_white, perc_black, perc_asian, perc_other, perc_hispanic)
+```
+
+## Check for missing values and Typos in neighborhood names
+
+```{r}
+missing_val_check = 
+  income_data_2020 %>% 
+  summarise_all(~sum(is.na(.)))
+
+income_data_2020 %>% 
+  group_by(neighborhoods)%>% 
+  summarise(count= n())
+```
+
+## Exporting clean dataset
+
+```{r}
+write_csv(income_data_2020, "datasets_clean/income_data_2020")
+```
+
+# Rat Sighting Data Cleaning 
+
+
+
+# Population Data Cleaning

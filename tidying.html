@@ -13,7 +13,7 @@
 
 <title>Data Cleaning/Tidying</title>
 
-<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
@@ -358,7 +358,62 @@ div.tocify {
 </div>
 
 
+<div id="loading-necessary-packages" class="section level1">
+<h1>Loading Necessary Packages</h1>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.4     ✔ readr     2.1.4
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.3     ✔ tidyr     1.3.0
+## ✔ purrr     1.0.2     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div id="income-data-cleaning" class="section level1">
+<h1>Income Data Cleaning</h1>
+<pre class="r"><code>income_data_2020 = 
+  read_csv(file = &quot;./datasets/Neighborhood_Financial_Health_Digital_Mapping_and_Data_Tool_20231125.csv&quot;) %&gt;% 
+  janitor::clean_names() %&gt;% 
+  select(puma, borough, neighborhoods, nyc_poverty_rate, median_income, perc_white, perc_black, perc_asian, perc_other, perc_hispanic)</code></pre>
+<div id="check-for-missing-values-and-typos-in-neighborhood-names"
+class="section level2">
+<h2>Check for missing values and Typos in neighborhood names</h2>
+<pre class="r"><code>missing_val_check = 
+  income_data_2020 %&gt;% 
+  summarise_all(~sum(is.na(.)))
 
+income_data_2020 %&gt;% 
+  group_by(neighborhoods)%&gt;% 
+  summarise(count= n())</code></pre>
+<pre><code>## # A tibble: 55 × 2
+##    neighborhoods                               count
+##    &lt;chr&gt;                                       &lt;int&gt;
+##  1 Astoria &amp; Long Island City                      7
+##  2 Battery Park City, Greenwich Village &amp; Soho     7
+##  3 Bay Ridge &amp; Dyker Heights                       7
+##  4 Bayside, Douglaston &amp; Little Neck               7
+##  5 Bedford Park, Fordham North &amp; Norwood           7
+##  6 Bedford Stuyvesant                              7
+##  7 Belmont, Crotona Park East &amp; East Tremont       7
+##  8 Bensonhurst &amp; Bath Beach                        7
+##  9 Borough Park, Kensington &amp; Ocean Parkway        7
+## 10 Briarwood, Fresh Meadows &amp; Hillcrest            7
+## # ℹ 45 more rows</code></pre>
+</div>
+<div id="exporting-clean-dataset" class="section level2">
+<h2>Exporting clean dataset</h2>
+<pre class="r"><code>write_csv(income_data_2020, &quot;datasets_clean/income_data_2020&quot;)</code></pre>
+</div>
+</div>
+<div id="rat-sighting-data-cleaning" class="section level1">
+<h1>Rat Sighting Data Cleaning</h1>
+</div>
+<div id="population-data-cleaning" class="section level1">
+<h1>Population Data Cleaning</h1>
+</div>
 
 
 
