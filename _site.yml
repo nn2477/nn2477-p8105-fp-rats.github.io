@@ -17,4 +17,4 @@ navbar:
       href: https://github.com/nn2477/p8105-fp-rats.github.io
 output:
   html_document:
-    theme: spacelab
+    theme: journal
