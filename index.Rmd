@@ -4,7 +4,6 @@ output:
   html_document:
     toc: true
     toc_float: true
-    favicon: "images/favicon_io/favicon.ico"
 ---
 
 ![](https://animal-human-relationship.pictures-of-cats.org/wp-content/uploads/2023/04/Rats-in-NYC.jpg)

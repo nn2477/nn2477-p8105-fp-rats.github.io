@@ -4,7 +4,6 @@ output:
   html_document:
     toc: true
     toc_float: true
-    favicon: "images/favicon_io/favicon.ico"
 ---
 ![](https://pyxis.nymag.com/v1/imgs/4be/8b4/33d3b72dfa03e72acb21faf9938c192a03-4-13-Rats.2x.rsquare.w700.jpg)
 
