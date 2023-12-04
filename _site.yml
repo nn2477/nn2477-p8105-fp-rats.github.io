@@ -21,4 +21,4 @@ output:
   html_document:
     theme: journal
   header-includes:
-  - '<img src="images/rat.jpg" alt="Header Image" width="100%" />'
+  - '<img src="./images/rat.jpg" alt="Header Image" width="100%" />'
