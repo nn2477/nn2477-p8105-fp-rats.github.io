@@ -5,6 +5,7 @@ output:
     toc: true
     toc_float: true
 ---
+![](https://static.therealdeal.com/wp-content/uploads/2019/02/600-Credit-Wikimedia-Commons-1.jpg)
 
 # Loading Necessary Packages 
 ```{r}
