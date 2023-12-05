@@ -31,6 +31,7 @@ rat_sightings_data <- read.csv("./datasets_clean/rat_sightings_data")
 
 ```
 
+### Filtering Dataset 
 ```{r, message=FALSE}
 # Filter data for the years 2015-2019 and for Manhattan only
 filtered_rat_data_manhattan <- rat_sightings_data %>%
@@ -43,7 +44,10 @@ filtered_rat_data_manhattan <- rat_sightings_data %>%
     month_created, year_created, latitude, longitude, 
     incident_zip, borough, location_type
   )
+```
 
+### Creating maps for each year 
+```{r, message=FALSE}
 # Create separate maps for each year in Manhattan
 maps_manhattan <- list()
 
@@ -65,17 +69,36 @@ for (year in 2015:2019) {
 }
 ```
 
+### Mapping of Rat Sightings in Manhattan by Year 
 
-```{r}
+```{r, echo=FALSE, results='hide'}
 # Display each map separately for Manhattan
 names(maps_manhattan) <- paste("Rat Sightings -", 2015:2019)
 maps_manhattan
+```
 
-
+#### 2015
+```{r, echo=FALSE}
 maps_manhattan[["Rat Sightings - 2015"]]
+```
+
+#### 2016
+```{r, echo=FALSE}
 maps_manhattan[["Rat Sightings - 2016"]]
+```
+
+#### 2017
+```{r, echo=FALSE}
 maps_manhattan[["Rat Sightings - 2017"]]
+```
+
+#### 2018
+```{r, echo=FALSE}
 maps_manhattan[["Rat Sightings - 2018"]]
+```
+
+#### 2019
+```{r, echo=FALSE}
 maps_manhattan[["Rat Sightings - 2019"]]
 
 ```
