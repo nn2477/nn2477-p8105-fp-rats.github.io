@@ -8,26 +8,6 @@ output:
       in_header: header.html
 ---
 
-```{css, echo=FALSE}
-.navbar-item {
-  position: relative;
-}
-
-.navbar-item:hover .submenu {
-  display: block;
-}
-
-.submenu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #f9f9f9;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-  padding: 10px;
-}
-```
-
 ![](https://static.therealdeal.com/wp-content/uploads/2019/02/600-Credit-Wikimedia-Commons-1.jpg)
 
 ```{r setup, include=FALSE}

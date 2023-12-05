@@ -9,6 +9,8 @@ navbar:
       href: proposal.html
     - text: "Data Cleaning/Tidying"
       href: tidying.html
+    - text: "Ratstical: Exploratory Analysis"
+      href: ratstical.html
     - text: "Synopsis Report"
       href: report.html
     - text: "Plotly Graphs"
