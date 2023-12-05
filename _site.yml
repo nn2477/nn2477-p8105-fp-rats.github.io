@@ -10,7 +10,13 @@ navbar:
     - text: "Data Cleaning/Tidying"
       href: tidying.html
     - text: "Ratstical: Exploratory Analysis"
-      href: ratstical.html
+      menu:
+      - text: "Income Data"
+        href: income.html
+      - text: "Rat Sighting in Manhattan"
+        href: ratsighting.html
+      - text: "Population Data"
+        href: population.html
     - text: "Synopsis Report"
       href: report.html
     - text: "Plotly Graphs"
