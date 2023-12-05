@@ -1,5 +1,5 @@
 ---
-title: "Who Runs This City: People or Rats?"
+title: "Ratistical Analysis: Do the rats run this city or do we?"
 output: 
   html_document:
     toc: true
@@ -17,8 +17,6 @@ output:
 * Victoria Schliep (vas2145)
 
 * Nhu Nguyen (nn2477)
-
-### Title: Ratistical Analysis: Do the rats run this city or do we?
 
 #### Data Source 
 * City of New York Rat Sighting Data 
