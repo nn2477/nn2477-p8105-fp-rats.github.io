@@ -18,15 +18,15 @@ output:
 
 * Nhu Nguyen (nn2477)
 
-#### Data Source 
-* City of New York Rat Sighting Data 
-* IPUMS USA 2022 
-* City of New York Neighborhood Financial Health Digital Mapping and Data Tool 
-
 ### Motivation 
 * Rats have been a significant problem for NYC residents
 * Rats can cause damage to buildings and pose health problems
 * We want to analyze potential trends between rat density and NYC-population data regarding income
+
+### Data Source 
+* City of New York Rat Sighting Data 
+* IPUMS USA 2022 
+* City of New York Neighborhood Financial Health Digital Mapping and Data Tool 
 
 ### Intended Final Products
 * A written report summarizing results of investigations
