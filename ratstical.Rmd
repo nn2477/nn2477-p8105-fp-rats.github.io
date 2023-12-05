@@ -33,7 +33,7 @@ rat_sightings_data <- read.csv("./datasets_clean/rat_sightings_data")
 
 ```
 
-```{r, echo=FALSE, results='hide'}
+```{r, message=FALSE}
 # Filter data for the years 2015-2019 and for Manhattan only
 filtered_rat_data_manhattan <- rat_sightings_data %>%
   filter(
