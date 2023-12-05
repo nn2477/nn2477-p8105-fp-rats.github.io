@@ -8,6 +8,43 @@ output:
       in_header: header.html
 ---
 
+```{css, echo=FALSE}
+.navbar-item {
+  position: relative;
+}
+
+.navbar-item:hover .submenu {
+  display: block;
+}
+
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #f9f9f9;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  padding: 10px;
+}
+
+<nav class="navbar">
+  <ul>
+    <li class="navbar-item">
+      <a href="tidying.html">Data Cleaning/Tidying</a>
+    </li>
+    <li class="navbar-item">
+      <a href="#">Ratstical: Exploratory Analysis</a>
+      <ul class="submenu">
+        <li><a href="income.html">Income Data</a></li>
+        <li><a href="ratsighting.html">Manhattan Rat Sighting Data</a></li>
+        <li><a href="population.html">Population Data</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+```
+
 ![Spotted: NYC Subway Rat in the Wild](images/rat.jpeg)
 
 ```{r setup, include=FALSE}

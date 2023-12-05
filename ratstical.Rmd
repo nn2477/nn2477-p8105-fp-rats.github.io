@@ -1,0 +1,23 @@
+---
+title: "Ratstical: Exploratory Analysis"
+output: 
+  html_document:
+    includes:
+      in_header: styles.css
+---
+
+<nav class="navbar">
+  <ul>
+    <li><a href="tidying.html">Data Cleaning/Tidying</a></li>
+    <li class="dropdown">
+      <a href="#" class="dropbtn">Ratstical: Exploratory Analysis</a>
+      <div class="dropdown-content">
+        <a href="income.html">Income Data</a>
+        <a href="ratsighting.html">Manhattan Rat Sighting Data</a>
+        <a href="population.html">Population Data</a>
+      </div>
+    </li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
