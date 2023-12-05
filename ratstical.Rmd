@@ -9,3 +9,76 @@ output:
 ---
 
 ![Spotted: NYC Subway Rat in the Wild](images/rat.jpeg)
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(leaflet)
+library(lubridate)
+
+knitr::opts_chunk$set(
+	echo = TRUE,
+	warning = FALSE,
+	fig.width = 30, 
+  fig.height = 35
+)
+
+theme_set(theme_minimal() + theme(legend.position = "bottom"))
+
+options(
+  ggplot2.continuous.colour = "viridis",
+  ggplot2.continuous.fill = "viridis"
+)
+
+rat_sightings_data <- read.csv("./datasets_clean/rat_sightings_data")
+
+```
+
+```{r, echo=FALSE, results='hide'}
+# Filter data for the years 2015-2019 and for Manhattan only
+filtered_rat_data_manhattan <- rat_sightings_data %>%
+  filter(
+    year_created >= 2015 & year_created <= 2019,
+    !is.na(latitude) & !is.na(longitude),
+    borough == "Manhattan"
+  ) %>%
+  select(
+    month_created, year_created, latitude, longitude, 
+    incident_zip, borough, location_type
+  )
+
+# Create separate maps for each year in Manhattan
+maps_manhattan <- list()
+
+for (year in 2015:2019) {
+  data_year <- filtered_rat_data_manhattan %>% filter(year_created == year)
+  
+  maps_manhattan[[as.character(year)]] <- leaflet(data_year) %>%
+    addTiles() %>%
+    addCircleMarkers(
+      lng = ~longitude,
+      lat = ~latitude,
+      radius = 5,  # Adjust the radius of markers as needed
+      popup = ~paste("Location Type", location_type, "<br>Date: ", paste(month_created, year_created, sep = "-"))
+    ) %>%
+    addLegend("bottomright", colors = "red", labels = paste("Rat Sightings - ", year)) %>%
+    addMarkers(
+      clusterOptions = markerClusterOptions()
+    )
+}
+```
+
+
+```{r}
+# Display each map separately for Manhattan
+names(maps_manhattan) <- paste("Rat Sightings -", 2015:2019)
+maps_manhattan
+
+
+maps_manhattan[["Rat Sightings - 2015"]]
+maps_manhattan[["Rat Sightings - 2016"]]
+maps_manhattan[["Rat Sightings - 2017"]]
+maps_manhattan[["Rat Sightings - 2018"]]
+maps_manhattan[["Rat Sightings - 2019"]]
+
+```
+
