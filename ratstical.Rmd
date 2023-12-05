@@ -6,13 +6,13 @@ output:
     toc_float: true
 ---
 
+![Spotted: NYC Subway Rat in the Wild](images/rat.jpeg)
+
 <nav class="navbar">
   <ul>
-    <li><a href="ratstical.html">Ratstical: Exploratory Analysis</a></li>
-    <li class="dropdown">
-      <a href="income.html">Income Data</a>
-      <a href="ratsighting.html">Manhattan Rat Sighting Data</a>
-      <a href="population.html">Population Data</a>
+    <li><a href="income.html">Income Data</a></li>
+    <li><a href="ratsighting.html">Manhattan Rat Sighting Data</a></li>
+    <li><a href="population.html">Population Data</a></li>
     </li>
   </ul>
 </nav>
