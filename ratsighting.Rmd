@@ -4,8 +4,6 @@ output:
   html_document:
     toc: true
     toc_float: true
-    includes:
-      in_header: header.html
 ---
 
 ![](https://www.cbc.ca/natureofthings/content/images/CBC_Rat_City_FA_Horizontal_1920.jpg)
@@ -76,32 +74,45 @@ for (year in 2015:2019) {
 ```{r, echo=FALSE, results='hide'}
 # Display each map separately for Manhattan
 names(maps_manhattan) <- paste("Rat Sightings -", 2015:2019)
-maps_manhattan
+maps_manhattan 
 ```
 
 #### 2015
 ```{r, echo=FALSE}
-maps_manhattan[["Rat Sightings - 2015"]]
+maps_manhattan[["Rat Sightings - 2015"]] %>%
+  addTiles() %>%
+  setView(lng = -73.98, lat = 40.73, zoom = 12)
+
 ```
 
 #### 2016
 ```{r, echo=FALSE}
-maps_manhattan[["Rat Sightings - 2016"]]
+maps_manhattan[["Rat Sightings - 2016"]] %>%
+  addTiles() %>%
+  setView(lng = -73.98, lat = 40.73, zoom = 12)
 ```
 
 #### 2017
 ```{r, echo=FALSE}
-maps_manhattan[["Rat Sightings - 2017"]]
+maps_manhattan[["Rat Sightings - 2017"]] %>%
+  addTiles() %>%
+  setView(lng = -73.98, lat = 40.73, zoom = 12)
 ```
 
 #### 2018
 ```{r, echo=FALSE}
-maps_manhattan[["Rat Sightings - 2018"]]
+maps_manhattan[["Rat Sightings - 2018"]] %>%
+  addTiles() %>%
+  setView(lng = -73.98, lat = 40.73, zoom = 12)
 ```
 
 #### 2019
 ```{r, echo=FALSE}
-maps_manhattan[["Rat Sightings - 2019"]]
+maps_manhattan[["Rat Sightings - 2019"]] %>%
+  addTiles() %>%
+  setView(lng = -73.98, lat = 40.73, zoom = 12)
 
 ```
+
+
 
