@@ -13,7 +13,7 @@
 
 <title>Data Cleaning/Tidying</title>
 
-<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
@@ -451,38 +451,22 @@ will keep these in our tidied data.</p>
 </div>
 <div id="population-data-cleaning" class="section level1">
 <h1>Population Data Cleaning</h1>
-<pre class="r"><code>population_data_manhattan = 
-  read_csv(&quot;./datasets/population_data.csv&quot;) %&gt;% 
-  janitor::clean_names() %&gt;% 
-  select(-countyicp, -vacancy, -raced, -hispand, -gq, -bpl, -bpld, -qincbus, -qincinvs, -qincothe, -qincreti, -qincss, -qinctot, -qftotinc, -qincwage, -qincwelf) %&gt;% 
-  filter(city == 4610) %&gt;% 
-  mutate(
-    across(c(race, hispan), as_factor),
-    race = ifelse(race == 1, &quot;White&quot;, race),
-    race = ifelse(race == 2, &quot;Black&quot;, race),
-    race = ifelse(race == 3, &quot;American Indian or Alaska Native&quot;, race),
-    race = ifelse(race == 4, &quot;Chinese&quot;, race),
-    race = ifelse(race == 5, &quot;Japanese&quot;, race),
-    race = ifelse(race == 6, &quot;Other Asian or Pacific Islander&quot;, race),
-    race = ifelse(race == 7, &quot;Other race&quot;, race),
-    race = ifelse(race == 8, &quot;Two major races&quot;, race),
-    race = ifelse(race == 9, &quot;Three or more major races&quot;, race),
-    hispan = ifelse(hispan == 0, &quot;Not Hispanic&quot;, hispan),
-    hispan = ifelse(hispan == 1, &quot;Mexican&quot;, hispan),
-    hispan = ifelse(hispan == 2, &quot;Puerto Rican&quot;, hispan),
-    hispan = ifelse(hispan == 3, &quot;Cuban&quot;, hispan),
-    hispan = ifelse(hispan == 4, &quot;Other&quot;, hispan))</code></pre>
+<pre class="r"><code>population_data =
+  read_excel(&quot;./datasets/population_data.xlsx&quot;, sheet = &quot;2010, 2020, and Change&quot;, range = &quot;C4:AQ10&quot;) |&gt;
+  janitor::clean_names() |&gt; 
+  select(borough, pop_20) |&gt; 
+  slice(-1) |&gt; 
+  rename(population = pop_20)</code></pre>
 <div id="check-for-missing-values-1" class="section level2">
 <h2>Check for missing values</h2>
 <pre class="r"><code>missing_val_check_pop = 
-  population_data_manhattan %&gt;% 
+  population_data %&gt;% 
   summarise_all(~sum(is.na(.)))</code></pre>
-<p>No missing values however it is important to note that incwelfr =
-99999 and inctot = 9999999 indicate N/A values.</p>
+<p>The dataset is not missing any values.</p>
 </div>
 <div id="exporting-clean-dataset-2" class="section level2">
 <h2>Exporting clean dataset</h2>
-<pre class="r"><code>write_csv(population_data_manhattan, &quot;datasets_clean/population_data_manhattan&quot;)</code></pre>
+<pre class="r"><code>write_csv(population_data, &quot;datasets_clean/population_data&quot;)</code></pre>
 </div>
 </div>
 
