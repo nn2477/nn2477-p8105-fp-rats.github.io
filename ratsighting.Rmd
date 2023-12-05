@@ -8,6 +8,8 @@ output:
       in_header: header.html
 ---
 
+![](https://www.cbc.ca/natureofthings/content/images/CBC_Rat_City_FA_Horizontal_1920.jpg)
+
 ```{r setup, include=FALSE}
 library(tidyverse)
 library(leaflet)
