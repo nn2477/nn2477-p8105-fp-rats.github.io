@@ -2,8 +2,8 @@
 title: "Ratstical: Exploratory Analysis"
 output: 
   html_document:
-    includes:
-      in_header: styles.css
+    toc: true
+    toc_float: true
 ---
 
 <nav class="navbar">
