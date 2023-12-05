@@ -113,7 +113,7 @@ maps_manhattan[["Rat Sightings - 2019"]]
 
 
 
-### Bar Plots comparing Average Annual Rat Sightings across Boroughs 
+### Bar Plots: Average Annual Rat Sightings across Boroughs 
 
 ```{r}
 # Filter data for the years 2015-2019
@@ -135,4 +135,21 @@ ggplot(average_sightings_by_borough, aes(x = borough, y = average_sightings, fil
   theme_minimal()
 ```
 
+
+### Monthly Trends in NYC Rat Sightings (2015-2020) 
+
+```{r}
+# Filter data for the years 2015-2019
+filtered_rat_data <- rat_sightings_data %>%
+  filter(year_created >= 2015 & year_created <= 2020)
+
+# Line plot for the number of rat sightings by month
+ggplot(filtered_rat_data, aes(x = month_created, group = year_created)) +
+  geom_line(aes(y = ..count.., color = factor(year_created)), stat = "count") +
+  labs(title = "Number of Rat Sightings by Month (2015-2020)",
+       x = "Month",
+       y = "Number of Rat Sightings") +
+  scale_x_discrete(labels = c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")) +
+  theme_minimal()
+```
 
