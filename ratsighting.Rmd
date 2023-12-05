@@ -44,6 +44,7 @@ filtered_rat_data_manhattan <- rat_sightings_data %>%
     month_created, year_created, latitude, longitude, 
     incident_zip, borough, location_type
   )
+variable.names(rat_sightings_data)
 ```
 
 ### Creating maps for each year 
@@ -112,7 +113,26 @@ maps_manhattan[["Rat Sightings - 2019"]]
 
 
 
+### Bar Plots comparing Average Annual Rat Sightings across Boroughs 
 
+```{r}
+# Filter data for the years 2015-2019
+barplot_rat_data <- rat_sightings_data %>%
+  filter(year_created >= 2015 & year_created <= 2019)
 
+# Calculate the average annual rat sightings by borough
+average_sightings_by_borough <- barplot_rat_data %>%
+  group_by(year_created, borough) %>%
+  summarise(average_sightings = n() / length(unique(month_created)))
+
+# Create a bar plot
+ggplot(average_sightings_by_borough, aes(x = borough, y = average_sightings, fill = factor(year_created))) +
+  geom_bar(stat = "identity", position = "dodge", color = "black") +
+  labs(title = "Average Annual Rat Sightings by Borough (2015-2019)",
+       x = "Borough",
+       y = "Average Annual Rat Sightings") +
+  scale_fill_manual(name = "Year", values = c("2015" = "skyblue", "2016" = "orange", "2017" = "pink", "2018" = "purple", "2019" = "red")) +
+  theme_minimal()
+```
 
 
