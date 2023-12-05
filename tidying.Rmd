@@ -4,44 +4,9 @@ output:
   html_document:
     toc: true
     toc_float: true
+    includes:
+      in_header: header.html
 ---
-```{r setup, include=FALSE}
-# Main Section
-
-<script>
-function toggleDropdown() {
-    var dropdown = document.getElementById("myDropdown");
-    dropdown.classList.toggle("show");
-}
-
-// Close the dropdown menu if the user clicks outside of it
-window.onclick = function(event) {
-    if (!event.target.matches('.dropbtn')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        for (var i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
-            }
-        }
-    }
-}
-</script>
-
-<div class="navbar">
-    <div class="dropdown">
-        <button onclick="toggleDropdown()" class="dropbtn">Dropdown</button>
-        <div id="myDropdown" class="dropdown-content">
-            <a href="#link1">Link 1</a>
-            <a href="#link2">Link 2</a>
-            <a href="#link3">Link 3</a>
-        </div>
-    </div>
-</div>
-```
-
-
-
 
 ![](https://static.therealdeal.com/wp-content/uploads/2019/02/600-Credit-Wikimedia-Commons-1.jpg)
 

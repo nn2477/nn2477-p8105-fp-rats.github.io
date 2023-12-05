@@ -20,5 +20,3 @@ navbar:
 output:
   html_document:
     theme: journal
-  html:
-    favicon: "images/favicon_io/favicon.ico"
