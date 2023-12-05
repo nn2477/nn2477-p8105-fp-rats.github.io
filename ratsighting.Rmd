@@ -4,6 +4,8 @@ output:
   html_document:
     toc: true
     toc_float: true
+    fig_height: 10  
+    fig_width: 10
 ---
 
 ![](https://www.cbc.ca/natureofthings/content/images/CBC_Rat_City_FA_Horizontal_1920.jpg)
