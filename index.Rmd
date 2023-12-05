@@ -8,6 +8,26 @@ output:
       in_header: header.html
 ---
 
+
+```{r setup, include=FALSE}
+library(tidyverse)
+
+knitr::opts_chunk$set(
+	echo = TRUE,
+	warning = FALSE,
+	fig.width = 30, 
+  fig.height = 35
+)
+
+theme_set(theme_minimal() + theme(legend.position = "bottom"))
+
+options(
+  ggplot2.continuous.colour = "viridis",
+  ggplot2.continuous.fill = "viridis"
+)
+
+```
+
 ![](https://animal-human-relationship.pictures-of-cats.org/wp-content/uploads/2023/04/Rats-in-NYC.jpg)
 
 ### Motivation

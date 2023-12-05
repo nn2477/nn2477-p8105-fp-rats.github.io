@@ -8,24 +8,24 @@ output:
       in_header: header.html
 ---
 
-```{css, echo=FALSE}
-.navbar-item {
-  position: relative;
-}
 
-.navbar-item:hover .submenu {
-  display: block;
-}
+```{r setup, include=FALSE}
+library(tidyverse)
 
-.submenu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #f9f9f9;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-  padding: 10px;
-}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	warning = FALSE,
+	fig.width = 30, 
+  fig.height = 35
+)
+
+theme_set(theme_minimal() + theme(legend.position = "bottom"))
+
+options(
+  ggplot2.continuous.colour = "viridis",
+  ggplot2.continuous.fill = "viridis"
+)
+
 ```
 
 ![](https://pyxis.nymag.com/v1/imgs/4be/8b4/33d3b72dfa03e72acb21faf9938c192a03-4-13-Rats.2x.rsquare.w700.jpg)

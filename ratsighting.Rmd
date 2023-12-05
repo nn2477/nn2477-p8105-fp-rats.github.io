@@ -4,11 +4,7 @@ output:
   html_document:
     toc: true
     toc_float: true
-    fig_height: 10  
-    fig_width: 10
 ---
-
-![](https://www.cbc.ca/natureofthings/content/images/CBC_Rat_City_FA_Horizontal_1920.jpg)
 
 ```{r setup, include=FALSE}
 library(tidyverse)
@@ -32,6 +28,8 @@ options(
 rat_sightings_data <- read.csv("./datasets_clean/rat_sightings_data")
 
 ```
+
+![](https://www.cbc.ca/natureofthings/content/images/CBC_Rat_City_FA_Horizontal_1920.jpg)
 
 ### Filtering Dataset 
 ```{r, message=FALSE}
@@ -77,44 +75,44 @@ for (year in 2015:2019) {
 # Display each map separately for Manhattan
 names(maps_manhattan) <- paste("Rat Sightings -", 2015:2019)
 maps_manhattan 
+
+lapply(names(maps_manhattan), function(year) {
+  maps_manhattan[[year]] %>%
+    leaflet(width = "10%") %>%
+    addTiles() %>%
+    setView(lng = -73.97, lat = 40.78, zoom = 13)
+})
 ```
 
 #### 2015
 ```{r, echo=FALSE}
-maps_manhattan[["Rat Sightings - 2015"]] %>%
-  addTiles() %>%
-  setView(lng = -73.98, lat = 40.73, zoom = 12)
-
+maps_manhattan[["Rat Sightings - 2015"]] 
 ```
 
 #### 2016
 ```{r, echo=FALSE}
-maps_manhattan[["Rat Sightings - 2016"]] %>%
-  addTiles() %>%
-  setView(lng = -73.98, lat = 40.73, zoom = 12)
+maps_manhattan[["Rat Sightings - 2016"]]
 ```
 
 #### 2017
 ```{r, echo=FALSE}
-maps_manhattan[["Rat Sightings - 2017"]] %>%
-  addTiles() %>%
-  setView(lng = -73.98, lat = 40.73, zoom = 12)
+maps_manhattan[["Rat Sightings - 2017"]]
 ```
 
 #### 2018
 ```{r, echo=FALSE}
-maps_manhattan[["Rat Sightings - 2018"]] %>%
-  addTiles() %>%
-  setView(lng = -73.98, lat = 40.73, zoom = 12)
+maps_manhattan[["Rat Sightings - 2018"]] 
 ```
 
 #### 2019
 ```{r, echo=FALSE}
-maps_manhattan[["Rat Sightings - 2019"]] %>%
-  addTiles() %>%
-  setView(lng = -73.98, lat = 40.73, zoom = 12)
+maps_manhattan[["Rat Sightings - 2019"]] 
 
 ```
+
+
+
+
 
 
 
