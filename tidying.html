@@ -397,16 +397,19 @@ div.tocify {
 
 <p><img
 src="https://static.therealdeal.com/wp-content/uploads/2019/02/600-Credit-Wikimedia-Commons-1.jpg" /></p>
-<div id="income-data-cleaning" class="section level1">
-<h1>Income Data Cleaning</h1>
+<div id="income-data" class="section level1">
+<h1>Income Data</h1>
+<details>
+<summary>
+Code
+</summary>
 <pre class="r"><code>income_data_2020 = 
   read_csv(&quot;./datasets/Neighborhood_Financial_Health_Digital_Mapping_and_Data_Tool_20231125.csv&quot;) %&gt;% 
   janitor::clean_names() %&gt;% 
-  select(puma, borough, neighborhoods, nyc_poverty_rate, median_income, perc_white, perc_black, perc_asian, perc_other, perc_hispanic)</code></pre>
-<div id="check-for-missing-values-and-typos-in-neighborhood-names"
-class="section level2">
-<h2>Check for missing values and Typos in neighborhood names</h2>
-<pre class="r"><code>missing_val_check = 
+  select(puma, borough, neighborhoods, nyc_poverty_rate, median_income, perc_white, perc_black, perc_asian, perc_other, perc_hispanic)
+
+## Check for missing values and Typos in neighborhood names
+missing_val_check = 
   income_data_2020 %&gt;% 
   summarise_all(~sum(is.na(.)))
 
@@ -427,17 +430,19 @@ income_data_2020 %&gt;%
 ##  9 Borough Park, Kensington &amp; Ocean Parkway        7
 ## 10 Briarwood, Fresh Meadows &amp; Hillcrest            7
 ## # ℹ 45 more rows</code></pre>
+<pre class="r"><code>## Exporting clean dataset
+write_csv(income_data_2020, &quot;datasets_clean/income_data_2020&quot;)</code></pre>
+</details>
 <p>There are no missing values in the dataset. There are 7 of each
-neghborhood names indicating that there are no typos in the dataset for
+neighborhood names indicating that there are no typos in the dataset for
 neighborhood name.</p>
 </div>
-<div id="exporting-clean-dataset" class="section level2">
-<h2>Exporting clean dataset</h2>
-<pre class="r"><code>write_csv(income_data_2020, &quot;datasets_clean/income_data_2020&quot;)</code></pre>
-</div>
-</div>
-<div id="rat-sighting-data-cleaning" class="section level1">
-<h1>Rat Sighting Data Cleaning</h1>
+<div id="rat-sighting-data" class="section level1">
+<h1>Rat Sighting Data</h1>
+<details>
+<summary>
+Code
+</summary>
 <pre class="r"><code>rat_sightings_data = 
   read_csv(&quot;./datasets/Rat_Sightings_20231125.csv&quot;, skip=1) %&gt;% 
   janitor::clean_names() %&gt;% 
@@ -456,39 +461,46 @@ neighborhood name.</p>
     year_created %in% 2015:2020,
     year_closed %in% 2015:2020
   ) %&gt;% 
-  filter(incident_zip != 83)</code></pre>
-<div id="check-for-missing-values" class="section level2">
-<h2>Check for missing values</h2>
-<pre class="r"><code>missing_val_check_rat = 
+  filter(incident_zip != 83)
+
+
+## Check for missing values
+
+missing_val_check_rat = 
   rat_sightings_data %&gt;% 
-  summarise_all(~sum(is.na(.)))</code></pre>
+  summarise_all(~sum(is.na(.)))
+
+## Exporting clean dataset
+
+write_csv(rat_sightings_data, &quot;datasets_clean/rat_sightings_data&quot;)</code></pre>
+</details>
 <p>There are 662 missing values for both longitude and latitude but we
 will keep these in our tidied data.</p>
 </div>
-<div id="exporting-clean-dataset-1" class="section level2">
-<h2>Exporting clean dataset</h2>
-<pre class="r"><code>write_csv(rat_sightings_data, &quot;datasets_clean/rat_sightings_data&quot;)</code></pre>
-</div>
-</div>
-<div id="population-data-cleaning" class="section level1">
-<h1>Population Data Cleaning</h1>
+<div id="population-data" class="section level1">
+<h1>Population Data</h1>
+<details>
+<summary>
+Code
+</summary>
 <pre class="r"><code>population_data =
   read_excel(&quot;./datasets/population_data.xlsx&quot;, sheet = &quot;2010, 2020, and Change&quot;, range = &quot;C4:AQ10&quot;) |&gt;
   janitor::clean_names() |&gt; 
   select(borough, pop_20) |&gt; 
   slice(-1) |&gt; 
-  rename(population = pop_20)</code></pre>
-<div id="check-for-missing-values-1" class="section level2">
-<h2>Check for missing values</h2>
-<pre class="r"><code>missing_val_check_pop = 
+  rename(population = pop_20)
+
+## Check for missing values
+
+missing_val_check_pop = 
   population_data %&gt;% 
-  summarise_all(~sum(is.na(.)))</code></pre>
+  summarise_all(~sum(is.na(.)))
+
+## Exporting clean dataset
+
+write_csv(population_data, &quot;datasets_clean/population_data&quot;)</code></pre>
+</details>
 <p>The dataset is not missing any values.</p>
-</div>
-<div id="exporting-clean-dataset-2" class="section level2">
-<h2>Exporting clean dataset</h2>
-<pre class="r"><code>write_csv(population_data, &quot;datasets_clean/population_data&quot;)</code></pre>
-</div>
 </div>
 
 

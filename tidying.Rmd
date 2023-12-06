@@ -11,6 +11,8 @@ output:
 ```{r setup, include=FALSE}
 library(tidyverse)
 library(readxl)
+library(knitr)
+library(kableExtra)
 
 knitr::opts_chunk$set(
 	echo = TRUE,
@@ -30,18 +32,16 @@ options(
 
 ![](https://static.therealdeal.com/wp-content/uploads/2019/02/600-Credit-Wikimedia-Commons-1.jpg)
 
-# Income Data Cleaning
-
+# Income Data 
+<details>
+  <summary>Code</summary>
 ```{r message=FALSE}
 income_data_2020 = 
   read_csv("./datasets/Neighborhood_Financial_Health_Digital_Mapping_and_Data_Tool_20231125.csv") %>% 
   janitor::clean_names() %>% 
   select(puma, borough, neighborhoods, nyc_poverty_rate, median_income, perc_white, perc_black, perc_asian, perc_other, perc_hispanic)
-```
 
 ## Check for missing values and Typos in neighborhood names
-
-```{r}
 missing_val_check = 
   income_data_2020 %>% 
   summarise_all(~sum(is.na(.)))
@@ -49,18 +49,19 @@ missing_val_check =
 income_data_2020 %>% 
   group_by(neighborhoods)%>% 
   summarise(count= n())
-```
-
-There are no missing values in the dataset. There are 7 of each neghborhood names indicating that there are no typos in the dataset for neighborhood name. 
 
 ## Exporting clean dataset
-
-```{r}
 write_csv(income_data_2020, "datasets_clean/income_data_2020")
+
 ```
+</details>
 
-# Rat Sighting Data Cleaning 
+There are no missing values in the dataset. There are 7 of each neighborhood names indicating that there are no typos in the dataset for neighborhood name. 
 
+
+# Rat Sighting Data
+<details>
+  <summary>Code</summary>
 ```{r message=FALSE, warning=FALSE}
 rat_sightings_data = 
   read_csv("./datasets/Rat_Sightings_20231125.csv", skip=1) %>% 
@@ -81,27 +82,26 @@ rat_sightings_data =
     year_closed %in% 2015:2020
   ) %>% 
   filter(incident_zip != 83)
-```
+
 
 ## Check for missing values
 
-```{r}
 missing_val_check_rat = 
   rat_sightings_data %>% 
   summarise_all(~sum(is.na(.)))
+
+## Exporting clean dataset
+
+write_csv(rat_sightings_data, "datasets_clean/rat_sightings_data")
 ```
+</details>
 
 There are 662 missing values for both longitude and latitude but we will keep these in our tidied data.
 
 
-## Exporting clean dataset
-
-```{r}
-write_csv(rat_sightings_data, "datasets_clean/rat_sightings_data")
-```
-
-# Population Data Cleaning
-
+# Population Data
+<details>
+  <summary>Code</summary>
 ```{r}
 population_data =
   read_excel("./datasets/population_data.xlsx", sheet = "2010, 2020, and Change", range = "C4:AQ10") |>
@@ -109,22 +109,19 @@ population_data =
   select(borough, pop_20) |> 
   slice(-1) |> 
   rename(population = pop_20)
-```
-
 
 ## Check for missing values
 
-```{r}
 missing_val_check_pop = 
   population_data %>% 
   summarise_all(~sum(is.na(.)))
-```
-
-The dataset is not missing any values.
 
 ## Exporting clean dataset
 
-```{r}
 write_csv(population_data, "datasets_clean/population_data")
 ```
+</details>
+
+The dataset is not missing any values.
+
 

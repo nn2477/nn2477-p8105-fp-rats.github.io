@@ -31,15 +31,16 @@ options(
 ![](https://pyxis.nymag.com/v1/imgs/4be/8b4/33d3b72dfa03e72acb21faf9938c192a03-4-13-Rats.2x.rsquare.w700.jpg)
 
 ### Team Members 
-* Victoria Mello (vsm2118)
 
-* Eunsuh Cho (ec3663)
+| **Name**         | **Uni**    |
+|:-----------------|:----------:|
+| Victoria Mello   | vsm2118    |
+| Eunsuh Cho       | ec3663     |
+| Maggie Watson    | mgw2144    |
+| Victoria Schliep | vas2145    |
+| Nhu Nguyen       | nn2477     |
 
-* Maggie Watson (mgw2144)
 
-* Victoria Schliep (vas2145)
-
-* Nhu Nguyen (nn2477)
 
 ### Motivation 
 * Rats have been a significant problem for NYC residents
