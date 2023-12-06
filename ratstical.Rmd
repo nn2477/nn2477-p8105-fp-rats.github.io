@@ -1,13 +1,12 @@
 ---
-title: "Rat Sighting in Boroughs"
+title: "Rat Sighting App"
 output: 
   flexdashboard::flex_dashboard:
     theme: journal
     orientation: columns
     vertical_layout: fill
-    source_cide: embed
+    source_code: embed  
 runtime: shiny
-
 ---
 
 ````{r setup, include=FALSE}
@@ -36,9 +35,8 @@ rat_sightings_data <- read.csv("./datasets_clean/rat_sightings_data")
 ```
 
 
-
- {.sidebar}
------------------------------------------------------------------------
+{.sidebar}
+==========================================================================
 
 ```{r, echo=FALSE}
 ## Drop down menu input for year
@@ -64,8 +62,8 @@ selectInput(
 ```
 
 
- {data-width=650}
------------------------------------------------------------------------
+{data-width=650}
+==========================================================================
 
 ### Rat Sightings Data by Year and Borough
 
@@ -91,5 +89,3 @@ renderLeaflet({
     setView(lng = -73.97, lat = 40.78, zoom = 10)
 })
 ```
-
-
