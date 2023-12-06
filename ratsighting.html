@@ -13,7 +13,7 @@
 
 <title>Manhattan Rat Sighting Data</title>
 
-<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
@@ -406,8 +406,8 @@ barplot_rat_data &lt;- rat_sightings_data %&gt;%
 average_sightings_by_borough &lt;- barplot_rat_data %&gt;%
   group_by(year_created, borough) %&gt;%
   summarise(average_sightings = n() / length(unique(month_created)))</code></pre>
-<pre><code>## `summarise()` has grouped output by &#39;year_created&#39;. You can override using the
-## `.groups` argument.</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;year_created&#39;. You
+## can override using the `.groups` argument.</code></pre>
 <pre class="r"><code># Create a bar plot
 ggplot(average_sightings_by_borough, aes(x = borough, y = average_sightings, fill = factor(year_created))) +
   geom_bar(stat = &quot;identity&quot;, position = &quot;dodge&quot;, color = &quot;black&quot;) +

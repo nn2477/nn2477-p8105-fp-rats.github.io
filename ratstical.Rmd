@@ -7,15 +7,6 @@ output:
 runtime: shiny
 ---
 
-<nav class="navbar">
-  <ul>
-    <li><a href="income.html">Income Data</a></li>
-    <li><a href="ratsighting.html">Manhattan Rat Sighting Data</a></li>
-    <li><a href="population.html">Population Data</a></li>
-    </li>
-  </ul>
-</nav>
-
 ````{r setup, include=FALSE}
 library(tidyverse)
 library(leaflet)
