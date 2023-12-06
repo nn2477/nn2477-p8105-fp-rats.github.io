@@ -2,9 +2,12 @@
 title: "Rat Sighting in Boroughs"
 output: 
   flexdashboard::flex_dashboard:
+    theme: journal
     orientation: columns
     vertical_layout: fill
+    source_cide: embed
 runtime: shiny
+
 ---
 
 ````{r setup, include=FALSE}

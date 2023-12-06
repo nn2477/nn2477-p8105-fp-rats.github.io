@@ -8,3 +8,5 @@ output:
       in_header: header.html
 ---
 
+![Spotted: NYC Subway Rat in the Wild](images/rat.jpeg)
+

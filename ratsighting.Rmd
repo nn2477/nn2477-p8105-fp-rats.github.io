@@ -6,8 +6,6 @@ output:
     toc_float: true
 ---
 
-![Spotted: NYC Subway Rat in the Wild](images/rat.jpeg)
-
 ```{r setup, include=FALSE}
 library(tidyverse)
 library(leaflet)
