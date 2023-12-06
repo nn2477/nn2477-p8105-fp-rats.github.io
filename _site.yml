@@ -5,18 +5,18 @@ navbar:
   right:
     - text: "Home"
       href: index.html
+    - text: "Rat Sighting App"
+      href: ratstical.html
     - text: "Proposal"
       href: proposal.html
     - text: "Data Cleaning/Tidying"
       href: tidying.html
     - text: "Ratstical: Exploratory Analysis"
       menu:
-      - text: "Rat Sightings in Boroughs"
-        href: ratstical.html
-      - text: "Rat Sighting in Manhattan"
-        href: ratsighting.html
       - text: "Income Data"
         href: income.html
+      - text: "Rat Sighting in Manhattan"
+        href: ratsighting.html
       - text: "Population Data"
         href: population.html
     - text: "Synopsis Report"

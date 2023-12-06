@@ -7,8 +7,6 @@ output:
 runtime: shiny
 ---
 
-![Spotted: NYC Subway Rat in the Wild](images/rat.jpeg)
-
 <nav class="navbar">
   <ul>
     <li><a href="income.html">Income Data</a></li>
