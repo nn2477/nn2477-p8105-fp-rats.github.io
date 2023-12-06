@@ -11,7 +11,7 @@ navbar:
       href: tidying.html
     - text: "Ratstical: Exploratory Analysis"
       menu:
-      - text: "Rat Sightings"
+      - text: "Rat Sightings in Boroughs"
         href: ratstical.html
       - text: "Rat Sighting in Manhattan"
         href: ratsighting.html
