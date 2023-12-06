@@ -2,7 +2,6 @@
 title: "Rat Sighting App"
 output: 
   flexdashboard::flex_dashboard:
-    theme: journal
     orientation: columns
     vertical_layout: fill
     source_code: embed  
@@ -89,3 +88,6 @@ renderLeaflet({
     setView(lng = -73.97, lat = 40.78, zoom = 10)
 })
 ```
+
+
+
