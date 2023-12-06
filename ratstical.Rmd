@@ -1,5 +1,5 @@
 ---
-title: "Ratstical Analysis: Rat Sighting Data"
+title: "Rat Sighting Data"
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
