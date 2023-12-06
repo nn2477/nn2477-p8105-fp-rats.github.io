@@ -4,19 +4,19 @@ output:
   html_document:
     toc: true
     toc_float: true
-    includes:
-      in_header: favicon.html
 ---
 
 ```{r setup, include=FALSE}
 library(tidyverse)
 library(leaflet)
 library(lubridate)
+library(shiny)
+library(htmltools)
 
 knitr::opts_chunk$set(
-	echo = TRUE,
-	warning = FALSE,
-	fig.width = 30, 
+    echo = TRUE,
+    warning = FALSE,
+    fig.width = 30, 
   fig.height = 35
 )
 
@@ -33,36 +33,24 @@ rat_sightings_data <- read.csv("./datasets_clean/rat_sightings_data")
 
 ![](https://www.cbc.ca/natureofthings/content/images/CBC_Rat_City_FA_Horizontal_1920.jpg)
 
-### Filtering Dataset 
-```{r, message=FALSE}
-# Filter data for the years 2015-2019 and for Manhattan only
-filtered_rat_data_manhattan <- rat_sightings_data %>%
-  filter(
-    year_created >= 2015 & year_created <= 2019,
-    !is.na(latitude) & !is.na(longitude),
-    borough == "Manhattan"
-  ) %>%
-  select(
-    month_created, year_created, latitude, longitude, 
-    incident_zip, borough, location_type
-  )
-variable.names(rat_sightings_data)
-```
 
-### Creating maps for each year 
-```{r, message=FALSE}
-# Create separate maps for each year in Manhattan
-maps_manhattan <- list()
+### Mapping of Rat Sightings in Manhattan by Year 
+<details>
+  <summary>Code</summary>
+```{r}
+# Create separate maps for each year in all boroughs
+maps_all_boroughs <- list()
 
 for (year in 2015:2019) {
-  data_year <- filtered_rat_data_manhattan %>% filter(year_created == year)
-  
-  maps_manhattan[[as.character(year)]] <- leaflet(data_year) %>%
+  data_year <- rat_sightings_data %>%
+    filter(year_created == year, !is.na(latitude), !is.na(longitude))
+
+  maps_all_boroughs[[as.character(year)]] <- leaflet(data_year) %>%
     addTiles() %>%
     addCircleMarkers(
       lng = ~longitude,
       lat = ~latitude,
-      radius = 5,  # Adjust the radius of markers as needed
+      radius = 5, 
       popup = ~paste("Location Type", location_type, "<br>Date: ", paste(month_created, year_created, sep = "-"))
     ) %>%
     addLegend("bottomright", colors = "red", labels = paste("Rat Sightings - ", year)) %>%
@@ -70,53 +58,93 @@ for (year in 2015:2019) {
       clusterOptions = markerClusterOptions()
     )
 }
-```
 
-### Mapping of Rat Sightings in Manhattan by Year 
+# Display each map separately for all boroughs and all years
 
-```{r, echo=FALSE, results='hide'}
-# Display each map separately for Manhattan
-names(maps_manhattan) <- paste("Rat Sightings -", 2015:2019)
-maps_manhattan 
+names(maps_all_boroughs) <- paste("Rat Sightings -", 2015:2019)
+maps_all_boroughs 
 
-lapply(names(maps_manhattan), function(year) {
-  maps_manhattan[[year]] %>%
-    leaflet(width = "10%") %>%
-    addTiles() %>%
-    setView(lng = -73.97, lat = 40.78, zoom = 13)
+lapply(names(maps_all_boroughs), function(year) {
+  maps_all_boroughs[[year]] %>%
+    leaflet(width = "100%", height = "500px") %>%
+    setView(lng = -73.97, lat = 40.78, zoom = 10) %>%
+    addTiles() 
 })
 ```
+</details>
 
 #### 2015
-```{r, echo=FALSE}
-maps_manhattan[["Rat Sightings - 2015"]] 
+<details>
+  <summary>Code</summary>
+```{r}
+maps_all_boroughs[["Rat Sightings - 2015"]]
 ```
+</details>
+
+```{r, echo=FALSE}
+maps_all_boroughs[["Rat Sightings - 2015"]]  
+```
+
 
 #### 2016
-```{r, echo=FALSE}
-maps_manhattan[["Rat Sightings - 2016"]]
+
+<details>
+  <summary>Code</summary>
+```{r}
+maps_all_boroughs[["Rat Sightings - 2016"]]
 ```
+</details>
+
+```{r, echo=FALSE}
+maps_all_boroughs[["Rat Sightings - 2016"]]
+```
+
 
 #### 2017
-```{r, echo=FALSE}
-maps_manhattan[["Rat Sightings - 2017"]]
+
+<details>
+  <summary>Code</summary>
+```{r}
+maps_all_boroughs[["Rat Sightings - 2017"]]
 ```
+</details>
+
+```{r, echo=FALSE}
+maps_all_boroughs[["Rat Sightings - 2017"]]
+```
+
 
 #### 2018
-```{r, echo=FALSE}
-maps_manhattan[["Rat Sightings - 2018"]] 
+
+<details>
+  <summary>Code</summary>
+```{r}
+maps_all_boroughs[["Rat Sightings - 2018"]] 
 ```
+</details>
+
+```{r, echo=FALSE}
+maps_all_boroughs[["Rat Sightings - 2018"]] 
+```
+
 
 #### 2019
-```{r, echo=FALSE}
-maps_manhattan[["Rat Sightings - 2019"]] 
 
+<details>
+  <summary>Code</summary>
+```{r}
+maps_all_boroughs[["Rat Sightings - 2019"]] 
 ```
+</details>
 
+```{r, echo=FALSE}
+maps_all_boroughs[["Rat Sightings - 2019"]] 
+```
 
 
 ### Bar Plots: Average Annual Rat Sightings across Boroughs 
-
+<details>
+  <summary>Code</summary>
 ```{r}
 # Filter data for the years 2015-2019
 barplot_rat_data <- rat_sightings_data %>%
@@ -131,27 +159,60 @@ average_sightings_by_borough <- barplot_rat_data %>%
 ggplot(average_sightings_by_borough, aes(x = borough, y = average_sightings, fill = factor(year_created))) +
   geom_bar(stat = "identity", position = "dodge", color = "black") +
   labs(title = "Average Annual Rat Sightings by Borough (2015-2019)",
-       x = "Borough",
-       y = "Average Annual Rat Sightings") +
+      x = "Borough",
+      y = "Average Annual Rat Sightings") +
+  scale_fill_manual(name = "Year", values = c("2015" = "skyblue", "2016" = "orange", "2017" = "pink", "2018" = "purple", "2019" = "red")) +
+  theme_minimal()
+```
+</details>
+
+```{r, echo=FALSE, fig.width=10, fig.height=8}
+# Create a bar plot
+ggplot(average_sightings_by_borough, aes(x = borough, y = average_sightings, fill = factor(year_created))) +
+  geom_bar(stat = "identity", position = "dodge", color = "black") +
+  labs(title = "Average Annual Rat Sightings by Borough (2015-2019)",
+      x = "Borough",
+      y = "Average Annual Rat Sightings") +
   scale_fill_manual(name = "Year", values = c("2015" = "skyblue", "2016" = "orange", "2017" = "pink", "2018" = "purple", "2019" = "red")) +
   theme_minimal()
 ```
 
 
-### Monthly Trends in NYC Rat Sightings (2015-2020) 
 
+### Monthly Trends in NYC Rat Sightings (2015-2020) 
+<details>
+  <summary>Code</summary>
 ```{r}
 # Filter data for the years 2015-2019
 filtered_rat_data <- rat_sightings_data %>%
-  filter(year_created >= 2015 & year_created <= 2020)
+  filter(year_created >= 2015 & year_created <= 2019)
 
-# Line plot for the number of rat sightings by month
+# Line plot for the number of rat sightings by month with points
 ggplot(filtered_rat_data, aes(x = month_created, group = year_created)) +
-  geom_line(aes(y = ..count.., color = factor(year_created)), stat = "count") +
+  geom_line(aes(y = after_stat(count), color = factor(year_created)), stat = "count") +
+  geom_point(aes(y = after_stat(count), color = factor(year_created)), stat = "count", size = 2) +
   labs(title = "Number of Rat Sightings by Month (2015-2020)",
-       x = "Month",
-       y = "Number of Rat Sightings") +
+      x = "Month",
+      y = "Number of Rat Sightings") +
   scale_x_discrete(labels = c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")) +
+  scale_color_discrete(name = "Year") +
   theme_minimal()
+
 ```
+</details>
+
+
+```{r, echo=FALSE, fig.width=10, fig.height=8}
+# Line plot for the number of rat sightings by month with points
+ggplot(filtered_rat_data, aes(x = month_created, group = year_created)) +
+  geom_line(aes(y = after_stat(count), color = factor(year_created)), stat = "count") +
+  geom_point(aes(y = after_stat(count), color = factor(year_created)), stat = "count", size = 2) +
+  labs(title = "Number of Rat Sightings by Month (2015-2020)",
+      x = "Month",
+      y = "Number of Rat Sightings") +
+  scale_x_discrete(labels = c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")) +
+  scale_color_discrete(name = "Year") +
+  theme_minimal() 
+```
+
 
