@@ -13,7 +13,7 @@
 
 <title>Manhattan Rat Sighting Data</title>
 
-<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
@@ -385,6 +385,10 @@ div.tocify {
 </div>
 
 
+<div class="float">
+<img src="images/rat.jpeg" alt="Spotted: NYC Subway Rat in the Wild" />
+<div class="figcaption">Spotted: NYC Subway Rat in the Wild</div>
+</div>
 <p><img
 src="https://www.cbc.ca/natureofthings/content/images/CBC_Rat_City_FA_Horizontal_1920.jpg" /></p>
 <div id="bar-plots-average-annual-rat-sightings-across-boroughs"
@@ -402,8 +406,8 @@ barplot_rat_data &lt;- rat_sightings_data %&gt;%
 average_sightings_by_borough &lt;- barplot_rat_data %&gt;%
   group_by(year_created, borough) %&gt;%
   summarise(average_sightings = n() / length(unique(month_created)))</code></pre>
-<pre><code>## `summarise()` has grouped output by &#39;year_created&#39;. You
-## can override using the `.groups` argument.</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;year_created&#39;. You can override using the
+## `.groups` argument.</code></pre>
 <pre class="r"><code># Create a bar plot
 ggplot(average_sightings_by_borough, aes(x = borough, y = average_sightings, fill = factor(year_created))) +
   geom_bar(stat = &quot;identity&quot;, position = &quot;dodge&quot;, color = &quot;black&quot;) +
@@ -445,6 +449,11 @@ ggplot(filtered_rat_data, aes(x = month_created, group = year_created)) +
 class="section level2">
 <h2>Average Rat Sightings Per Person by Borough 2020</h2>
 <p><img src="ratsighting_files/figure-html/unnamed-chunk-5-1.png" width="960" /></p>
+</div>
+<div id="average-rat-sightings-to-median-income-by-borough-2020"
+class="section level2">
+<h2>Average Rat Sightings to Median Income by Borough 2020</h2>
+<p><img src="ratsighting_files/figure-html/unnamed-chunk-6-1.png" width="960" /></p>
 </div>
 
 

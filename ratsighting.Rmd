@@ -6,6 +6,8 @@ output:
     toc_float: true
 ---
 
+![Spotted: NYC Subway Rat in the Wild](images/rat.jpeg)
+
 ```{r setup, include=FALSE}
 library(tidyverse)
 library(leaflet)
@@ -29,6 +31,7 @@ options(
 
 rat_sightings_data <- read.csv("./datasets_clean/rat_sightings_data")
 population_data <- read.csv("./datasets_clean/population_data")
+income_data_2020 <- read.csv("./datasets_clean/income_data_2020")
 
 ```
 
@@ -131,5 +134,27 @@ rat_to_population %>%
   scale_fill_manual(name = "Borough", values = c("Manhattan" = "skyblue", "Bronx" = "orange", "Brooklyn" = "pink", "Queens" = "purple", "Staten Island" = "red")) +
   theme_minimal()
   
+```
+
+## Average Rat Sightings to Median Income by Borough 2020
+
+```{r, echo=FALSE, fig.width=10, fig.height=8}
+avg_median_income_borough = 
+  income_data_2020 %>% 
+  group_by(borough) %>% 
+  summarise(avg_median_income = mean(median_income))
+
+rat_to_income = 
+  left_join(avg_rat_sightings_borough, avg_median_income_borough, by = "borough") %>% 
+  mutate(rat_income = count / avg_median_income)
+
+rat_to_income %>% 
+  ggplot(aes(x = borough, y = rat_income, fill = borough))+
+  geom_bar(stat = "identity")+
+  labs(title = "Rat Per Dollar by Borough in 2020",
+      x = "Borough",
+      y = "Rat Per Dollar Ratio") +
+  scale_fill_manual(name = "Borough", values = c("Manhattan" = "skyblue", "Bronx" = "orange", "Brooklyn" = "pink", "Queens" = "purple", "Staten Island" = "red")) +
+  theme_minimal()
 ```
 
