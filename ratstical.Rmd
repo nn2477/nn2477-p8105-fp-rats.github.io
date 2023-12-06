@@ -1,9 +1,10 @@
 ---
-title: "Ratstical: Exploratory Analysis"
+title: "Ratstical Analysis: Rat Sighting Data"
 output: 
-  html_document:
-    toc: true
-    toc_float: true
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+runtime: shiny
 ---
 
 ![Spotted: NYC Subway Rat in the Wild](images/rat.jpeg)
@@ -16,3 +17,87 @@ output:
     </li>
   </ul>
 </nav>
+
+````{r setup, include=FALSE}
+library(tidyverse)
+library(leaflet)
+library(lubridate)
+library(shiny)
+library(htmltools)
+
+knitr::opts_chunk$set(
+    echo = TRUE,
+    warning = FALSE,
+    fig.width = 30, 
+  fig.height = 35
+)
+
+theme_set(theme_minimal() + theme(legend.position = "bottom"))
+
+options(
+  ggplot2.continuous.colour = "viridis",
+  ggplot2.continuous.fill = "viridis"
+)
+
+rat_sightings_data <- read.csv("./datasets_clean/rat_sightings_data")
+
+```
+
+
+
+ {.sidebar}
+-----------------------------------------------------------------------
+
+```{r, echo=FALSE}
+## Drop down menu input for year
+years <- unique(rat_sightings_data$year_created)
+
+selectInput(
+  inputId = "year_choice", 
+  label = "Select Year",
+  choices = years,
+  selected = min(years)
+)
+
+## Drop down menu input for borough
+boroughs <- unique(rat_sightings_data$borough)
+
+selectInput(
+  inputId = "borough_choice", 
+  label = "Select Borough",
+  choices = boroughs,
+  selected = "Manhattan"
+)
+
+```
+
+
+ {data-width=650}
+-----------------------------------------------------------------------
+
+### Rat Sightings Data by Year and Borough
+
+```{r, echo=FALSE}
+renderLeaflet({
+  filtered_data <- reactive({
+    rat_sightings_data %>%
+      filter(year_created == input$year_choice, borough == input$borough_choice, !is.na(latitude), !is.na(longitude))
+  })
+
+  leaflet(filtered_data()) %>%
+    addTiles() %>%
+    addCircleMarkers(
+      lng = ~longitude,
+      lat = ~latitude,
+      radius = 5,
+      popup = ~paste("Location Type", location_type, "<br>Date: ", paste(month_created, year_created, sep = "-"))
+    ) %>%
+    addLegend("bottomright", colors = "red", labels = paste("Rat Sightings - ", input$year_choice)) %>%
+    addMarkers(
+      clusterOptions = markerClusterOptions()
+    ) %>%
+    setView(lng = -73.97, lat = 40.78, zoom = 10)
+})
+```
+
+
