@@ -110,7 +110,7 @@ ggplot(filtered_rat_data, aes(x = month_created, group = year_created)) +
   theme_minimal() 
 ```
 
-## Average Rat Sightings to Median Income by Borough 2020
+## Average Rat Sightings Per Person by Borough 2020
 
 ```{r, echo=FALSE, fig.width=10, fig.height=8}
 avg_rat_sightings_borough = 
