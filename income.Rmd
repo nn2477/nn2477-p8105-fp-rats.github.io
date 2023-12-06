@@ -8,3 +8,11 @@ output:
       in_header: header.html
 ---
 
+```{r}
+library(tidyverse)
+
+rat_sightings_data <- read.csv("./datasets_clean/rat_sightings_data")
+income_data_2020 <- read.csv("./datasets_clean/income_data_2020")
+```
+
+
