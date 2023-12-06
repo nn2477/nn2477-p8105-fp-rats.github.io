@@ -13,6 +13,7 @@ library(tidyverse)
 library(leaflet)
 library(lubridate)
 library(shiny)
+library(plotly)
 library(htmltools)
 
 knitr::opts_chunk$set(
@@ -30,15 +31,13 @@ options(
 )
 
 rat_sightings_data <- read.csv("./datasets_clean/rat_sightings_data")
-population_data <- read.csv("./datasets_clean/population_data")
-income_data_2020 <- read.csv("./datasets_clean/income_data_2020")
 
 ```
 
 ![](https://www.cbc.ca/natureofthings/content/images/CBC_Rat_City_FA_Horizontal_1920.jpg)
 
 
-### Bar Plots: Average Annual Rat Sightings across Boroughs 
+### Bar Plot: Average Annual Rat Sightings across Boroughs 
 <details>
   <summary>Code</summary>
 ```{r}
@@ -97,7 +96,6 @@ ggplot(filtered_rat_data, aes(x = month_created, group = year_created)) +
 ```
 </details>
 
-
 ```{r, echo=FALSE, fig.width=10, fig.height=8}
 # Line plot for the number of rat sightings by month with points
 ggplot(filtered_rat_data, aes(x = month_created, group = year_created)) +
@@ -111,50 +109,61 @@ ggplot(filtered_rat_data, aes(x = month_created, group = year_created)) +
   theme_minimal() 
 ```
 
-## Average Rat Sightings Per Person by Borough 2020
 
-```{r, echo=FALSE, fig.width=10, fig.height=8}
-avg_rat_sightings_borough = 
-  rat_sightings_data %>% 
-  filter(year_created == 2020) %>% 
-  mutate(unique_key = as_factor(unique_key)) %>% 
-  group_by(borough) %>% 
-  summarize(count = n_distinct(unique_key))
+### Residential Rat Sightings by Borough
+```{r}
+# Specify the desired location types
+desired_location_types <- c(
+  "3+ Family Apt. Building", 
+  "1-2 Family Dwelling", 
+  "3+ Family Mixed Use Building", 
+  "1-2 Family Mixed Use Building", 
+  "3+ Family Apartment Building", 
+  "Single Room Occupancy (SRO)", 
+  "Apartment", 
+  "Residence", 
+  "1-3 Family Dwelling",
+  "Residential Property",
+  "1-3 Family Mixed Use Building",
+  "3+ Family Apt., Private House"
+)
 
-rat_to_population = 
-  left_join(avg_rat_sightings_borough, population_data, by = "borough") %>% 
-  mutate(rat_population = count / population)
-
-rat_to_population %>% 
-  ggplot(aes(x = borough, y = rat_population, fill = borough))+
-  geom_bar(stat = "identity")+
-  labs(title = "Rat Per Person Ratio by Borough in 2020",
-      x = "Borough",
-      y = "Rat Per Person Ratio") +
-  scale_fill_manual(name = "Borough", values = c("Manhattan" = "skyblue", "Bronx" = "orange", "Brooklyn" = "pink", "Queens" = "purple", "Staten Island" = "red")) +
-  theme_minimal()
+# Create a new dataset with only residential sightings
+residential_sightings <- rat_sightings_data %>%
+  filter(location_type %in% desired_location_types)
   
+# Step 1: Calculate the count of residential rat sightings by borough
+residential_counts <- residential_sightings %>%
+  group_by(borough) %>%
+  summarise(residential_count = n())
+
+# Step 2: Calculate the total count of rat sightings by borough
+total_counts <- rat_sightings_data %>%
+  group_by(borough) %>%
+  summarise(total_count = n())
+
+# Step 3: Merge the two datasets and calculate the proportion
+borough_proportions <- merge(residential_counts, total_counts, by = "borough", all.x = TRUE) %>%
+  mutate(proportion_residential = residential_count / total_count)
+
+# Print the result
+knitr::kable(borough_proportions)
+
+# Create an interactive bar plot
+plot_ly(
+  data = borough_proportions,
+  x = ~borough,
+  y = ~proportion_residential,
+  type = "bar",
+  marker = list(color = "skyblue")
+) %>%
+  layout(
+    title = "Proportion of Residential Rat Sightings by Borough",
+    xaxis = list(title = "Borough"),
+    yaxis = list(title = "Proportion"),
+    showlegend = FALSE
+  )
+
 ```
 
-## Average Rat Sightings to Median Income by Borough 2020
-
-```{r, echo=FALSE, fig.width=10, fig.height=8}
-avg_median_income_borough = 
-  income_data_2020 %>% 
-  group_by(borough) %>% 
-  summarise(avg_median_income = mean(median_income))
-
-rat_to_income = 
-  left_join(avg_rat_sightings_borough, avg_median_income_borough, by = "borough") %>% 
-  mutate(rat_income = count / avg_median_income)
-
-rat_to_income %>% 
-  ggplot(aes(x = borough, y = rat_income, fill = borough))+
-  geom_bar(stat = "identity")+
-  labs(title = "Rat Per Dollar by Borough in 2020",
-      x = "Borough",
-      y = "Rat Per Dollar Ratio") +
-  scale_fill_manual(name = "Borough", values = c("Manhattan" = "skyblue", "Bronx" = "orange", "Brooklyn" = "pink", "Queens" = "purple", "Staten Island" = "red")) +
-  theme_minimal()
-```
 
