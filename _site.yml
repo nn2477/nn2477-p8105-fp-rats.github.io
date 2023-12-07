@@ -21,7 +21,7 @@ navbar:
       href: report.html
     - text: "Plotly Graphs"
       href: dashboard.html
-    - icon: fa-regular fa-mouse-field
+    - icon: fa-solid fa-chalkboard
       href: https://nn2477.shinyapps.io/rat_sighting_map_app 
     - icon: fa-brands fa-square-youtube
       href: https://github.com/nn2477/p8105-fp-rats.github.io
