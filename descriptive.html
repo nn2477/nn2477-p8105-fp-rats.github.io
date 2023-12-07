@@ -791,17 +791,6 @@ $(document).ready(function () {
 <div id="measures-of-dispersion-1" class="section level2">
 <h2>Measures of Dispersion</h2>
 <p>Measures of Dispersion for Median Income by Borough in 2020</p>
-<pre class="r"><code>disp_med_income = 
-  income_data_2020 %&gt;%
-  group_by(borough) %&gt;% 
-  summarise(
-    range = max(median_income) - min(median_income),
-    iqr = IQR(median_income),
-    sd = sd(median_income),
-    var = var(median_income)
-  )
-
-knitr::kable(disp_med_income)</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -854,16 +843,6 @@ knitr::kable(disp_med_income)</code></pre>
 <div id="quartiles-1" class="section level2">
 <h2>Quartiles</h2>
 <p>Quartiles for Median Income by Borough in 2020</p>
-<pre class="r"><code>quartiles_med_income = 
-  income_data_2020 %&gt;%
-  group_by(borough) %&gt;% 
-  summarise(
-    Q1 = quantile(median_income, 0.25),
-    median = median(median_income),
-    Q3 = quantile(median_income, 0.75)
-  )
-
-knitr::kable(quartiles_med_income)</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -903,6 +882,165 @@ knitr::kable(quartiles_med_income)</code></pre>
 <td align="right">31347</td>
 <td align="right">35413.0</td>
 <td align="right">40637</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="population-data" class="section level1">
+<h1>Population Data</h1>
+<div id="measures-of-central-tendency-2" class="section level2">
+<h2>Measures of Central Tendency</h2>
+<p>Measures of Central Tendency for Population by Borough</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">borough</th>
+<th align="right">mean</th>
+<th align="right">median</th>
+<th align="right">sd</th>
+<th align="right">min</th>
+<th align="right">max</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Bronx</td>
+<td align="right">10402.296</td>
+<td align="right">4256</td>
+<td align="right">22948.09</td>
+<td align="right">0</td>
+<td align="right">188249</td>
+</tr>
+<tr class="even">
+<td align="left">Brooklyn</td>
+<td align="right">9181.456</td>
+<td align="right">3478</td>
+<td align="right">24571.11</td>
+<td align="right">0</td>
+<td align="right">205377</td>
+</tr>
+<tr class="odd">
+<td align="left">Manhattan</td>
+<td align="right">14032.036</td>
+<td align="right">5696</td>
+<td align="right">29385.70</td>
+<td align="right">0</td>
+<td align="right">231983</td>
+</tr>
+<tr class="even">
+<td align="left">Queens</td>
+<td align="right">8741.119</td>
+<td align="right">3226</td>
+<td align="right">24907.14</td>
+<td align="right">0</td>
+<td align="right">269587</td>
+</tr>
+<tr class="odd">
+<td align="left">Staten Island</td>
+<td align="right">9720.529</td>
+<td align="right">4234</td>
+<td align="right">24013.37</td>
+<td align="right">0</td>
+<td align="right">189663</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="measures-of-dispersion-2" class="section level2">
+<h2>Measures of Dispersion</h2>
+<p>Measures of Dispersion for Population by Borough</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">borough</th>
+<th align="right">range</th>
+<th align="right">iqr</th>
+<th align="right">sd</th>
+<th align="right">var</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Bronx</td>
+<td align="right">188249</td>
+<td align="right">3706.75</td>
+<td align="right">22948.09</td>
+<td align="right">526614901</td>
+</tr>
+<tr class="even">
+<td align="left">Brooklyn</td>
+<td align="right">205377</td>
+<td align="right">2231.00</td>
+<td align="right">24571.11</td>
+<td align="right">603739518</td>
+</tr>
+<tr class="odd">
+<td align="left">Manhattan</td>
+<td align="right">231983</td>
+<td align="right">4901.00</td>
+<td align="right">29385.70</td>
+<td align="right">863519283</td>
+</tr>
+<tr class="even">
+<td align="left">Queens</td>
+<td align="right">269587</td>
+<td align="right">2868.50</td>
+<td align="right">24907.14</td>
+<td align="right">620365551</td>
+</tr>
+<tr class="odd">
+<td align="left">Staten Island</td>
+<td align="right">189663</td>
+<td align="right">2961.00</td>
+<td align="right">24013.37</td>
+<td align="right">576641723</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="quartiles-2" class="section level2">
+<h2>Quartiles</h2>
+<p>Quartiles for Population by Borough</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">borough</th>
+<th align="right">Q1</th>
+<th align="right">median</th>
+<th align="right">Q3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Bronx</td>
+<td align="right">2579.50</td>
+<td align="right">4256</td>
+<td align="right">6286.25</td>
+</tr>
+<tr class="even">
+<td align="left">Brooklyn</td>
+<td align="right">2366.50</td>
+<td align="right">3478</td>
+<td align="right">4597.50</td>
+</tr>
+<tr class="odd">
+<td align="left">Manhattan</td>
+<td align="right">3625.00</td>
+<td align="right">5696</td>
+<td align="right">8526.00</td>
+</tr>
+<tr class="even">
+<td align="left">Queens</td>
+<td align="right">2002.75</td>
+<td align="right">3226</td>
+<td align="right">4871.25</td>
+</tr>
+<tr class="odd">
+<td align="left">Staten Island</td>
+<td align="right">2807.00</td>
+<td align="right">4234</td>
+<td align="right">5768.00</td>
 </tr>
 </tbody>
 </table>
