@@ -5,7 +5,7 @@ date: "2023-12-07"
 ---
 # Rat Sightings Data
 
-## Measures of Central Tendancy
+## Measures of Central Tendency
 
 ```{r, message=FALSE, echo=FALSE}
 library(tidyverse)
@@ -13,13 +13,15 @@ library(tidyverse)
 rat_sightings_data <- read.csv("./datasets_clean/rat_sightings_data")
 ```
 
+Measures of Central Tendency for Rat Sightings by Year
 
 ```{r, message=FALSE, echo=FALSE}
 avg_rat_sightings_box = 
   rat_sightings_data %>% 
   mutate(unique_key = as_factor(unique_key)) %>% 
   group_by(year_created, borough) %>% 
-  summarize(count = n_distinct(unique_key))
+  summarize(count = n_distinct(unique_key)) %>% 
+  rename(year = year_created)
 
 summary_stats_numeric = 
   avg_rat_sightings_box%>%
@@ -34,12 +36,15 @@ summary_stats_numeric =
 knitr::kable(summary_stats_numeric)
 ```
 
+Measures of Central Tendency for Rat Sightings by Borough (2015-2020)
+
 ```{r, message=FALSE, echo=FALSE}
 avg_rat_sightings_box = 
   rat_sightings_data %>% 
   mutate(unique_key = as_factor(unique_key)) %>% 
   group_by(year_created, borough) %>% 
-  summarize(count = n_distinct(unique_key))
+  summarize(count = n_distinct(unique_key)) %>% 
+  rename(year = year_created)
 
 summary_stats_borough = 
   avg_rat_sightings_box%>%
@@ -55,3 +60,49 @@ summary_stats_borough =
 knitr::kable(summary_stats_borough)
 ```
 
+## Measures of Dispersion 
+
+Measures of Dispersion for Rat Sightings by Year
+
+```{r, message=FALSE, echo=FALSE}
+avg_rat_sightings_box = 
+  rat_sightings_data %>% 
+  mutate(unique_key = as_factor(unique_key)) %>% 
+  group_by(year_created, borough) %>% 
+  summarize(count = n_distinct(unique_key)) %>% 
+  rename(year = year_created)
+
+dispersion_stats = 
+  avg_rat_sightings_box %>%
+  summarise(
+    range = max(count) - min(count),
+    iqr = IQR(count),
+    sd = sd(count),
+    var = var(count)
+  )
+
+knitr::kable(dispersion_stats)
+```
+
+Measures of Dispersion for Rat Sightings by Borough (2015-2020)
+
+```{r, message=FALSE, echo=FALSE}
+avg_rat_sightings_box = 
+  rat_sightings_data %>% 
+  mutate(unique_key = as_factor(unique_key)) %>% 
+  group_by(year_created, borough) %>% 
+  summarize(count = n_distinct(unique_key)) %>% 
+  rename(year = year_created)
+
+summary_stats_borough = 
+  avg_rat_sightings_box%>%
+  group_by(borough) %>% 
+  summarise(
+    range = max(count) - min(count),
+    iqr = IQR(count),
+    sd = sd(count),
+    var = var(count)
+  )
+
+knitr::kable(summary_stats_borough)
+```
