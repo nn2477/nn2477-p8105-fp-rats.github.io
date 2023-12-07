@@ -13,7 +13,7 @@
 
 <title>Population Data</title>
 
-<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
@@ -415,9 +415,11 @@ Code
   mutate(unique_key = as_factor(unique_key)) %&gt;% 
   group_by(borough) %&gt;% 
   summarize(count = n_distinct(unique_key))
+
 rat_to_population = 
   left_join(avg_rat_sightings_borough, population_data, by = &quot;borough&quot;) %&gt;% 
   mutate(rat_population = count / population)
+
 rat_to_population %&gt;% 
   ggplot(aes(x = borough, y = rat_population, fill = borough))+
   geom_bar(stat = &quot;identity&quot;)+

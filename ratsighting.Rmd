@@ -61,6 +61,16 @@ ggplot(average_sightings_by_borough, aes(x = borough, y = average_sightings, fil
 </details>
 
 ```{r, echo=FALSE, fig.width=10, fig.height=8}
+
+# Filter data for the years 2015-2019
+barplot_rat_data <- rat_sightings_data %>%
+  filter(year_created >= 2015 & year_created <= 2019)
+
+# Calculate the average annual rat sightings by borough
+average_sightings_by_borough <- barplot_rat_data %>%
+  group_by(year_created, borough) %>%
+  summarise(average_sightings = n() / length(unique(month_created)))
+
 # Create a bar plot
 ggplot(average_sightings_by_borough, aes(x = borough, y = average_sightings, fill = factor(year_created))) +
   geom_bar(stat = "identity", position = "dodge", color = "black") +
@@ -70,8 +80,6 @@ ggplot(average_sightings_by_borough, aes(x = borough, y = average_sightings, fil
   scale_fill_manual(name = "Year", values = c("2015" = "skyblue", "2016" = "orange", "2017" = "pink", "2018" = "purple", "2019" = "red")) +
   theme_minimal()
 ```
-
-
 
 ### Monthly Trends in NYC Rat Sightings (2015-2020) 
 <details>
@@ -96,6 +104,11 @@ ggplot(filtered_rat_data, aes(x = month_created, group = year_created)) +
 </details>
 
 ```{r, echo=FALSE, fig.width=10, fig.height=8}
+
+# Filter data for the years 2015-2019
+filtered_rat_data <- rat_sightings_data %>%
+  filter(year_created >= 2015 & year_created <= 2019)
+
 # Line plot for the number of rat sightings by month with points
 ggplot(filtered_rat_data, aes(x = month_created, group = year_created)) +
   geom_line(aes(y = after_stat(count), color = factor(year_created)), stat = "count") +
@@ -165,4 +178,24 @@ plot_ly(
 
 ```
 
+## Rat Sightings Distribution by Year by Borough
+
+```{r, message=FALSE, echo=FALSE, fig.width=10, fig.height=8}
+
+avg_rat_sightings_box = 
+  rat_sightings_data %>% 
+  mutate(unique_key = as_factor(unique_key)) %>% 
+  group_by(year_created, borough) %>% 
+  summarize(count = n_distinct(unique_key))
+
+avg_rat_sightings_box %>% 
+  ggplot(aes(x = year_created, y = count, color = borough)) +
+  geom_boxplot() +
+  labs(title = "Distribution of Number of Rat Sightings by Year (2015-2020)",
+      x = "Year",
+      y = "Number of Rat Sightings") +
+  scale_color_manual(name = "Borough", values = c("Manhattan" = "skyblue", "Bronx" = "orange", "Brooklyn" = "pink", "Queens" = "purple", "Staten Island" = "red")) +
+  theme_minimal() +
+  theme(legend.position = "right")
+```
 

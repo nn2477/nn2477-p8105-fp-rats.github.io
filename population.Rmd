@@ -12,6 +12,7 @@ output:
 
 ```{r, include=FALSE}
 library(tidyverse)
+
 rat_sightings_data <- read.csv("./datasets_clean/rat_sightings_data")
 population_data <- read.csv("./datasets_clean/population_data")
 ```
@@ -27,9 +28,11 @@ avg_rat_sightings_borough =
   mutate(unique_key = as_factor(unique_key)) %>% 
   group_by(borough) %>% 
   summarize(count = n_distinct(unique_key))
+
 rat_to_population = 
   left_join(avg_rat_sightings_borough, population_data, by = "borough") %>% 
   mutate(rat_population = count / population)
+
 rat_to_population %>% 
   ggplot(aes(x = borough, y = rat_population, fill = borough))+
   geom_bar(stat = "identity")+
@@ -48,9 +51,11 @@ avg_rat_sightings_borough =
   mutate(unique_key = as_factor(unique_key)) %>% 
   group_by(borough) %>% 
   summarize(count = n_distinct(unique_key))
+
 rat_to_population = 
   left_join(avg_rat_sightings_borough, population_data, by = "borough") %>% 
   mutate(rat_population = count / population)
+
 rat_to_population %>% 
   ggplot(aes(x = borough, y = rat_population, fill = borough))+
   geom_bar(stat = "identity")+
