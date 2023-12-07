@@ -402,8 +402,6 @@ div.tocify {
 <img src="images/rat.jpeg" alt="Spotted: NYC Subway Rat in the Wild" />
 <div class="figcaption">Spotted: NYC Subway Rat in the Wild</div>
 </div>
-<pre class="r"><code>rat_sightings_data &lt;- read.csv(&quot;./datasets_clean/rat_sightings_data&quot;)
-population_data &lt;- read.csv(&quot;./datasets_clean/population_data&quot;)</code></pre>
 <div id="average-rat-sightings-to-median-population-by-borough-2020"
 class="section level2">
 <h2>Average Rat Sightings to Median Population by Borough 2020</h2>
@@ -428,7 +426,6 @@ rat_to_population %&gt;%
       y = &quot;Rat Per Person Ratio&quot;) +
   scale_fill_manual(name = &quot;Borough&quot;, values = c(&quot;Manhattan&quot; = &quot;skyblue&quot;, &quot;Bronx&quot; = &quot;orange&quot;, &quot;Brooklyn&quot; = &quot;pink&quot;, &quot;Queens&quot; = &quot;purple&quot;, &quot;Staten Island&quot; = &quot;red&quot;)) +
   theme_minimal()</code></pre>
-<img src="population_files/figure-html/unnamed-chunk-2-1.png" width="672" />
 </details>
 <p><img src="population_files/figure-html/unnamed-chunk-3-1.png" width="960" /></p>
 </div>

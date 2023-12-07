@@ -10,7 +10,8 @@ output:
 
 ![Spotted: NYC Subway Rat in the Wild](images/rat.jpeg)
 
-```{r}
+```{r, include=FALSE}
+library(tidyverse)
 rat_sightings_data <- read.csv("./datasets_clean/rat_sightings_data")
 population_data <- read.csv("./datasets_clean/population_data")
 ```
@@ -19,7 +20,7 @@ population_data <- read.csv("./datasets_clean/population_data")
 ## Average Rat Sightings to Median Population by Borough 2020
 <details>
   <summary>Code</summary>
-```{r}
+```{r, eval=FALSE}
 avg_rat_sightings_borough = 
   rat_sightings_data %>% 
   filter(year_created == 2020) %>% 

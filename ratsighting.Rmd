@@ -29,6 +29,7 @@ options(
 )
 
 rat_sightings_data <- read.csv("./datasets_clean/rat_sightings_data")
+population_data <- read.csv("./datasets_clean/population_data")
 
 ```
 
@@ -38,7 +39,7 @@ rat_sightings_data <- read.csv("./datasets_clean/rat_sightings_data")
 ### Bar Plot: Average Annual Rat Sightings across Boroughs 
 <details>
   <summary>Code</summary>
-```{r}
+```{r, eval=FALSE}
 # Filter data for the years 2015-2019
 barplot_rat_data <- rat_sightings_data %>%
   filter(year_created >= 2015 & year_created <= 2019)
@@ -75,7 +76,7 @@ ggplot(average_sightings_by_borough, aes(x = borough, y = average_sightings, fil
 ### Monthly Trends in NYC Rat Sightings (2015-2020) 
 <details>
   <summary>Code</summary>
-```{r}
+```{r, eval=FALSE}
 # Filter data for the years 2015-2019
 filtered_rat_data <- rat_sightings_data %>%
   filter(year_created >= 2015 & year_created <= 2019)
