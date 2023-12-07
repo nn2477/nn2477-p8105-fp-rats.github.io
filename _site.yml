@@ -17,6 +17,8 @@ navbar:
         href: ratsighting.html
       - text: "Population Data"
         href: population.html
+    - text: "Descriptive Analysis"
+      href: descriptive.html
     - text: "Synopsis Report"
       href: report.html
     - text: "Plotly Graphs"
