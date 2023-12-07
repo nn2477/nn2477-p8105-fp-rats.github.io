@@ -1876,19 +1876,19 @@ window.FlexDashboardComponents.push({
 
 <div id="dashboard-container">
 
-<div id="section-section" class="section level1 sidebar">
-<h1 class="sidebar"></h1>
-<div class="knitr-options" data-fig-width="2880" data-fig-height="3360">
+<div id="section-section" class="section level2 sidebar">
+<h2 class="sidebar"></h2>
+<div class="knitr-options" data-fig-width="576" data-fig-height="460">
 
 </div>
 <div class="form-group shiny-input-container">
 <label class="control-label" id="year_choice-label" for="year_choice">Select Year</label>
 <div>
-<select id="year_choice" class="shiny-input-select"><option value="2015">2015</option>
-<option value="2016" selected>2016</option>
+<select id="year_choice" class="shiny-input-select"><option value="2019">2019</option>
+<option value="2015" selected>2015</option>
+<option value="2016">2016</option>
 <option value="2017">2017</option>
 <option value="2018">2018</option>
-<option value="2019">2019</option>
 <option value="2020">2020</option></select>
 <script type="application/json" data-for="year_choice" data-nonempty="">{"plugins":["selectize-plugin-a11y"]}</script>
 </div>
@@ -1905,15 +1905,15 @@ window.FlexDashboardComponents.push({
 </div>
 </div>
 </div>
-<div id="section-section-1" class="section level1" data-width="650">
-<h1></h1>
+<div id="section-section-1" class="section level2" data-width="650">
+<h2></h2>
 <div id="section-rat-sightings-data-by-year-and-borough"
 class="section level3">
 <h3>Rat Sightings Data by Year and Borough</h3>
-<div class="knitr-options" data-fig-width="2880" data-fig-height="3360">
+<div class="knitr-options" data-fig-width="576" data-fig-height="460">
 
 </div>
-<div class="leaflet html-widget html-widget-output shiny-report-size html-fill-item-overflow-hidden html-fill-item" id="outecb374af16072c32" style="width:100%;height:400px;"></div>
+<div class="leaflet html-widget html-widget-output shiny-report-size html-fill-item-overflow-hidden html-fill-item" id="outb435b19161bfc59c" style="width:100%;height:400px;"></div>
 </div>
 </div>
 
@@ -1944,26 +1944,12 @@ output:
 runtime: shiny
 ---
 
-````{r setup, include=FALSE}
+```{r setup, include=FALSE}
 library(tidyverse)
 library(leaflet)
 library(lubridate)
 library(shiny)
-library(htmltools)
-
-knitr::opts_chunk$set(
-    echo = TRUE,
-    warning = FALSE,
-    fig.width = 30, 
-  fig.height = 35
-)
-
-theme_set(theme_minimal() + theme(legend.position = "bottom"))
-
-options(
-  ggplot2.continuous.colour = "viridis",
-  ggplot2.continuous.fill = "viridis"
-)
+library(flexdashboard)
 
 rat_sightings_data &lt;- read.csv("./datasets_clean/rat_sightings_data")
 
@@ -1971,7 +1957,7 @@ rat_sightings_data &lt;- read.csv("./datasets_clean/rat_sightings_data")
 
 
 {.sidebar}
-==========================================================================
+-----------------------------------------------------------------------
 
 ```{r, echo=FALSE}
 ## Drop down menu input for year
@@ -1998,11 +1984,12 @@ selectInput(
 
 
 {data-width=650}
-==========================================================================
+-----------------------------------------------------------------------
 
 ### Rat Sightings Data by Year and Borough
 
 ```{r, echo=FALSE}
+
 renderLeaflet({
   filtered_data &lt;- reactive({
     rat_sightings_data %&gt;%
@@ -2023,8 +2010,8 @@ renderLeaflet({
     ) %&gt;%
     setView(lng = -73.97, lat = 40.78, zoom = 10)
 })
-```
 
+```
 
 
 </code></pre>

@@ -13,7 +13,7 @@
 
 <title>Income Data</title>
 
-<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
@@ -340,9 +340,6 @@ div.tocify {
   <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="ratstical.html">Rat Sighting App</a>
-</li>
-<li>
   <a href="proposal.html">Proposal</a>
 </li>
 <li>
@@ -365,6 +362,12 @@ div.tocify {
       <a href="population.html">Population Data</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="descriptive.html">Descriptive Analysis</a>
+</li>
+<li>
+  <a href="https://nn2477.shinyapps.io/rat_sighting_map_app">Rat Sighting App</a>
 </li>
 <li>
   <a href="report.html">Synopsis Report</a>
@@ -398,18 +401,9 @@ div.tocify {
 </div>
 
 
-<pre class="r"><code>library(tidyverse)</code></pre>
-<pre><code>## ── Attaching core tidyverse packages ─────────────────
-## ✔ dplyr     1.1.4     ✔ readr     2.1.4
-## ✔ forcats   1.0.0     ✔ stringr   1.5.1
-## ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
-## ✔ lubridate 1.9.3     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.2     
-## ── Conflicts ──────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()
-## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-<pre class="r"><code>rat_sightings_data &lt;- read.csv(&quot;./datasets_clean/rat_sightings_data&quot;)
+<pre class="r"><code>library(tidyverse)
+
+rat_sightings_data &lt;- read.csv(&quot;./datasets_clean/rat_sightings_data&quot;)
 income_data_2020 &lt;- read.csv(&quot;./datasets_clean/income_data_2020&quot;)</code></pre>
 <div id="average-rat-sightings-to-median-income-by-borough-2020"
 class="section level2">
