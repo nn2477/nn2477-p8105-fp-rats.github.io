@@ -127,7 +127,6 @@ summary_stats_borough =
 knitr::kable(summary_stats_borough)
 ```
 
-
 ## Quartiles
 
 Quartiles for Rat Sightings by Year
@@ -173,11 +172,13 @@ quartiles_quantile_borough =
 knitr::kable(quartiles_quantile_borough)
 ```
 
+
+
 # Income Data
 
 ## Frequency Table
 
-Highest Frequency Median Income by Borough
+Highest Frequency Median Income by Borough in 2020
 
 ```{r, message=FALSE, echo=FALSE}
 med_income_freq = 
@@ -197,7 +198,7 @@ knitr::kable(med_income_freq)
 
 ## Measures of Central Tendency
 
-Measures of Central Tendency for Median Income by Borough
+Measures of Central Tendency for Median Income by Borough in 2020
 
 ```{r, message=FALSE, echo=FALSE}
 central_tend_med_income = 
@@ -216,7 +217,7 @@ knitr::kable(central_tend_med_income)
 
 ## Measures of Dispersion
 
-Measures of Dispersion for Median Income by Borough
+Measures of Dispersion for Median Income by Borough in 2020
 
 ```{r}
 disp_med_income = 
@@ -232,4 +233,19 @@ disp_med_income =
 knitr::kable(disp_med_income)
 ```
 
+## Quartiles
 
+Quartiles for Median Income by Borough in 2020
+
+```{r}
+quartiles_med_income = 
+  income_data_2020 %>%
+  group_by(borough) %>% 
+  summarise(
+    Q1 = quantile(median_income, 0.25),
+    median = median(median_income),
+    Q3 = quantile(median_income, 0.75)
+  )
+
+knitr::kable(quartiles_med_income)
+```
