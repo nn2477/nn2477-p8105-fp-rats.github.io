@@ -7,21 +7,21 @@ navbar:
       href: index.html
     - text: "Proposal"
       href: proposal.html
-    - text: "Data Cleaning/Tidying"
-      href: tidying.html
     - text: "Ratstical: Exploratory Analysis"
       menu:
-      - text: "Income Data"
-        href: income.html
+      - text: "Data Cleaning & Tidying"
+        href: tidying.html
       - text: "Rat Sighting in Manhattan"
         href: ratsighting.html
+      - text: "Income Data"
+        href: income.html
       - text: "Population Data"
         href: population.html
     - text: "Descriptive Analysis"
       href: descriptive.html
     - text: "Rat Sighting App"
       href: https://nn2477.shinyapps.io/rat_sighting_map_app
-    - text: "Synopsis Report"
+    - text: "Report"
       href: report.html
     - text: "Plotly Graphs"
       href: dashboard.html

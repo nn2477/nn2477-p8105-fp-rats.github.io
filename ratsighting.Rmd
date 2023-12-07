@@ -36,10 +36,10 @@ population_data <- read.csv("./datasets_clean/population_data")
 ![](https://www.cbc.ca/natureofthings/content/images/CBC_Rat_City_FA_Horizontal_1920.jpg)
 
 
-### Bar Plot: Average Annual Rat Sightings across Boroughs 
+## Bar Plot: Average Annual Rat Sightings across Boroughs 
 <details>
   <summary>Code</summary>
-```{r, eval=FALSE}
+```{r, eval=FALSE, message=FALSE}
 # Filter data for the years 2015-2020
 barplot_rat_data <- rat_sightings_data %>%
   filter(year_created >= 2015 & year_created <= 2020)
@@ -81,7 +81,7 @@ plot_ly(
 ```
 
 
-### Monthly Trends in NYC Rat Sightings (2015-2020) 
+## Monthly Trends in NYC Rat Sightings (2015-2020) 
 <details>
   <summary>Code</summary>
 ```{r, eval=FALSE}
@@ -121,8 +121,11 @@ ggplot(filtered_rat_data, aes(x = month_created, group = year_created)) +
 ```
 
 
-### Residential Rat Sightings by Borough
-```{r, echo=FALSE, fig.width=10, fig.height=8}
+## Residential Rat Sightings by Borough
+
+<details>
+  <summary>Code</summary>
+```{r, eval=FALSE}
 # Specify the desired location types
 desired_location_types <- c(
   "3+ Family Apt. Building", 
@@ -166,7 +169,64 @@ plot_ly(
   x = ~borough,
   y = ~proportion_residential,
   type = "bar",
-  marker = list(color = "skyblue")
+  marker = list(color = c("skyblue", "orange", "pink", "purple", "red"))
+) %>%
+  layout(
+    title = "Proportion of Residential Rat Sightings by Borough",
+    xaxis = list(title = "Borough"),
+    yaxis = list(title = "Proportion"),
+    showlegend = FALSE
+  )
+```
+</details>
+
+```{r, echo=FALSE, fig.width=10, fig.height=8}
+# Specify the desired location types
+desired_location_types <- c(
+  "3+ Family Apt. Building", 
+  "1-2 Family Dwelling", 
+  "3+ Family Mixed Use Building", 
+  "1-2 Family Mixed Use Building", 
+  "3+ Family Apartment Building", 
+  "Single Room Occupancy (SRO)", 
+  "Apartment", 
+  "Residence", 
+  "1-3 Family Dwelling",
+  "Residential Property",
+  "1-3 Family Mixed Use Building",
+  "3+ Family Apt., Private House"
+)
+
+# Create a new dataset with only residential sightings
+residential_sightings <- rat_sightings_data %>%
+  filter(location_type %in% desired_location_types)
+  
+# Step 1: Calculate the count of residential rat sightings by borough
+residential_counts <- residential_sightings %>%
+  group_by(borough) %>%
+  summarise(residential_count = n())
+
+# Step 2: Calculate the total count of rat sightings by borough
+total_counts <- rat_sightings_data %>%
+  group_by(borough) %>%
+  summarise(total_count = n())
+
+# Step 3: Merge the two datasets and calculate the proportion
+borough_proportions <- merge(residential_counts, total_counts, by = "borough", all.x = TRUE) %>%
+  mutate(proportion_residential = residential_count / total_count)
+
+# Print the result
+knitr::kable(borough_proportions)
+
+# Create an interactive bar plot
+
+
+plot_ly(
+  data = borough_proportions,
+  x = ~borough,
+  y = ~proportion_residential,
+  type = "bar",
+  marker = list(color = c("skyblue", "orange", "pink", "purple", "red"))
 ) %>%
   layout(
     title = "Proportion of Residential Rat Sightings by Borough",
@@ -175,10 +235,49 @@ plot_ly(
     showlegend = FALSE
   )
 
+
 ```
 
 
 ## Rat Sightings Distribution by Year by Borough
+
+<details>
+  <summary>Code</summary>
+```{r, eval=FALSE}
+avg_rat_sightings_box = 
+  rat_sightings_data %>% 
+  mutate(unique_key = as_factor(unique_key)) %>% 
+  group_by(year_created, borough) %>% 
+  summarize(count = n_distinct(unique_key))
+
+avg_rat_sightings_box %>% 
+  ggplot(aes(x = year_created, y = count, color = borough)) +
+  geom_boxplot() +
+  labs(title = "Distribution of Number of Rat Sightings by Year (2015-2020)",
+      x = "Year",
+      y = "Number of Rat Sightings") +
+  scale_color_manual(name = "Borough", values = c("Manhattan" = "skyblue", "Bronx" = "orange", "Brooklyn" = "pink", "Queens" = "purple", "Staten Island" = "red")) +
+  theme_minimal() +
+  theme(legend.position = "right")
+
+
+## Plotly Box Plot
+plot_ly(
+  data = avg_rat_sightings_box,
+  y = ~count,
+  color = ~borough,
+  type = "box",
+  colors = c("skyblue", "orange", "pink", "purple", "red")
+) %>%
+  layout(
+    title = "Distribution of Number of Rat Sightings by Year (2015-2020)",
+    xaxis = list(title = "Year"),
+    yaxis = list(title = "Number of Rat Sightings"),
+    legend = list(title = "Borough"),
+    showlegend = TRUE
+  )
+```
+</details>
 
 ```{r, message=FALSE, echo=FALSE, fig.width=10, fig.height=8}
 

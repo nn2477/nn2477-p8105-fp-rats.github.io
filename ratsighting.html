@@ -13,7 +13,7 @@
 
 <title>Manhattan Rat Sighting Data</title>
 
-<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
@@ -336,9 +336,6 @@ div.tocify {
 <li>
   <a href="proposal.html">Proposal</a>
 </li>
-<li>
-  <a href="tidying.html">Data Cleaning/Tidying</a>
-</li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Ratstical: Exploratory Analysis
@@ -347,10 +344,13 @@ div.tocify {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="income.html">Income Data</a>
+      <a href="tidying.html">Data Cleaning &amp; Tidying</a>
     </li>
     <li>
       <a href="ratsighting.html">Rat Sighting in Manhattan</a>
+    </li>
+    <li>
+      <a href="income.html">Income Data</a>
     </li>
     <li>
       <a href="population.html">Population Data</a>
@@ -364,7 +364,7 @@ div.tocify {
   <a href="https://nn2477.shinyapps.io/rat_sighting_map_app">Rat Sighting App</a>
 </li>
 <li>
-  <a href="report.html">Synopsis Report</a>
+  <a href="report.html">Report</a>
 </li>
 <li>
   <a href="dashboard.html">Plotly Graphs</a>
@@ -398,8 +398,8 @@ div.tocify {
 <p><img
 src="https://www.cbc.ca/natureofthings/content/images/CBC_Rat_City_FA_Horizontal_1920.jpg" /></p>
 <div id="bar-plot-average-annual-rat-sightings-across-boroughs"
-class="section level3">
-<h3>Bar Plot: Average Annual Rat Sightings across Boroughs</h3>
+class="section level2">
+<h2>Bar Plot: Average Annual Rat Sightings across Boroughs</h2>
 <details>
 <summary>
 Code
@@ -415,12 +415,12 @@ average_sightings_by_borough &lt;- barplot_rat_data %&gt;%
 </details>
 <pre><code>## `summarise()` has grouped output by &#39;year_created&#39;. You can override using the
 ## `.groups` argument.</code></pre>
-<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-8515323dbf3b42daf3a5" style="width:960px;height:768px;"></div>
-<script type="application/json" data-for="htmlwidget-8515323dbf3b42daf3a5">{"x":{"visdat":{"c566a92d293":["function () ","plotlyVisDat"]},"cur_data":"c566a92d293","attrs":{"c566a92d293":{"x":{},"y":{},"marker":{"line":{"color":"black"}},"color":{},"colors":["darkgreen","orange","skyblue","pink","purple","red"],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Average Annual Rat Sightings by Borough (2015-2020)","xaxis":{"domain":[0,1],"automargin":true,"title":"Borough","type":"category","categoryorder":"array","categoryarray":["Bronx","Brooklyn","Manhattan","Queens","Staten Island"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"Average Annual Rat Sightings"},"showlegend":true,"hovermode":"closest"},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["Bronx","Brooklyn","Manhattan","Queens","Staten Island"],"y":[244.25,387.91666666666669,316.16666666666669,156.66666666666666,44.916666666666664],"marker":{"color":"rgba(0,100,0,1)","line":{"color":"black"}},"type":"bar","name":"2015","textfont":{"color":"rgba(0,100,0,1)"},"error_y":{"color":"rgba(0,100,0,1)"},"error_x":{"color":"rgba(0,100,0,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["Bronx","Brooklyn","Manhattan","Queens","Staten Island"],"y":[261.08333333333331,446.75,340.16666666666669,186.91666666666666,54.333333333333336],"marker":{"color":"rgba(255,165,0,1)","line":{"color":"black"}},"type":"bar","name":"2016","textfont":{"color":"rgba(255,165,0,1)"},"error_y":{"color":"rgba(255,165,0,1)"},"error_x":{"color":"rgba(255,165,0,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["Bronx","Brooklyn","Manhattan","Queens","Staten Island"],"y":[300,586.41666666666663,349.66666666666669,231.58333333333334,64.583333333333329],"marker":{"color":"rgba(135,206,235,1)","line":{"color":"black"}},"type":"bar","name":"2017","textfont":{"color":"rgba(135,206,235,1)"},"error_y":{"color":"rgba(135,206,235,1)"},"error_x":{"color":"rgba(135,206,235,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["Bronx","Brooklyn","Manhattan","Queens","Staten Island"],"y":[260.75,545.75,356.41666666666669,215.91666666666666,61.916666666666664],"marker":{"color":"rgba(255,192,203,1)","line":{"color":"black"}},"type":"bar","name":"2018","textfont":{"color":"rgba(255,192,203,1)"},"error_y":{"color":"rgba(255,192,203,1)"},"error_x":{"color":"rgba(255,192,203,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["Bronx","Brooklyn","Manhattan","Queens","Staten Island"],"y":[231.75,533.33333333333337,359.25,209.41666666666666,62.916666666666664],"marker":{"color":"rgba(160,32,240,1)","line":{"color":"black"}},"type":"bar","name":"2019","textfont":{"color":"rgba(160,32,240,1)"},"error_y":{"color":"rgba(160,32,240,1)"},"error_x":{"color":"rgba(160,32,240,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["Bronx","Brooklyn","Manhattan","Queens","Staten Island"],"y":[203.25,384,303.33333333333331,162.58333333333334,41.916666666666664],"marker":{"color":"rgba(255,0,0,1)","line":{"color":"black"}},"type":"bar","name":"2020","textfont":{"color":"rgba(255,0,0,1)"},"error_y":{"color":"rgba(255,0,0,1)"},"error_x":{"color":"rgba(255,0,0,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-49d16d6e7471b1fa02c3" style="width:960px;height:768px;"></div>
+<script type="application/json" data-for="htmlwidget-49d16d6e7471b1fa02c3">{"x":{"visdat":{"4b623a60c628":["function () ","plotlyVisDat"]},"cur_data":"4b623a60c628","attrs":{"4b623a60c628":{"x":{},"y":{},"marker":{"line":{"color":"black"}},"color":{},"colors":["darkgreen","orange","skyblue","pink","purple","red"],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Average Annual Rat Sightings by Borough (2015-2020)","xaxis":{"domain":[0,1],"automargin":true,"title":"Borough","type":"category","categoryorder":"array","categoryarray":["Bronx","Brooklyn","Manhattan","Queens","Staten Island"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"Average Annual Rat Sightings"},"showlegend":true,"hovermode":"closest"},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["Bronx","Brooklyn","Manhattan","Queens","Staten Island"],"y":[244.25,387.91666666666669,316.16666666666669,156.66666666666666,44.916666666666664],"marker":{"color":"rgba(0,100,0,1)","line":{"color":"black"}},"type":"bar","name":"2015","textfont":{"color":"rgba(0,100,0,1)"},"error_y":{"color":"rgba(0,100,0,1)"},"error_x":{"color":"rgba(0,100,0,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["Bronx","Brooklyn","Manhattan","Queens","Staten Island"],"y":[261.08333333333331,446.75,340.16666666666669,186.91666666666666,54.333333333333336],"marker":{"color":"rgba(255,165,0,1)","line":{"color":"black"}},"type":"bar","name":"2016","textfont":{"color":"rgba(255,165,0,1)"},"error_y":{"color":"rgba(255,165,0,1)"},"error_x":{"color":"rgba(255,165,0,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["Bronx","Brooklyn","Manhattan","Queens","Staten Island"],"y":[300,586.41666666666663,349.66666666666669,231.58333333333334,64.583333333333329],"marker":{"color":"rgba(135,206,235,1)","line":{"color":"black"}},"type":"bar","name":"2017","textfont":{"color":"rgba(135,206,235,1)"},"error_y":{"color":"rgba(135,206,235,1)"},"error_x":{"color":"rgba(135,206,235,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["Bronx","Brooklyn","Manhattan","Queens","Staten Island"],"y":[260.75,545.75,356.41666666666669,215.91666666666666,61.916666666666664],"marker":{"color":"rgba(255,192,203,1)","line":{"color":"black"}},"type":"bar","name":"2018","textfont":{"color":"rgba(255,192,203,1)"},"error_y":{"color":"rgba(255,192,203,1)"},"error_x":{"color":"rgba(255,192,203,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["Bronx","Brooklyn","Manhattan","Queens","Staten Island"],"y":[231.75,533.33333333333337,359.25,209.41666666666666,62.916666666666664],"marker":{"color":"rgba(160,32,240,1)","line":{"color":"black"}},"type":"bar","name":"2019","textfont":{"color":"rgba(160,32,240,1)"},"error_y":{"color":"rgba(160,32,240,1)"},"error_x":{"color":"rgba(160,32,240,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["Bronx","Brooklyn","Manhattan","Queens","Staten Island"],"y":[203.25,384,303.33333333333331,162.58333333333334,41.916666666666664],"marker":{"color":"rgba(255,0,0,1)","line":{"color":"black"}},"type":"bar","name":"2020","textfont":{"color":"rgba(255,0,0,1)"},"error_y":{"color":"rgba(255,0,0,1)"},"error_x":{"color":"rgba(255,0,0,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="monthly-trends-in-nyc-rat-sightings-2015-2020"
-class="section level3">
-<h3>Monthly Trends in NYC Rat Sightings (2015-2020)</h3>
+class="section level2">
+<h2>Monthly Trends in NYC Rat Sightings (2015-2020)</h2>
 <details>
 <summary>
 Code
@@ -442,8 +442,64 @@ ggplot(filtered_rat_data, aes(x = month_created, group = year_created)) +
 </details>
 <p><img src="ratsighting_files/figure-html/unnamed-chunk-4-1.png" width="960" /></p>
 </div>
-<div id="residential-rat-sightings-by-borough" class="section level3">
-<h3>Residential Rat Sightings by Borough</h3>
+<div id="residential-rat-sightings-by-borough" class="section level2">
+<h2>Residential Rat Sightings by Borough</h2>
+<details>
+<summary>
+Code
+</summary>
+<pre class="r"><code># Specify the desired location types
+desired_location_types &lt;- c(
+  &quot;3+ Family Apt. Building&quot;, 
+  &quot;1-2 Family Dwelling&quot;, 
+  &quot;3+ Family Mixed Use Building&quot;, 
+  &quot;1-2 Family Mixed Use Building&quot;, 
+  &quot;3+ Family Apartment Building&quot;, 
+  &quot;Single Room Occupancy (SRO)&quot;, 
+  &quot;Apartment&quot;, 
+  &quot;Residence&quot;, 
+  &quot;1-3 Family Dwelling&quot;,
+  &quot;Residential Property&quot;,
+  &quot;1-3 Family Mixed Use Building&quot;,
+  &quot;3+ Family Apt., Private House&quot;
+)
+
+# Create a new dataset with only residential sightings
+residential_sightings &lt;- rat_sightings_data %&gt;%
+  filter(location_type %in% desired_location_types)
+  
+# Step 1: Calculate the count of residential rat sightings by borough
+residential_counts &lt;- residential_sightings %&gt;%
+  group_by(borough) %&gt;%
+  summarise(residential_count = n())
+
+# Step 2: Calculate the total count of rat sightings by borough
+total_counts &lt;- rat_sightings_data %&gt;%
+  group_by(borough) %&gt;%
+  summarise(total_count = n())
+
+# Step 3: Merge the two datasets and calculate the proportion
+borough_proportions &lt;- merge(residential_counts, total_counts, by = &quot;borough&quot;, all.x = TRUE) %&gt;%
+  mutate(proportion_residential = residential_count / total_count)
+
+# Print the result
+knitr::kable(borough_proportions)
+
+# Create an interactive bar plot
+plot_ly(
+  data = borough_proportions,
+  x = ~borough,
+  y = ~proportion_residential,
+  type = &quot;bar&quot;,
+  marker = list(color = c(&quot;skyblue&quot;, &quot;orange&quot;, &quot;pink&quot;, &quot;purple&quot;, &quot;red&quot;))
+) %&gt;%
+  layout(
+    title = &quot;Proportion of Residential Rat Sightings by Borough&quot;,
+    xaxis = list(title = &quot;Borough&quot;),
+    yaxis = list(title = &quot;Proportion&quot;),
+    showlegend = FALSE
+  )</code></pre>
+</details>
 <table>
 <thead>
 <tr class="header">
@@ -486,15 +542,52 @@ ggplot(filtered_rat_data, aes(x = month_created, group = year_created)) +
 </tr>
 </tbody>
 </table>
-<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-c1cd7b579b53144e0eae" style="width:960px;height:768px;"></div>
-<script type="application/json" data-for="htmlwidget-c1cd7b579b53144e0eae">{"x":{"visdat":{"c563ec5b547":["function () ","plotlyVisDat"]},"cur_data":"c563ec5b547","attrs":{"c563ec5b547":{"x":{},"y":{},"marker":{"color":"skyblue"},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Proportion of Residential Rat Sightings by Borough","xaxis":{"domain":[0,1],"automargin":true,"title":"Borough","type":"category","categoryorder":"array","categoryarray":["Bronx","Brooklyn","Manhattan","Queens","Staten Island"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"Proportion"},"showlegend":false,"hovermode":"closest"},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["Bronx","Brooklyn","Manhattan","Queens","Staten Island"],"y":[0.8192416588019763,0.70104016180294715,0.65020576131687247,0.69126603138210219,0.69977312830854554],"marker":{"color":"skyblue","line":{"color":"rgba(31,119,180,1)"}},"type":"bar","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-ef5ae0df7afe907ec250" style="width:960px;height:768px;"></div>
+<script type="application/json" data-for="htmlwidget-ef5ae0df7afe907ec250">{"x":{"visdat":{"4b627f8d4e52":["function () ","plotlyVisDat"]},"cur_data":"4b627f8d4e52","attrs":{"4b627f8d4e52":{"x":{},"y":{},"marker":{"color":["skyblue","orange","pink","purple","red"]},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Proportion of Residential Rat Sightings by Borough","xaxis":{"domain":[0,1],"automargin":true,"title":"Borough","type":"category","categoryorder":"array","categoryarray":["Bronx","Brooklyn","Manhattan","Queens","Staten Island"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"Proportion"},"showlegend":false,"hovermode":"closest"},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["Bronx","Brooklyn","Manhattan","Queens","Staten Island"],"y":[0.8192416588019763,0.70104016180294715,0.65020576131687247,0.69126603138210219,0.69977312830854554],"marker":{"color":["skyblue","orange","pink","purple","red"],"line":{"color":"rgba(31,119,180,1)"}},"type":"bar","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="rat-sightings-distribution-by-year-by-borough"
 class="section level2">
 <h2>Rat Sightings Distribution by Year by Borough</h2>
-<p><img src="ratsighting_files/figure-html/unnamed-chunk-6-1.png" width="960" /></p>
-<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-a188caef2742de70bbf4" style="width:960px;height:768px;"></div>
-<script type="application/json" data-for="htmlwidget-a188caef2742de70bbf4">{"x":{"visdat":{"c5664cd83f2":["function () ","plotlyVisDat"]},"cur_data":"c5664cd83f2","attrs":{"c5664cd83f2":{"y":{},"color":{},"colors":["skyblue","orange","pink","purple","red"],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"box"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Distribution of Number of Rat Sightings by Year (2015-2020)","xaxis":{"domain":[0,1],"automargin":true,"title":"Year"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Number of Rat Sightings"},"legend":{"title":"Borough"},"showlegend":true,"hovermode":"closest"},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"fillcolor":"rgba(135,206,235,0.5)","y":[2931,3133,3600,3129,2781,2439],"type":"box","name":"Bronx","marker":{"color":"rgba(135,206,235,1)","line":{"color":"rgba(135,206,235,1)"}},"line":{"color":"rgba(135,206,235,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(255,165,0,0.5)","y":[4655,5361,7037,6549,6400,4608],"type":"box","name":"Brooklyn","marker":{"color":"rgba(255,165,0,1)","line":{"color":"rgba(255,165,0,1)"}},"line":{"color":"rgba(255,165,0,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(255,192,203,0.5)","y":[3794,4082,4196,4277,4311,3640],"type":"box","name":"Manhattan","marker":{"color":"rgba(255,192,203,1)","line":{"color":"rgba(255,192,203,1)"}},"line":{"color":"rgba(255,192,203,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(160,32,240,0.5)","y":[1880,2243,2779,2591,2513,1951],"type":"box","name":"Queens","marker":{"color":"rgba(160,32,240,1)","line":{"color":"rgba(160,32,240,1)"}},"line":{"color":"rgba(160,32,240,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(255,0,0,0.5)","y":[539,652,775,743,755,503],"type":"box","name":"Staten Island","marker":{"color":"rgba(255,0,0,1)","line":{"color":"rgba(255,0,0,1)"}},"line":{"color":"rgba(255,0,0,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<details>
+<summary>
+Code
+</summary>
+<pre class="r"><code>avg_rat_sightings_box = 
+  rat_sightings_data %&gt;% 
+  mutate(unique_key = as_factor(unique_key)) %&gt;% 
+  group_by(year_created, borough) %&gt;% 
+  summarize(count = n_distinct(unique_key))
+
+avg_rat_sightings_box %&gt;% 
+  ggplot(aes(x = year_created, y = count, color = borough)) +
+  geom_boxplot() +
+  labs(title = &quot;Distribution of Number of Rat Sightings by Year (2015-2020)&quot;,
+      x = &quot;Year&quot;,
+      y = &quot;Number of Rat Sightings&quot;) +
+  scale_color_manual(name = &quot;Borough&quot;, values = c(&quot;Manhattan&quot; = &quot;skyblue&quot;, &quot;Bronx&quot; = &quot;orange&quot;, &quot;Brooklyn&quot; = &quot;pink&quot;, &quot;Queens&quot; = &quot;purple&quot;, &quot;Staten Island&quot; = &quot;red&quot;)) +
+  theme_minimal() +
+  theme(legend.position = &quot;right&quot;)
+
+
+## Plotly Box Plot
+plot_ly(
+  data = avg_rat_sightings_box,
+  y = ~count,
+  color = ~borough,
+  type = &quot;box&quot;,
+  colors = c(&quot;skyblue&quot;, &quot;orange&quot;, &quot;pink&quot;, &quot;purple&quot;, &quot;red&quot;)
+) %&gt;%
+  layout(
+    title = &quot;Distribution of Number of Rat Sightings by Year (2015-2020)&quot;,
+    xaxis = list(title = &quot;Year&quot;),
+    yaxis = list(title = &quot;Number of Rat Sightings&quot;),
+    legend = list(title = &quot;Borough&quot;),
+    showlegend = TRUE
+  )</code></pre>
+</details>
+<p><img src="ratsighting_files/figure-html/unnamed-chunk-8-1.png" width="960" /></p>
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-3c9fdd17101e45066dea" style="width:960px;height:768px;"></div>
+<script type="application/json" data-for="htmlwidget-3c9fdd17101e45066dea">{"x":{"visdat":{"4b622c657e84":["function () ","plotlyVisDat"]},"cur_data":"4b622c657e84","attrs":{"4b622c657e84":{"y":{},"color":{},"colors":["skyblue","orange","pink","purple","red"],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"box"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Distribution of Number of Rat Sightings by Year (2015-2020)","xaxis":{"domain":[0,1],"automargin":true,"title":"Year"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Number of Rat Sightings"},"legend":{"title":"Borough"},"showlegend":true,"hovermode":"closest"},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"fillcolor":"rgba(135,206,235,0.5)","y":[2931,3133,3600,3129,2781,2439],"type":"box","name":"Bronx","marker":{"color":"rgba(135,206,235,1)","line":{"color":"rgba(135,206,235,1)"}},"line":{"color":"rgba(135,206,235,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(255,165,0,0.5)","y":[4655,5361,7037,6549,6400,4608],"type":"box","name":"Brooklyn","marker":{"color":"rgba(255,165,0,1)","line":{"color":"rgba(255,165,0,1)"}},"line":{"color":"rgba(255,165,0,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(255,192,203,0.5)","y":[3794,4082,4196,4277,4311,3640],"type":"box","name":"Manhattan","marker":{"color":"rgba(255,192,203,1)","line":{"color":"rgba(255,192,203,1)"}},"line":{"color":"rgba(255,192,203,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(160,32,240,0.5)","y":[1880,2243,2779,2591,2513,1951],"type":"box","name":"Queens","marker":{"color":"rgba(160,32,240,1)","line":{"color":"rgba(160,32,240,1)"}},"line":{"color":"rgba(160,32,240,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(255,0,0,0.5)","y":[539,652,775,743,755,503],"type":"box","name":"Staten Island","marker":{"color":"rgba(255,0,0,1)","line":{"color":"rgba(255,0,0,1)"}},"line":{"color":"rgba(255,0,0,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 
 
