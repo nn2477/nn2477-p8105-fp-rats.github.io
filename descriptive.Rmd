@@ -106,3 +106,49 @@ summary_stats_borough =
 
 knitr::kable(summary_stats_borough)
 ```
+
+
+## Quartiles
+
+Quartiles for Rat Sightings by Year
+
+```{r, message=FALSE, echo=FALSE}
+avg_rat_sightings_box = 
+  rat_sightings_data %>% 
+  mutate(unique_key = as_factor(unique_key)) %>% 
+  group_by(year_created, borough) %>% 
+  summarize(count = n_distinct(unique_key)) %>% 
+  rename(year = year_created)
+
+quartiles_quantile =
+avg_rat_sightings_box %>%
+  summarise(
+    Q1 = quantile(count, 0.25),
+    median = median(count),
+    Q3 = quantile(count, 0.75)
+  )
+
+knitr::kable(quartiles_quantile)
+```
+
+Quartiles for Rat Sightings by Borough (2015-2020)
+
+```{r, message=FALSE, echo=FALSE}
+avg_rat_sightings_box = 
+  rat_sightings_data %>% 
+  mutate(unique_key = as_factor(unique_key)) %>% 
+  group_by(year_created, borough) %>% 
+  summarize(count = n_distinct(unique_key)) %>% 
+  rename(year = year_created)
+
+quartiles_quantile_borough = 
+  avg_rat_sightings_box %>%
+  group_by(borough) %>% 
+  summarise(
+    Q1 = quantile(count, 0.25),
+    median = median(count),
+    Q3 = quantile(count, 0.75)
+  )
+
+knitr::kable(quartiles_quantile_borough)
+```
