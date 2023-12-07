@@ -1,0 +1,57 @@
+---
+title: "descriptive"
+output: html_document
+date: "2023-12-07"
+---
+# Rat Sightings Data
+
+## Measures of Central Tendancy
+
+```{r, message=FALSE, echo=FALSE}
+library(tidyverse)
+
+rat_sightings_data <- read.csv("./datasets_clean/rat_sightings_data")
+```
+
+
+```{r, message=FALSE, echo=FALSE}
+avg_rat_sightings_box = 
+  rat_sightings_data %>% 
+  mutate(unique_key = as_factor(unique_key)) %>% 
+  group_by(year_created, borough) %>% 
+  summarize(count = n_distinct(unique_key))
+
+summary_stats_numeric = 
+  avg_rat_sightings_box%>%
+  summarise(
+    mean = mean(count),
+    median = median(count),
+    sd = sd(count),
+    min = min(count),
+    max = max(count)
+  )
+
+knitr::kable(summary_stats_numeric)
+```
+
+```{r, message=FALSE, echo=FALSE}
+avg_rat_sightings_box = 
+  rat_sightings_data %>% 
+  mutate(unique_key = as_factor(unique_key)) %>% 
+  group_by(year_created, borough) %>% 
+  summarize(count = n_distinct(unique_key))
+
+summary_stats_borough = 
+  avg_rat_sightings_box%>%
+  group_by(borough) %>% 
+  summarise(
+    mean = mean(count),
+    median = median(count),
+    sd = sd(count),
+    min = min(count),
+    max = max(count)
+  )
+
+knitr::kable(summary_stats_borough)
+```
+
