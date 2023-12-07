@@ -255,6 +255,21 @@ knitr::kable(quartiles_med_income)
 
 # Population Data
 
+## Frequency Table
+
+```{r, message=FALSE, echo=FALSE}
+pop_freq =
+  population_individual_data |> 
+  group_by(borough) |> 
+  summarise(total_population = sum(population)) |> 
+  pivot_wider(
+    names_from = borough,
+    values_from = total_population
+  )
+
+knitr::kable(pop_freq)
+```
+
 ## Measures of Central Tendency
 
 Measures of Central Tendency for Population by Borough
