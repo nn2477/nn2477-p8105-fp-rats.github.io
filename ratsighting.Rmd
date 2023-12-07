@@ -104,9 +104,9 @@ ggplot(filtered_rat_data, aes(x = month_created, group = year_created)) +
 </details>
 
 ```{r, echo=FALSE, fig.width=10, fig.height=9}
-# Filter data for the years 2015-2020
+# Filter data for the years 2015-2019
 filtered_rat_data <- rat_sightings_data %>%
-  filter(year_created >= 2015 & year_created <= 2020)
+  mutate(month_created = as_factor(month_created))
 
 # Line plot for the number of rat sightings by month with points
 ggplot(filtered_rat_data, aes(x = month_created, group = year_created)) +
@@ -287,17 +287,6 @@ avg_rat_sightings_box =
   group_by(year_created, borough) %>% 
   summarize(count = n_distinct(unique_key))
 
-avg_rat_sightings_box %>% 
-  ggplot(aes(x = year_created, y = count, color = borough)) +
-  geom_boxplot() +
-  labs(title = "Distribution of Number of Rat Sightings by Year (2015-2020)",
-      x = "Year",
-      y = "Number of Rat Sightings") +
-  scale_color_manual(name = "Borough", values = c("Manhattan" = "skyblue", "Bronx" = "orange", "Brooklyn" = "pink", "Queens" = "purple", "Staten Island" = "red")) +
-  theme_minimal() +
-  theme(legend.position = "right")
-
-
 ## Plotly Box Plot
 plot_ly(
   data = avg_rat_sightings_box,
@@ -307,8 +296,8 @@ plot_ly(
   colors = c("skyblue", "orange", "pink", "purple", "red")
 ) %>%
   layout(
-    title = "Distribution of Number of Rat Sightings by Year (2015-2020)",
-    xaxis = list(title = "Year"),
+    title = "Distribution of Number of Rat Sightings by Borough (2015-2020)",
+    xaxis = list(title = "Borough"),
     yaxis = list(title = "Number of Rat Sightings"),
     legend = list(title = "Borough"),
     showlegend = TRUE
