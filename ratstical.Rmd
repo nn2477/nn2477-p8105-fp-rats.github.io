@@ -13,21 +13,7 @@ library(tidyverse)
 library(leaflet)
 library(lubridate)
 library(shiny)
-library(htmltools)
-
-knitr::opts_chunk$set(
-    echo = TRUE,
-    warning = FALSE,
-    fig.width = 30, 
-  fig.height = 35
-)
-
-theme_set(theme_minimal() + theme(legend.position = "bottom"))
-
-options(
-  ggplot2.continuous.colour = "viridis",
-  ggplot2.continuous.fill = "viridis"
-)
+library(flexdashboard)
 
 rat_sightings_data <- read.csv("./datasets_clean/rat_sightings_data")
 
@@ -35,7 +21,7 @@ rat_sightings_data <- read.csv("./datasets_clean/rat_sightings_data")
 
 
 {.sidebar}
-==========================================================================
+-----------------------------------------------------------------------
 
 ```{r, echo=FALSE}
 ## Drop down menu input for year
@@ -62,7 +48,7 @@ selectInput(
 
 
 {data-width=650}
-==========================================================================
+-----------------------------------------------------------------------
 
 ### Rat Sightings Data by Year and Borough
 
