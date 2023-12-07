@@ -15,3 +15,32 @@ rat_sightings_data <- read.csv("./datasets_clean/rat_sightings_data")
 income_data_2020 <- read.csv("./datasets_clean/income_data_2020")
 ```
 
+## Average Rat Sightings to Median Income by Borough 2020
+
+```{r, echo=FALSE, fig.width=10, fig.height=8}
+
+avg_rat_sightings_borough = 
+  rat_sightings_data %>% 
+  filter(year_created == 2020) %>% 
+  mutate(unique_key = as_factor(unique_key)) %>% 
+  group_by(borough) %>% 
+  summarize(count = n_distinct(unique_key))
+
+avg_median_income_borough = 
+  income_data_2020 %>% 
+  group_by(borough) %>% 
+  summarise(avg_median_income = mean(median_income))
+
+rat_to_income = 
+  left_join(avg_rat_sightings_borough, avg_median_income_borough, by = "borough") %>% 
+  mutate(rat_income = count / avg_median_income)
+
+rat_to_income %>% 
+  ggplot(aes(x = borough, y = rat_income, fill = borough))+
+  geom_bar(stat = "identity")+
+  labs(title = "Rat Per Dollar by Borough in 2020",
+      x = "Borough",
+      y = "Rat Per Dollar Ratio") +
+  scale_fill_manual(name = "Borough", values = c("Manhattan" = "skyblue", "Bronx" = "orange", "Brooklyn" = "pink", "Queens" = "purple", "Staten Island" = "red")) +
+  theme_minimal()
+```
