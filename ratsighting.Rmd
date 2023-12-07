@@ -6,8 +6,6 @@ output:
     toc_float: true
 ---
 
-![Spotted: NYC Subway Rat in the Wild](images/rat.jpeg)
-
 ```{r setup, include=FALSE}
 library(tidyverse)
 library(leaflet)
@@ -111,7 +109,7 @@ ggplot(filtered_rat_data, aes(x = month_created, group = year_created)) +
 
 
 ### Residential Rat Sightings by Borough
-```{r}
+```{r, echo=FALSE, fig.width=10, fig.height=8}
 # Specify the desired location types
 desired_location_types <- c(
   "3+ Family Apt. Building", 
