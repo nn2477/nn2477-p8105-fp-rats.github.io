@@ -53,6 +53,7 @@ selectInput(
 ### Rat Sightings Data by Year and Borough
 
 ```{r, echo=FALSE}
+
 renderLeaflet({
   filtered_data <- reactive({
     rat_sightings_data %>%
@@ -73,7 +74,7 @@ renderLeaflet({
     ) %>%
     setView(lng = -73.97, lat = 40.78, zoom = 10)
 })
-```
 
+```
 
 
