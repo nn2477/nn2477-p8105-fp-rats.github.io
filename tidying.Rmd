@@ -41,7 +41,7 @@ income_data_2020 =
   janitor::clean_names() %>% 
   select(puma, borough, neighborhoods, nyc_poverty_rate, median_income, perc_white, perc_black, perc_asian, perc_other, perc_hispanic)
 
-## Check for missing values and Typos in neighborhood names
+## Check for missing values and typos in neighborhood names
 missing_val_check = 
   income_data_2020 %>% 
   summarise_all(~sum(is.na(.)))
@@ -100,10 +100,12 @@ There are 662 missing values for both longitude and latitude but we will keep th
 
 
 # Population Data
+
+##Total Population per Borough
 <details>
   <summary>Code</summary>
 ```{r}
-population_data =
+population_totals_data =
   read_excel("./datasets/population_data.xlsx", sheet = "2010, 2020, and Change", range = "C4:AQ10") |>
   janitor::clean_names() |> 
   select(borough, pop_20) |> 
@@ -112,16 +114,42 @@ population_data =
 
 ## Check for missing values
 
-missing_val_check_pop = 
-  population_data %>% 
+missing_val_check_pop_total = 
+  population_totals_data %>% 
   summarise_all(~sum(is.na(.)))
 
 ## Exporting clean dataset
 
-write_csv(population_data, "datasets_clean/population_data")
+write_csv(population_totals_data, "datasets_clean/population_totals_data")
 ```
 </details>
 
 The dataset is not missing any values.
 
+##Individual Population Observations
+<details>
+  <summary>Code</summary>
+```{r}
+population_individual_data =
+  read_excel("./datasets/population_data.xlsx", sheet = "2010, 2020, and Change", range = "C4:AQ2721") |>
+  janitor::clean_names() |> 
+  select(borough, pop_20) |> 
+  slice(-(1:6)) |> 
+  rename(population = pop_20) |> 
+  filter(
+    borough %in% c("Manhattan", "Bronx", "Brooklyn", "Queens", "Staten Island"))
+
+## Check for missing values
+
+missing_val_check_pop_indiv = 
+  population_individual_data %>% 
+  summarise_all(~sum(is.na(.)))
+
+## Exporting clean dataset
+
+write_csv(population_individual_data, "datasets_clean/population_individual_data")
+```
+</details>
+
+The dataset is not missing any values.
 

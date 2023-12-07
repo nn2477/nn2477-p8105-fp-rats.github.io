@@ -411,7 +411,7 @@ Code
   janitor::clean_names() %&gt;% 
   select(puma, borough, neighborhoods, nyc_poverty_rate, median_income, perc_white, perc_black, perc_asian, perc_other, perc_hispanic)
 
-## Check for missing values and Typos in neighborhood names
+## Check for missing values and typos in neighborhood names
 missing_val_check = 
   income_data_2020 %&gt;% 
   summarise_all(~sum(is.na(.)))
@@ -482,11 +482,12 @@ will keep these in our tidied data.</p>
 </div>
 <div id="population-data" class="section level1">
 <h1>Population Data</h1>
+##Total Population per Borough
 <details>
 <summary>
 Code
 </summary>
-<pre class="r"><code>population_data =
+<pre class="r"><code>population_totals_data =
   read_excel(&quot;./datasets/population_data.xlsx&quot;, sheet = &quot;2010, 2020, and Change&quot;, range = &quot;C4:AQ10&quot;) |&gt;
   janitor::clean_names() |&gt; 
   select(borough, pop_20) |&gt; 
@@ -495,13 +496,38 @@ Code
 
 ## Check for missing values
 
-missing_val_check_pop = 
-  population_data %&gt;% 
+missing_val_check_pop_total = 
+  population_totals_data %&gt;% 
   summarise_all(~sum(is.na(.)))
 
 ## Exporting clean dataset
 
-write_csv(population_data, &quot;datasets_clean/population_data&quot;)</code></pre>
+write_csv(population_totals_data, &quot;datasets_clean/population_totals_data&quot;)</code></pre>
+</details>
+<p>The dataset is not missing any values.</p>
+##Individual Population Observations
+<details>
+<summary>
+Code
+</summary>
+<pre class="r"><code>population_individual_data =
+  read_excel(&quot;./datasets/population_data.xlsx&quot;, sheet = &quot;2010, 2020, and Change&quot;, range = &quot;C4:AQ2721&quot;) |&gt;
+  janitor::clean_names() |&gt; 
+  select(borough, pop_20) |&gt; 
+  slice(-(1:6)) |&gt; 
+  rename(population = pop_20) |&gt; 
+  filter(
+    borough %in% c(&quot;Manhattan&quot;, &quot;Bronx&quot;, &quot;Brooklyn&quot;, &quot;Queens&quot;, &quot;Staten Island&quot;))
+
+## Check for missing values
+
+missing_val_check_pop_indiv = 
+  population_individual_data %&gt;% 
+  summarise_all(~sum(is.na(.)))
+
+## Exporting clean dataset
+
+write_csv(population_individual_data, &quot;datasets_clean/population_individual_data&quot;)</code></pre>
 </details>
 <p>The dataset is not missing any values.</p>
 </div>
