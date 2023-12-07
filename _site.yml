@@ -5,8 +5,6 @@ navbar:
   right:
     - text: "Home"
       href: index.html
-    - text: "Rat Sighting App"
-      href: https://nn2477.shinyapps.io/rat_sighting_map_app
     - text: "Proposal"
       href: proposal.html
     - text: "Data Cleaning/Tidying"
@@ -23,6 +21,8 @@ navbar:
       href: report.html
     - text: "Plotly Graphs"
       href: dashboard.html
+    - icon: fa-regular fa-mouse-field
+      href: https://nn2477.shinyapps.io/rat_sighting_map_app 
     - icon: fa-brands fa-square-youtube
       href: https://github.com/nn2477/p8105-fp-rats.github.io
     - icon: fa-github fa-lg
