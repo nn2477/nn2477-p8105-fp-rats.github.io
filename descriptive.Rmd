@@ -3,15 +3,33 @@ title: "descriptive"
 output: html_document
 date: "2023-12-07"
 ---
-# Rat Sightings Data
-
-## Measures of Central Tendency
 
 ```{r, message=FALSE, echo=FALSE}
 library(tidyverse)
 
 rat_sightings_data <- read.csv("./datasets_clean/rat_sightings_data")
 ```
+
+# Rat Sightings Data
+
+## Frequency Table
+
+```{r, message=FALSE, echo=FALSE}
+avg_rat_sightings_freq = 
+  rat_sightings_data %>% 
+  mutate(unique_key = as_factor(unique_key)) %>% 
+  group_by(year_created, borough) %>% 
+  summarize(count = n_distinct(unique_key)) %>% 
+  rename(Year = year_created) %>% 
+  pivot_wider(
+    names_from = borough,
+    values_from = count
+  )
+
+knitr::kable(avg_rat_sightings_freq)
+```
+
+## Measures of Central Tendency
 
 Measures of Central Tendency for Rat Sightings by Year
 
