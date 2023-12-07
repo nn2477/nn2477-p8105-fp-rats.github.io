@@ -6,7 +6,7 @@ navbar:
     - text: "Home"
       href: index.html
     - text: "Rat Sighting App"
-      href: https://nn2477.shinyapps.io/rat_sighting_map_app/
+      href: https://nn2477.shinyapps.io/rat_sighting_map_app
     - text: "Proposal"
       href: proposal.html
     - text: "Data Cleaning/Tidying"
