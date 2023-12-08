@@ -128,7 +128,7 @@ plot_ly(
 
 {data-width=400}
 -----------------------------------------------------------------------
-### Rat Sightings Distribution by Year by Borough (2015-2020)
+### Rat Sightings Distribution by Borough (2015-2020)
 
 ```{r}
 avg_rat_sightings_box = 

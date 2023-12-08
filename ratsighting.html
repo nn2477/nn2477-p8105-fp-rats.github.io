@@ -13,7 +13,7 @@
 
 <title>Manhattan Rat Sighting Data</title>
 
-<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
@@ -427,7 +427,15 @@ ggplot(filtered_rat_data, aes(x = month_created, group = year_created)) +
   scale_color_discrete(name = &quot;Year&quot;) +
   theme_minimal()</code></pre>
 </details>
-<p><img src="ratsighting_files/figure-html/unnamed-chunk-2-1.png" width="960" /></p>
+<p><img src="ratsighting_files/figure-html/unnamed-chunk-2-1.png" width="960" />
+As shown in the line plot depicting monthly trends in NYC rat sightings
+across the years 2015-2020, there appears to be a general trend across
+the years where rat sightings increase as the weather in NYC gets
+warming during the summer months. The peak months for all years spans
+from May to August, with rat sightings declining sharply following
+October and the onset of colder weather. This observed trend is in line
+with expectations given that rats are known to be more active during
+summer months as they are gathering food to store for winter.</p>
 </div>
 <div id="residential-rat-sightings-by-borough" class="section level2">
 <h2>Residential Rat Sightings by Borough</h2>
@@ -495,10 +503,10 @@ knitr::kable(borough_proportions)</code></pre>
 <td align="left">0.7010402</td>
 </tr>
 <tr class="odd">
-<td align="left">Manhattan</td>
-<td align="left">15800</td>
-<td align="left">24300</td>
-<td align="left">0.6502058</td>
+<td align="left">Staten Island</td>
+<td align="left">2776</td>
+<td align="left">3967</td>
+<td align="left">0.6997731</td>
 </tr>
 <tr class="even">
 <td align="left">Queens</td>
@@ -507,13 +515,24 @@ knitr::kable(borough_proportions)</code></pre>
 <td align="left">0.6912660</td>
 </tr>
 <tr class="odd">
-<td align="left">Staten Island</td>
-<td align="left">2776</td>
-<td align="left">3967</td>
-<td align="left">0.6997731</td>
+<td align="left">Manhattan</td>
+<td align="left">15800</td>
+<td align="left">24300</td>
+<td align="left">0.6502058</td>
 </tr>
 </tbody>
 </table>
+<p>The table above was created by selecting all residential rat
+sightings and creating a new data set to then calculate the proportion
+of total rat sightings occuring in residential locations across all five
+boroughs. The table shows the Bronx as the borough with the highest
+proportion of residential rat sightings with about 81.9% of all reported
+rat sightings being in a residence. Brooklyn has the second highest
+proportion of residential rat sightings at 70.1%, followed by Staten
+Island and then Queens both at about 69%. Manhattan is the borough with
+the fewest residential rat sightings with only 65% of total reported rat
+sightings coming from a residence. To see an interactive bar chart of
+this data please visit the “NYC Rat Graphs” tab.</p>
 </div>
 
 
