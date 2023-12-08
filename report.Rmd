@@ -126,6 +126,7 @@ We also used the same raw population data to create a second population dataset,
 ```{r}
 rat_sightings_data <- read.csv("./datasets_clean/rat_sightings_data")
 population_data <- read.csv("./datasets_clean/population_data")
+income_data_2020 <- read.csv("./datasets_clean/income_data_2020")
 ```
 
 #### Monthly Trends in NYC Rat Sightings (2015-2020) 
@@ -257,7 +258,66 @@ knitr::kable(borough_proportions, align = "l")
 ```
 The table above was created by selecting all residential rat sightings and creating a new data set to then calculate the proportion of total rat sightings occuring in residential locations across all five boroughs. The table shows the Bronx as the borough with the highest proportion of residential rat sightings with about 81.9% of all reported rat sightings being in a residence. Brooklyn has the second highest proportion of residential rat sightings at 70.1%, followed by Staten Island and then Queens both at about 69%. Manhattan is the borough with the fewest residential rat sightings with only 65% of total reported rat sightings coming from a residence. To see an interactive bar chart of this data please visit the "NYC Rat Graphs" tab. 
 
+#### Average Rat Sightings to Median Income by Borough 2020
+<details>
+  <summary>Code</summary>
+```{r, eval=FALSE}
+avg_rat_sightings_borough = 
+  rat_sightings_data %>% 
+  filter(year_created == 2020) %>% 
+  mutate(unique_key = as_factor(unique_key)) %>% 
+  group_by(borough) %>% 
+  summarize(count = n_distinct(unique_key))
 
+avg_median_income_borough = 
+  income_data_2020 %>% 
+  group_by(borough) %>% 
+  summarise(avg_median_income = mean(median_income))
+
+rat_to_income = 
+  left_join(avg_rat_sightings_borough, avg_median_income_borough, by = "borough") %>% 
+  mutate(rat_income = count / avg_median_income)
+
+rat_to_income %>% 
+  ggplot(aes(x = borough, y = rat_income, fill = borough))+
+  geom_bar(stat = "identity")+
+  labs(title = "Rat Per Dollar by Borough in 2020",
+      x = "Borough",
+      y = "Rat Per Dollar Ratio") +
+  scale_fill_manual(name = "Borough", values = c("Manhattan" = "skyblue", "Bronx" = "orange", "Brooklyn" = "pink", "Queens" = "purple", "Staten Island" = "red")) +
+  theme_minimal()
+```
+</details>
+
+```{r, echo=FALSE, fig.width=10, fig.height=8}
+
+avg_rat_sightings_borough = 
+  rat_sightings_data %>% 
+  filter(year_created == 2020) %>% 
+  mutate(unique_key = as_factor(unique_key)) %>% 
+  group_by(borough) %>% 
+  summarize(count = n_distinct(unique_key))
+
+avg_median_income_borough = 
+  income_data_2020 %>% 
+  group_by(borough) %>% 
+  summarise(avg_median_income = mean(median_income))
+
+rat_to_income = 
+  left_join(avg_rat_sightings_borough, avg_median_income_borough, by = "borough") %>% 
+  mutate(rat_income = count / avg_median_income)
+
+rat_to_income %>% 
+  ggplot(aes(x = borough, y = rat_income, fill = borough))+
+  geom_bar(stat = "identity")+
+  labs(title = "Rat Per Dollar by Borough in 2020",
+      x = "Borough",
+      y = "Rat Per Dollar Ratio") +
+  scale_fill_manual(name = "Borough", values = c("Manhattan" = "skyblue", "Bronx" = "orange", "Brooklyn" = "pink", "Queens" = "purple", "Staten Island" = "red")) +
+  theme_minimal()
+```
+
+This plot represents the average number of rats per dollar made in 2020 by median income for each borough of New York City. These proportions were calculated by divding the number of rat sightings in 2020 in each borough by mean median income value for each borough in the same year. In this plot we can see that the proportion of rats to median income was highest in Brooklyn and lowest in Staten Island. 
 
 ### Descriptive Analyses
 

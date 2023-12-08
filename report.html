@@ -563,7 +563,8 @@ duplicates, and exported the clean dataset under the name
 <div id="exploratory-analyses" class="section level3">
 <h3>Exploratory Analyses</h3>
 <pre class="r"><code>rat_sightings_data &lt;- read.csv(&quot;./datasets_clean/rat_sightings_data&quot;)
-population_data &lt;- read.csv(&quot;./datasets_clean/population_data&quot;)</code></pre>
+population_data &lt;- read.csv(&quot;./datasets_clean/population_data&quot;)
+income_data_2020 &lt;- read.csv(&quot;./datasets_clean/income_data_2020&quot;)</code></pre>
 <div id="monthly-trends-in-nyc-rat-sightings-2015-2020"
 class="section level4">
 <h4>Monthly Trends in NYC Rat Sightings (2015-2020)</h4>
@@ -692,6 +693,46 @@ Island and then Queens both at about 69%. Manhattan is the borough with
 the fewest residential rat sightings with only 65% of total reported rat
 sightings coming from a residence. To see an interactive bar chart of
 this data please visit the “NYC Rat Graphs” tab.</p>
+</div>
+<div id="average-rat-sightings-to-median-income-by-borough-2020"
+class="section level4">
+<h4>Average Rat Sightings to Median Income by Borough 2020</h4>
+<details>
+<summary>
+Code
+</summary>
+<pre class="r"><code>avg_rat_sightings_borough = 
+  rat_sightings_data %&gt;% 
+  filter(year_created == 2020) %&gt;% 
+  mutate(unique_key = as_factor(unique_key)) %&gt;% 
+  group_by(borough) %&gt;% 
+  summarize(count = n_distinct(unique_key))
+
+avg_median_income_borough = 
+  income_data_2020 %&gt;% 
+  group_by(borough) %&gt;% 
+  summarise(avg_median_income = mean(median_income))
+
+rat_to_income = 
+  left_join(avg_rat_sightings_borough, avg_median_income_borough, by = &quot;borough&quot;) %&gt;% 
+  mutate(rat_income = count / avg_median_income)
+
+rat_to_income %&gt;% 
+  ggplot(aes(x = borough, y = rat_income, fill = borough))+
+  geom_bar(stat = &quot;identity&quot;)+
+  labs(title = &quot;Rat Per Dollar by Borough in 2020&quot;,
+      x = &quot;Borough&quot;,
+      y = &quot;Rat Per Dollar Ratio&quot;) +
+  scale_fill_manual(name = &quot;Borough&quot;, values = c(&quot;Manhattan&quot; = &quot;skyblue&quot;, &quot;Bronx&quot; = &quot;orange&quot;, &quot;Brooklyn&quot; = &quot;pink&quot;, &quot;Queens&quot; = &quot;purple&quot;, &quot;Staten Island&quot; = &quot;red&quot;)) +
+  theme_minimal()</code></pre>
+</details>
+<p><img src="report_files/figure-html/unnamed-chunk-7-1.png" width="960" /></p>
+<p>This plot represents the average number of rats per dollar made in
+2020 by median income for each borough of New York City. These
+proportions were calculated by divding the number of rat sightings in
+2020 in each borough by mean median income value for each borough in the
+same year. In this plot we can see that the proportion of rats to median
+income was highest in Brooklyn and lowest in Staten Island.</p>
 </div>
 </div>
 <div id="descriptive-analyses" class="section level3">
