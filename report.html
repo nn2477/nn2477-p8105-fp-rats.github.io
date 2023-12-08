@@ -438,26 +438,157 @@ src="https://cdn.theatlantic.com/thumbor/RzlQuaHgqJQ-XdKfDOIvpRda_xI=/0x0:2400x3
 </tbody>
 </table>
 </div>
-<div id="abstract" class="section level3">
-<h3>Abstract</h3>
+<div id="motivation" class="section level3">
+<h3>Motivation</h3>
+<p>In October 2022, New York’s recently installed Commissioner of the
+Department of Sanitation, Jessica Tisch, boldly proclaimed “The rats
+don’t run this city, we do.” To New Yorkers, this statement was more
+wishful thinking than it was grounded in reality. Rats are as much of a
+fabric of the city as dollar slices and delayed trains. Putting the
+lovable pizza rat aside, the presence of rats presents a challenge to
+public health. They are known to carry diseases that can be spread
+directly and indirectly through humans, erode critical infrastructure,
+and generally impact quality of life. For this project, we set out to
+determine the veracity of whether humans or rats really control New
+York. Additionally, we examined whether rats disproportionately impact
+the lives of marginalized groups: low-income individuals, racial and
+ethnic populations, and individuals with disabilities. Although every
+New Yorker has the occasional run-in with rats, we sought to understand
+whether certain groups face increased exposure. We hope that this
+project contributes to the overall question: who runs this city?</p>
 </div>
-<div id="introduction" class="section level3">
-<h3>Introduction</h3>
+<div id="related-work" class="section level3">
+<h3>Related Work</h3>
+<p>There was a high amount of discourse on the subject of rats in New
+York City that inspired this project, specifically published data from
+Fordham University, where researchers found that there was a small but
+discernible genetic difference between rats living uptown versus
+downtown in Manhattan. Additionally, a new feature in the ‘Transit’ app,
+called Rat Detector, is taking a more citizen science approach to see
+where the most popular rat hubs are. It uses sightings reported by users
+to keep tabs on which stations have the most rats and even ranks the
+stations based on how many rat sightings it has. However, despite the
+amount of discourse on the subject, data analysis between rat sighting
+and income was very limited. Thus, our project focuses on bridging that
+information gap.</p>
 </div>
-<div id="methods" class="section level3">
-<h3>Methods</h3>
+<div id="initial-questions" class="section level3">
+<h3>Initial Questions</h3>
+<p>Our initial research question focused exclusively on the relationship
+between income and the prevalence of rat sightings. However, once we
+looked into the data available to answer the questions, we recognized
+that we could include additional parameters beyond income, including
+race, immigration status, and disability status. Adding these parameters
+would provide more granularity to our understanding on how the
+prevalence of rats differ by various socioeconomic classes.</p>
+<p>Additionally, we first hoped to answer a question related to Mayor
+Eric Adams, who has his own repeated issues with rats around his
+Brooklyn row house. Mayor Adams entertained the prospect of using feral
+cat colonies to get New York’s rat population under control, and even
+went so far as to have Curtis Sliwa, a Guardian Angel with feral cats at
+the ready, show up to his rowhouse in January of this year. We hoped
+that we would be able to compare the presence of feral cat colonies to
+the number of rat sightings within a particular neighborhood, and gain a
+better understanding of whether Mayor Adams’ and Curtis Sliwa’s approach
+may have merit. Unfortunately, the data on feral cat colonies required
+to conduct this analysis was not readily available.</p>
 </div>
-<div id="results" class="section level3">
-<h3>Results</h3>
+<div id="data-tidying" class="section level3">
+<h3>Data Tidying</h3>
+<p>Income Data</p>
+<p>Income data was important for us to have access to so that we could
+determine potential linkages between income and rat prevalence. Our
+income data (income_data_2020) includes median income by NYC
+neighborhood as well as the racial makeup of that neighborhood. We
+imported the dataset, cleaned the names, and selected relevant
+variables:</p>
+<p><code>puma</code> <code>borough</code> <code>neighborhoods</code>
+<code>nyc_poverty_rate</code> <code>median_income</code>
+<code>perc_white</code> <code>perc_black</code> <code>perc_asian</code>
+<code>perc_other</code> <code>perc_hispanic</code></p>
+<p>We checked for missing values and any typos in neighborhood names,
+and then exported the clean dataset.</p>
+<p>Rat Sighting Data</p>
+<p>The City of New York Rat Sighting Data was a key dataset for us, and
+can be accessed at the link above. This dataset includes reports of rat
+sightings in New York City from 2010 to the present. At the time we
+accessed it, it had last been updated on November 25, 2023.</p>
+<p>This entire dataset was downloaded to CSV. While we initially tried
+to read it in and commit it to GitHub in its entirely, the dataset
+proved to be too large. As such, it required that we filter and reduce
+that dataset to variables that were only of interest to our research
+questions. We then imported the dataset into R and further reduced the
+file to the following key variables:</p>
+<p><code>unique_key</code> <code>created_date</code>
+<code>closed_date</code> <code>location_type</code>
+<code>incident_zip</code> <code>borough</code> <code>latitude</code>
+<code>longitude</code></p>
+<p>We ensured consistency in data inputs of borough names, and separated
+the date variable ‘created_date’ into ‘month_created’ and
+‘year_created’, ‘day_created’ and ‘time_created’. We followed the same
+pattern for the variable ‘closed_date’. This left us with the following
+variables:</p>
+<p><code>unique_key</code> <code>month_created</code>
+<code>year_created</code> <code>month_closed</code>
+<code>year_closed</code> <code>location_type</code>
+<code>incident_zip</code> <code>borough</code> <code>latitude</code>
+<code>longitude</code></p>
+<p>We then filtered the data to only the years between 2015 and 2019. We
+checked for missing values, which were only identified in the longitude
+and latitude variables, and we decided not to remove these values.
+<code>year_created</code> and <code>month_created</code> were changed
+into factor variables rather than numeric for use in specific analyses,
+and <code>unique_key</code> was used to create count data estimates for
+exploratory analyses in smaller analysis data manipulations. We then
+exported the clean dataset.</p>
+<p>Population Data</p>
+</div>
+<div id="exploratory-analyses" class="section level3">
+<h3>Exploratory Analyses</h3>
+</div>
+<div id="descriptive-analyses" class="section level3">
+<h3>Descriptive Analyses</h3>
+</div>
+<div id="rat-graphs" class="section level3">
+<h3>Rat Graphs</h3>
 </div>
 <div id="discussion" class="section level3">
 <h3>Discussion</h3>
-</div>
-<div id="conclusion" class="section level3">
-<h3>Conclusion</h3>
-</div>
-<div id="references" class="section level3">
-<h3>References</h3>
+<p>Our analysis sought to analyze the relationship between the
+prevalence of rats in New York City and key explanatory variables,
+including income and race, and also to explore prevalence in different
+geographic areas of NYC. Although we had initially hoped to run a series
+of regression models comparing rat prevalence to different predictors
+(like income), we ultimately decided against this approach. This was
+largely due to the way the data is operationalized. The outcome data
+that we had available from our Rat Sightings Dataset was not continuous
+and was technically classified as counts, which would require we run a
+Poisson regression instead of a linear regression. We could not reformat
+our rat sighting observations into counts for a Poisson regression
+model, so we decided that descriptive statistics regarding rat
+sightings, median income, and population would be the most appropriate
+way for us to work with the data available.</p>
+<p>Despite these limitations, our data revealed several interesting
+learnings. First, contrary to our initial hypothesis, the count of rat
+sightings did not increase during the year 2020, the start of the
+COVID-19 pandemic. We initially believed that less sanitary servicing
+and fewer people on the streets would give rats more comfortability in
+roaming freely and this increase the number of sightings. However, rat
+sightings actually peaked in 2017. While this may be a function of fewer
+rats in the city, it may also be a function of people not being out in
+the streets as much to see and report rats, due to stay-at-home orders.
+Additionally, Brooklyn has the highest proportion of rat sightings per
+dollar of median income. Our initial thinking centered on Manhattan
+having the greatest proportion of rat sightings per dollar of income,
+due to having the largest population and thus more challenges with
+sanitation.</p>
+<p>Our analysis would be strengthened by improvement in data
+availability. The greatest limitation was in the Rat Sighting Dataset,
+which as previously described was not an overall depiction of the rat
+population, but rather the count of rat sightings. Further analysis
+would include regression models that analyzed income and rat population
+covariance, and linkages between racial makeup of neighborhoods and rat
+prevalence.</p>
 </div>
 
 
