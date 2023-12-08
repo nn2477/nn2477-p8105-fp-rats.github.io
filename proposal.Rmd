@@ -32,7 +32,7 @@ options(
 
 ### Team Members 
 
-| **Name**         | **Uni**    |
+| **Name**         | **UNI**    |
 |:-----------------|:----------:|
 | Victoria Mello   | vsm2118    |
 | Eunsuh Cho       | ec3663     |
@@ -87,6 +87,14 @@ options(
 
 ### Planned Timeline 
 
+| **Date**                | **Task**                                           | **Due**  |
+|:------------------------|:--------------------------------------------------:|:--------:|
+| Oct 30th                | Proposal                                           | Nov 9th  |
+| Nov 13-17th             | TA Meeting                                         | Nov 20th |
+| Nov 17-21st             | Conduct Analysis                                   | N/A      |
+| Nov 27th                | Develop report, webpage, & screen cast             | Dec 2nd  |
+| Dec 2nd                 | Refine & troubleshoot; peer assessment; submission | Dec 9th  |
+| Dec 14th                | Presentation                                       | Dec 14th |
 
 
 
