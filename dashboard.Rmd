@@ -39,7 +39,7 @@ population_data <- read.csv("./datasets_clean/population_data")
 ```
 
 
-{data-width=500}
+{data-width=400}
 -----------------------------------------------------------------------
 
 ### Average Annual Rat Sightings across Boroughs (2015-2020)
