@@ -319,6 +319,57 @@ rat_to_income %>%
 
 This plot represents the average number of rats per dollar made in 2020 by median income for each borough of New York City. These proportions were calculated by divding the number of rat sightings in 2020 in each borough by mean median income value for each borough in the same year. In this plot we can see that the proportion of rats to median income was highest in Brooklyn and lowest in Staten Island. 
 
+## Average Rat Sightings to Median Population by Borough in 2020
+<details>
+  <summary>Code</summary>
+```{r, eval=FALSE}
+avg_rat_sightings_borough = 
+  rat_sightings_data %>% 
+  filter(year_created == 2020) %>% 
+  mutate(unique_key = as_factor(unique_key)) %>% 
+  group_by(borough) %>% 
+  summarize(count = n_distinct(unique_key))
+
+rat_to_population = 
+  left_join(avg_rat_sightings_borough, population_data, by = "borough") %>% 
+  mutate(rat_population = count / population)
+
+rat_to_population %>% 
+  ggplot(aes(x = borough, y = rat_population, fill = borough))+
+  geom_bar(stat = "identity")+
+  labs(title = "Rat Per Person Ratio by Borough in 2020",
+      x = "Borough",
+      y = "Rat Per Person Ratio") +
+  scale_fill_manual(name = "Borough", values = c("Manhattan" = "skyblue", "Bronx" = "orange", "Brooklyn" = "pink", "Queens" = "purple", "Staten Island" = "red")) +
+  theme_minimal()
+```
+</details>
+
+```{r, echo=FALSE, fig.width=10, fig.height=8}
+avg_rat_sightings_borough = 
+  rat_sightings_data %>% 
+  filter(year_created == 2020) %>% 
+  mutate(unique_key = as_factor(unique_key)) %>% 
+  group_by(borough) %>% 
+  summarize(count = n_distinct(unique_key))
+
+rat_to_population = 
+  left_join(avg_rat_sightings_borough, population_data, by = "borough") %>% 
+  mutate(rat_population = count / population)
+
+rat_to_population %>% 
+  ggplot(aes(x = borough, y = rat_population, fill = borough))+
+  geom_bar(stat = "identity")+
+  labs(title = "Rat Per Person Ratio by Borough in 2020",
+      x = "Borough",
+      y = "Rat Per Person Ratio") +
+  scale_fill_manual(name = "Borough", values = c("Manhattan" = "skyblue", "Bronx" = "orange", "Brooklyn" = "pink", "Queens" = "purple", "Staten Island" = "red")) +
+  theme_minimal()
+  
+```
+
+This plot represents the average number of rats per person in 2020 by population for each borough of New York City. These proportions were calculated by divding the number of rat sightings in 2020 for each borough by the total borough population in the same year. In this plot we can see that the proportion of rats per person was highest in Manhattan and lowest in Queens. 
+
 ### Descriptive Analyses
 
 Below are the descriptive statistics for our income datasets. We decided against running regression models for a few significant reasons: the outcome of rat sightings is not continuous and is technically classified as counts, which would prompt us to run a Poisson regression instead of a linear regression. We could not, however, reformat our rat sighting observations into counts for a Poisson regression model, so we agreed that descriptive statistics regarding rat sightings, median income, and population would be the most appropriate way for us to work with the data.

@@ -735,6 +735,40 @@ same year. In this plot we can see that the proportion of rats to median
 income was highest in Brooklyn and lowest in Staten Island.</p>
 </div>
 </div>
+<div id="average-rat-sightings-to-median-population-by-borough-in-2020"
+class="section level2">
+<h2>Average Rat Sightings to Median Population by Borough in 2020</h2>
+<details>
+<summary>
+Code
+</summary>
+<pre class="r"><code>avg_rat_sightings_borough = 
+  rat_sightings_data %&gt;% 
+  filter(year_created == 2020) %&gt;% 
+  mutate(unique_key = as_factor(unique_key)) %&gt;% 
+  group_by(borough) %&gt;% 
+  summarize(count = n_distinct(unique_key))
+
+rat_to_population = 
+  left_join(avg_rat_sightings_borough, population_data, by = &quot;borough&quot;) %&gt;% 
+  mutate(rat_population = count / population)
+
+rat_to_population %&gt;% 
+  ggplot(aes(x = borough, y = rat_population, fill = borough))+
+  geom_bar(stat = &quot;identity&quot;)+
+  labs(title = &quot;Rat Per Person Ratio by Borough in 2020&quot;,
+      x = &quot;Borough&quot;,
+      y = &quot;Rat Per Person Ratio&quot;) +
+  scale_fill_manual(name = &quot;Borough&quot;, values = c(&quot;Manhattan&quot; = &quot;skyblue&quot;, &quot;Bronx&quot; = &quot;orange&quot;, &quot;Brooklyn&quot; = &quot;pink&quot;, &quot;Queens&quot; = &quot;purple&quot;, &quot;Staten Island&quot; = &quot;red&quot;)) +
+  theme_minimal()</code></pre>
+</details>
+<p><img src="report_files/figure-html/unnamed-chunk-9-1.png" width="960" /></p>
+<p>This plot represents the average number of rats per person in 2020 by
+population for each borough of New York City. These proportions were
+calculated by divding the number of rat sightings in 2020 for each
+borough by the total borough population in the same year. In this plot
+we can see that the proportion of rats per person was highest in
+Manhattan and lowest in Queens.</p>
 <div id="descriptive-analyses" class="section level3">
 <h3>Descriptive Analyses</h3>
 <p>Below are the descriptive statistics for our income datasets. We
@@ -1912,6 +1946,7 @@ population, but rather the count of rat sightings. Further analysis
 would include regression models that analyzed income and rat population
 covariance, and linkages between racial makeup of neighborhoods and rat
 prevalence.</p>
+</div>
 </div>
 
 
