@@ -11,7 +11,7 @@ navbar:
       menu:
       - text: "Data Cleaning & Tidying"
         href: tidying.html
-      - text: "Rat Sighting in Manhattan"
+      - text: "Rat Sightings in NYC"
         href: ratsighting.html
       - text: "Rat Sighting by Income"
         href: income.html
