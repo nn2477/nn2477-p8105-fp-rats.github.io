@@ -157,7 +157,7 @@ borough_proportions <- merge(residential_counts, total_counts, by = "borough", a
   mutate(proportion_residential = residential_count / total_count)
 
 # Print the result
-knitr::kable(borough_proportions)
+knitr::kable(borough_proportions, align = "l")
 ```
 
 
