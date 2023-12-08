@@ -31,34 +31,7 @@ options(
 
 ![](images/rat.jpeg)
 
-# Income Data 
-<details>
-  <summary>Code</summary>
-```{r, message=FALSE}
-income_data_2020 = 
-  read_csv("./datasets/Neighborhood_Financial_Health_Digital_Mapping_and_Data_Tool_20231125.csv") %>% 
-  janitor::clean_names() %>% 
-  select(puma, borough, neighborhoods, nyc_poverty_rate, median_income, perc_white, perc_black, perc_asian, perc_other, perc_hispanic)
-
-## Check for missing values and typos in neighborhood names
-missing_val_check = 
-  income_data_2020 %>% 
-  summarise_all(~sum(is.na(.)))
-
-income_data_2020 %>% 
-  group_by(neighborhoods)%>% 
-  summarise(count= n())
-
-## Exporting clean dataset
-write_csv(income_data_2020, "datasets_clean/income_data_2020")
-
-```
-</details>
-
-There are no missing values in the dataset. There are 7 of each neighborhood names indicating that there are no typos in the dataset for neighborhood name. 
-
-
-# Rat Sighting Data
+## Rat Sighting Data
 <details>
   <summary>Code</summary>
 ```{r message=FALSE, warning=FALSE}
@@ -97,8 +70,35 @@ write_csv(rat_sightings_data, "datasets_clean/rat_sightings_data")
 
 There are 662 missing values for both longitude and latitude but we will keep these in our tidied data.
 
+## Income Data 
+<details>
+  <summary>Code</summary>
+```{r, message=FALSE}
+income_data_2020 = 
+  read_csv("./datasets/Neighborhood_Financial_Health_Digital_Mapping_and_Data_Tool_20231125.csv") %>% 
+  janitor::clean_names() %>% 
+  select(puma, borough, neighborhoods, nyc_poverty_rate, median_income, perc_white, perc_black, perc_asian, perc_other, perc_hispanic)
 
-# Population Data
+## Check for missing values and typos in neighborhood names
+missing_val_check = 
+  income_data_2020 %>% 
+  summarise_all(~sum(is.na(.)))
+
+income_data_2020 %>% 
+  group_by(neighborhoods)%>% 
+  summarise(count= n())
+
+## Exporting clean dataset
+write_csv(income_data_2020, "datasets_clean/income_data_2020")
+
+```
+</details>
+
+There are no missing values in the dataset. There are 7 of each neighborhood names indicating that there are no typos in the dataset for neighborhood name. 
+
+
+
+## Population Data
 
 **Total Population per Borough**
 <details>

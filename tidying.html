@@ -404,48 +404,8 @@ div.tocify {
 
 
 <p><img src="images/rat.jpeg" /></p>
-<div id="income-data" class="section level1">
-<h1>Income Data</h1>
-<details>
-<summary>
-Code
-</summary>
-<pre class="r"><code>income_data_2020 = 
-  read_csv(&quot;./datasets/Neighborhood_Financial_Health_Digital_Mapping_and_Data_Tool_20231125.csv&quot;) %&gt;% 
-  janitor::clean_names() %&gt;% 
-  select(puma, borough, neighborhoods, nyc_poverty_rate, median_income, perc_white, perc_black, perc_asian, perc_other, perc_hispanic)
-
-## Check for missing values and typos in neighborhood names
-missing_val_check = 
-  income_data_2020 %&gt;% 
-  summarise_all(~sum(is.na(.)))
-
-income_data_2020 %&gt;% 
-  group_by(neighborhoods)%&gt;% 
-  summarise(count= n())</code></pre>
-<pre><code>## # A tibble: 55 × 2
-##    neighborhoods                               count
-##    &lt;chr&gt;                                       &lt;int&gt;
-##  1 Astoria &amp; Long Island City                      7
-##  2 Battery Park City, Greenwich Village &amp; Soho     7
-##  3 Bay Ridge &amp; Dyker Heights                       7
-##  4 Bayside, Douglaston &amp; Little Neck               7
-##  5 Bedford Park, Fordham North &amp; Norwood           7
-##  6 Bedford Stuyvesant                              7
-##  7 Belmont, Crotona Park East &amp; East Tremont       7
-##  8 Bensonhurst &amp; Bath Beach                        7
-##  9 Borough Park, Kensington &amp; Ocean Parkway        7
-## 10 Briarwood, Fresh Meadows &amp; Hillcrest            7
-## # ℹ 45 more rows</code></pre>
-<pre class="r"><code>## Exporting clean dataset
-write_csv(income_data_2020, &quot;datasets_clean/income_data_2020&quot;)</code></pre>
-</details>
-<p>There are no missing values in the dataset. There are 7 of each
-neighborhood names indicating that there are no typos in the dataset for
-neighborhood name.</p>
-</div>
-<div id="rat-sighting-data" class="section level1">
-<h1>Rat Sighting Data</h1>
+<div id="rat-sighting-data" class="section level2">
+<h2>Rat Sighting Data</h2>
 <details>
 <summary>
 Code
@@ -484,8 +444,48 @@ write_csv(rat_sightings_data, &quot;datasets_clean/rat_sightings_data&quot;)</co
 <p>There are 662 missing values for both longitude and latitude but we
 will keep these in our tidied data.</p>
 </div>
-<div id="population-data" class="section level1">
-<h1>Population Data</h1>
+<div id="income-data" class="section level2">
+<h2>Income Data</h2>
+<details>
+<summary>
+Code
+</summary>
+<pre class="r"><code>income_data_2020 = 
+  read_csv(&quot;./datasets/Neighborhood_Financial_Health_Digital_Mapping_and_Data_Tool_20231125.csv&quot;) %&gt;% 
+  janitor::clean_names() %&gt;% 
+  select(puma, borough, neighborhoods, nyc_poverty_rate, median_income, perc_white, perc_black, perc_asian, perc_other, perc_hispanic)
+
+## Check for missing values and typos in neighborhood names
+missing_val_check = 
+  income_data_2020 %&gt;% 
+  summarise_all(~sum(is.na(.)))
+
+income_data_2020 %&gt;% 
+  group_by(neighborhoods)%&gt;% 
+  summarise(count= n())</code></pre>
+<pre><code>## # A tibble: 55 × 2
+##    neighborhoods                               count
+##    &lt;chr&gt;                                       &lt;int&gt;
+##  1 Astoria &amp; Long Island City                      7
+##  2 Battery Park City, Greenwich Village &amp; Soho     7
+##  3 Bay Ridge &amp; Dyker Heights                       7
+##  4 Bayside, Douglaston &amp; Little Neck               7
+##  5 Bedford Park, Fordham North &amp; Norwood           7
+##  6 Bedford Stuyvesant                              7
+##  7 Belmont, Crotona Park East &amp; East Tremont       7
+##  8 Bensonhurst &amp; Bath Beach                        7
+##  9 Borough Park, Kensington &amp; Ocean Parkway        7
+## 10 Briarwood, Fresh Meadows &amp; Hillcrest            7
+## # ℹ 45 more rows</code></pre>
+<pre class="r"><code>## Exporting clean dataset
+write_csv(income_data_2020, &quot;datasets_clean/income_data_2020&quot;)</code></pre>
+</details>
+<p>There are no missing values in the dataset. There are 7 of each
+neighborhood names indicating that there are no typos in the dataset for
+neighborhood name.</p>
+</div>
+<div id="population-data" class="section level2">
+<h2>Population Data</h2>
 <strong>Total Population per Borough</strong>
 <details>
 <summary>

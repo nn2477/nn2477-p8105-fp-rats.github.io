@@ -17,7 +17,7 @@ population_data <- read.csv("./datasets_clean/population_data")
 ```
 
 
-## Average Rat Sightings to Median Population by Borough 2020
+## Average Rat Sightings to Median Population by Borough in 2020
 <details>
   <summary>Code</summary>
 ```{r, eval=FALSE}

@@ -158,9 +158,7 @@ plot_ly(
 ) %>%
   layout(
     xaxis = list(title = "Year"),
-    yaxis = list(title = "Number of Rat Sightings"),
-    legend = list(title = "Borough"),
-    showlegend = TRUE
+    yaxis = list(title = "Number of Rat Sightings")
   )
 ```
 
