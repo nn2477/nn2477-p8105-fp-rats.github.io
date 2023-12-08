@@ -428,7 +428,6 @@ This table shows the quartiles for population by borough. Manhattan has the high
 Below are the descriptive statistics for our rat datasets. We decided against running regression models for a few significant reasons: the outcome of rat sightings is not continuous and is technically classified as counts, which would prompt us to run a Poisson regression instead of a linear regression. We could not, however, reformat our rat sighting observations into counts for a Poisson regression model, so we agreed that descriptive statistics regarding rat sightings, median income, and population would be the most appropriate way for us to work with the data.
 
 ```{r, message=FALSE, echo=FALSE}
-library(tidyverse)
 
 rat_sightings_data <- read.csv("./datasets_clean/rat_sightings_data")
 population_individual_data <- read.csv("./datasets_clean/population_individual_data")
@@ -437,7 +436,7 @@ income_data_2020 <- read.csv("./datasets_clean/income_data_2020")
 ```
 
 
-### Rat Sighting Frequency Table
+#### Rat Sighting Frequency Table
 
 <details>
   <summary>Code</summary>
@@ -474,7 +473,7 @@ knitr::kable(avg_rat_sightings_freq, align = "l")
 
 The table shows the frequency of rat sightings in the five NYC boroughs by year, from 2015 to 2020. Rat sighting frequency generally is highest in Brooklyn and lowest in Staten Island. Rat sightings in all boroughs aside from Manhattan peak in 2017.
 
-### Rat Sighting Measures of Central Tendency
+#### Rat Sighting Measures of Central Tendency
 
 **Measures of Central Tendency for Rat Sightings by Year**
 
@@ -576,7 +575,7 @@ knitr::kable(summary_stats_borough, align = "l")
 
 This table depicts the measures of central tendency for rat sightings by borough: the mean, median, standard deviation, minimum, and maximum for 2015 to 2020. Brooklyn presents the highest values for all measures, with Manhattan having the second-highest values. Staten Island has the lowest central tendency measures.
 
-### Rat Sighting Measures of Dispersion 
+#### Rat Sighting Measures of Dispersion 
 
 **Measures of Dispersion for Rat Sightings by Year**
 
@@ -674,7 +673,7 @@ knitr::kable(summary_stats_borough, align = "l")
 
 This table shows the measures of dispersion for rat sightings by borough, from 2015 to 2020. Brooklyn has the highest values for all measures (range, interquartile range, standard deviation, and variance). Staten Island has the lowest values for all measures. The Bronx has the second highest range.
 
-### Rat Sighting Quartiles
+#### Rat Sighting Quartiles
 
 **Quartiles for Rat Sightings by Year**
 
