@@ -50,20 +50,17 @@ In October 2022, New York’s recently installed Commissioner of the Department 
 
 For this project, we set out to determine the veracity of whether humans or rats really control New York. Additionally, we examined whether rats disproportionately impact the lives of marginalized groups: low-income individuals, racial and ethnic populations, and individuals with disabilities. Although every New Yorker has the occasional run-in with rats, we sought to understand whether certain groups face increased exposure. We hope that this project contributes to the overall question: who runs this city?
 
-
 ### Related Work
 There was a high amount of discourse on the subject of rats in New York City that inspired this project, specifically published data from Fordham University, where researchers found that there was a small but discernible genetic difference between rats living uptown versus downtown in Manhattan. Additionally, a new feature in the ‘Transit’ app, called Rat Detector, is taking a more citizen science approach to see where the most popular rat hubs are. It uses sightings reported by users to keep tabs on which stations have the most rats and even ranks the stations based on how many rat sightings it has. However, despite the amount of discourse on the subject, data analysis between rat sighting and income was very limited. Thus, our project focuses on bridging that information gap. 
 
 
 ### Initial Questions
-
 Our initial research question focused exclusively on the relationship between income and the prevalence of rat sightings. However, once we looked into the data available to answer the questions, we recognized that we could include additional parameters beyond income, including race, immigration status, and disability status. Adding these parameters would provide more granularity to our understanding on how the prevalence of rats differ by various socioeconomic classes.
 
 Additionally, we first hoped to answer a question related to Mayor Eric Adams, who has his own repeated issues with rats around his Brooklyn row house. Mayor Adams entertained the prospect of using feral cat colonies to get New York’s rat population under control, and even went so far as to have Curtis Sliwa, a Guardian Angel with feral cats at the ready, show up to his rowhouse in January of this year. We hoped that we would be able to compare the presence of feral cat colonies to the number of rat sightings within a particular neighborhood, and gain a better understanding of whether Mayor Adams’ and Curtis Sliwa’s approach may have merit. Unfortunately, the data on feral cat colonies required to conduct this analysis was not readily available.
 
 
 ### Data Tidying
-
 We used several datasets for this project: City of New York Neighborhood Financial Health Digital Mapping and Data Tool for income data, City of New York Rat Sighting Data for rat data, and Census Data for population information.
 
 
@@ -170,7 +167,6 @@ ggplot(filtered_rat_data, aes(x = month_created, group = year_created)) +
 As shown in the line plot depicting monthly trends in NYC rat sightings across the years 2015-2020, there appears to be a general trend across the years where rat sightings increase as the weather in NYC gets warming during the summer months. The peak months for all years spans from May to August, with rat sightings declining sharply following October and the onset of colder weather. This observed trend is in line with expectations given that rats are known to be more active during summer months as they are gathering food to store for winter.
 
 
-
 #### Residential Rat Sightings by Borough
 
 <details>
@@ -259,8 +255,7 @@ knitr::kable(borough_proportions, align = "l")
 The table above was created by selecting all residential rat sightings and creating a new data set to then calculate the proportion of total rat sightings occuring in residential locations across all five boroughs. The table shows the Bronx as the borough with the highest proportion of residential rat sightings with about 81.9% of all reported rat sightings being in a residence. Brooklyn has the second highest proportion of residential rat sightings at 70.1%, followed by Staten Island and then Queens both at about 69%. Manhattan is the borough with the fewest residential rat sightings with only 65% of total reported rat sightings coming from a residence. To see an interactive bar chart of this data please visit the "NYC Rat Graphs" tab. 
 
 #### Average Rat Sightings to Median Income by Borough 2020
-<details>
-  <summary>Code</summary>
+
 ```{r, eval=FALSE}
 avg_rat_sightings_borough = 
   rat_sightings_data %>% 
@@ -319,7 +314,7 @@ rat_to_income %>%
 
 This plot represents the average number of rats per dollar made in 2020 by median income for each borough of New York City. These proportions were calculated by divding the number of rat sightings in 2020 in each borough by mean median income value for each borough in the same year. In this plot we can see that the proportion of rats to median income was highest in Brooklyn and lowest in Staten Island. 
 
-## Average Rat Sightings to Median Population by Borough in 2020
+#### Average Rat Sightings to Median Population by Borough in 2020
 <details>
   <summary>Code</summary>
 ```{r, eval=FALSE}
@@ -547,7 +542,7 @@ population_totals_data <- read.csv("./datasets_clean/population_totals_data")
 income_data_2020 <- read.csv("./datasets_clean/income_data_2020")
 ```
 
-Below are the descriptive statistics for our population datasets. We decided against running regression models for a few significant reasons: the outcome of rat sightings is not continuous and is technically classified as counts, which would prompt us to run a Poisson regression instead of a linear regression. We could not, however, reformat our rat sighting observations into counts for a Poisson regression model, so we agreed that descriptive statistics regarding rat sightings, median income, and population would be the most appropriate way for us to work with the data.
+Below are the descriptive statistics for our population datasets. 
 
 The NYC 2020 Census reports the total population for each NYC borough, but the summation of the individual observations by borough do not match the provided totals. We consequently decided to use the provided totals for our frequency table, and the individual observations to observe the data spread for measures of central tendency and dispersion, and the quartiles.
 
@@ -677,7 +672,7 @@ knitr::kable(quartiles_pop, align = "l")
 
 This table shows the quartiles for population by borough. Manhattan has the highest values for all quartiles, and Queens has the lowest values for the first quartile and median. Brooklyn has the lowest third quartile value.
 
-Below are the descriptive statistics for our rat datasets. We decided against running regression models for a few significant reasons: the outcome of rat sightings is not continuous and is technically classified as counts, which would prompt us to run a Poisson regression instead of a linear regression. We could not, however, reformat our rat sighting observations into counts for a Poisson regression model, so we agreed that descriptive statistics regarding rat sightings, median income, and population would be the most appropriate way for us to work with the data.
+Below are the descriptive statistics for our rat datasets. 
 
 ```{r, message=FALSE, echo=FALSE}
 
@@ -1020,6 +1015,8 @@ knitr::kable(quartiles_quantile_borough, align = "l")
 This table depicts the quartiles for rat sightings by borough from 2015 to 2020. Brooklyn has the highest values for all quartiles, and Staten Island has the lowest.
 
 ### Rat Graphs
+
+Finally, we created a series of interactive graphs so that viewers can examine the data with more granularity: Average Annual Rat Sightings across Boroughs (2015-2020), Proportion of Residential Rat Sightings by Borough, and Rat Sightings Distribution by Borough (2015-2020). These graphs provide an additional way in which to view the analysis.
 
 ### Discussion
 

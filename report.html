@@ -697,10 +697,6 @@ this data please visit the “NYC Rat Graphs” tab.</p>
 <div id="average-rat-sightings-to-median-income-by-borough-2020"
 class="section level4">
 <h4>Average Rat Sightings to Median Income by Borough 2020</h4>
-<details>
-<summary>
-Code
-</summary>
 <pre class="r"><code>avg_rat_sightings_borough = 
   rat_sightings_data %&gt;% 
   filter(year_created == 2020) %&gt;% 
@@ -734,10 +730,9 @@ proportions were calculated by divding the number of rat sightings in
 same year. In this plot we can see that the proportion of rats to median
 income was highest in Brooklyn and lowest in Staten Island.</p>
 </div>
-</div>
 <div id="average-rat-sightings-to-median-population-by-borough-in-2020"
-class="section level2">
-<h2>Average Rat Sightings to Median Population by Borough in 2020</h2>
+class="section level4">
+<h4>Average Rat Sightings to Median Population by Borough in 2020</h4>
 <details>
 <summary>
 Code
@@ -769,6 +764,8 @@ calculated by divding the number of rat sightings in 2020 for each
 borough by the total borough population in the same year. In this plot
 we can see that the proportion of rats per person was highest in
 Manhattan and lowest in Queens.</p>
+</div>
+</div>
 <div id="descriptive-analyses" class="section level3">
 <h3>Descriptive Analyses</h3>
 <p>Below are the descriptive statistics for our income datasets. We
@@ -1044,15 +1041,7 @@ knitr::kable(quartiles_med_income, align = &quot;l&quot;)</code></pre>
 The largest first quartile value is from Staten Island, but Manhattan
 has the largest median and third quartile values. The Bronx has the
 lowest quartile values.</p>
-<p>Below are the descriptive statistics for our population datasets. We
-decided against running regression models for a few significant reasons:
-the outcome of rat sightings is not continuous and is technically
-classified as counts, which would prompt us to run a Poisson regression
-instead of a linear regression. We could not, however, reformat our rat
-sighting observations into counts for a Poisson regression model, so we
-agreed that descriptive statistics regarding rat sightings, median
-income, and population would be the most appropriate way for us to work
-with the data.</p>
+<p>Below are the descriptive statistics for our population datasets.</p>
 <p>The NYC 2020 Census reports the total population for each NYC
 borough, but the summation of the individual observations by borough do
 not match the provided totals. We consequently decided to use the
@@ -1320,15 +1309,7 @@ knitr::kable(quartiles_pop, align = &quot;l&quot;)</code></pre>
 has the highest values for all quartiles, and Queens has the lowest
 values for the first quartile and median. Brooklyn has the lowest third
 quartile value.</p>
-<p>Below are the descriptive statistics for our rat datasets. We decided
-against running regression models for a few significant reasons: the
-outcome of rat sightings is not continuous and is technically classified
-as counts, which would prompt us to run a Poisson regression instead of
-a linear regression. We could not, however, reformat our rat sighting
-observations into counts for a Poisson regression model, so we agreed
-that descriptive statistics regarding rat sightings, median income, and
-population would be the most appropriate way for us to work with the
-data.</p>
+<p>Below are the descriptive statistics for our rat datasets.</p>
 </div>
 <div id="rat-sighting-frequency-table" class="section level4">
 <h4>Rat Sighting Frequency Table</h4>
@@ -1908,6 +1889,11 @@ Staten Island has the lowest.</p>
 </div>
 <div id="rat-graphs" class="section level3">
 <h3>Rat Graphs</h3>
+<p>Finally, we created a series of interactive graphs so that viewers
+can examine the data with more granularity: Average Annual Rat Sightings
+across Boroughs (2015-2020), Proportion of Residential Rat Sightings by
+Borough, and Rat Sightings Distribution by Borough (2015-2020). These
+graphs provide an additional way in which to view the analysis.</p>
 </div>
 <div id="discussion" class="section level3">
 <h3>Discussion</h3>
@@ -1946,7 +1932,6 @@ population, but rather the count of rat sightings. Further analysis
 would include regression models that analyzed income and rat population
 covariance, and linkages between racial makeup of neighborhoods and rat
 prevalence.</p>
-</div>
 </div>
 
 
