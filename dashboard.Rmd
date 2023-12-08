@@ -5,6 +5,7 @@ output:
     theme: journal
     orientation: columns
     vertical_layout: fill
+    favicon: "favicon.ico"
 ---
 
 ```{css, echo=FALSE}

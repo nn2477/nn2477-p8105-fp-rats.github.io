@@ -4,6 +4,7 @@ output:
   html_document:
     toc: true
     toc_float: true
+    favicon: "favicon.ico"
 ---
 
 ```{r, message=FALSE, echo=FALSE}
@@ -15,6 +16,7 @@ population_totals_data <- read.csv("./datasets_clean/population_totals_data")
 income_data_2020 <- read.csv("./datasets_clean/income_data_2020")
 ```
 
+Below are the descriptive statistics for our datasets. We decided against running regression models for a few significant reasons: the outcome of rat sightings is not continuous and is technically classified as counts, which would prompt us to run a Poisson regression instead of a linear regression. We could not, however, reformat our rat sighting observations into counts for a Poisson regression model, so we agreed that descriptive statistics regarding rat sightings, median income, and population would be the most appropriate way for us to work with the data.
 
 ### Frequency Table
 
@@ -30,6 +32,8 @@ pop_freq =
 
 knitr::kable(pop_freq)
 ```
+
+This table shows the total population in each NYC borough in 2020. Brooklyn has the highest population, and Staten Island has the lowest.
 
 ### Measures of Central Tendency
 
@@ -50,6 +54,8 @@ central_tend_pop =
 knitr::kable(central_tend_pop)
 ```
 
+This table shows the measures of central tendency for population by borough. Manhattan reports the highest measures for the mean, median, and standard deviation. The highest maximum value, however, is reported by Queens, and the borough also has the lowest mean and median.
+
 ### Measures of Dispersion
 
 **Measures of Dispersion for Population by Borough**
@@ -68,6 +74,8 @@ disp_pop =
 knitr::kable(disp_pop)
 ```
 
+This table depicts the measures of dispersion for population by borough. Queens has the greatest range, but Manhattan has the largest interquartile range, standard deviation, and variance. The Bronx has the lowest range and standard deviation, and Brooklyn has the smallest interquartile range.
+
 ### Quartiles
 
 **Quartiles for Population by Borough** 
@@ -84,3 +92,5 @@ quartiles_pop =
 
 knitr::kable(quartiles_pop)
 ```
+
+This table shows the quartiles for population by borough. Manhattan has the highest values for all quartiles, and Queens has the lowest values for the first quartile and median. Brooklyn has the lowest third quartile value.
