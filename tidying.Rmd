@@ -29,7 +29,7 @@ options(
 
 ```
 
-![Spotted: NYC Subway Rat in the Wild](images/rat.jpeg)
+![](images/rat.jpeg)
 
 # Income Data 
 <details>

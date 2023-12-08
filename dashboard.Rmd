@@ -39,7 +39,7 @@ population_data <- read.csv("./datasets_clean/population_data")
 ```
 
 
-{data-width=650}
+{data-width=600}
 -----------------------------------------------------------------------
 
 ### Average Annual Rat Sightings across Boroughs (2015-2020)
@@ -126,6 +126,10 @@ plot_ly(
   )
 ```
 
+{data-width=400}
+-----------------------------------------------------------------------
+
+### Proportion of Residential Rat Sightings by Borough
 ### Rat Sightings Distribution by Year by Borough (2015-2020)
 
 ```{r}
