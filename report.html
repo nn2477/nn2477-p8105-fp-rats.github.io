@@ -565,17 +565,17 @@ duplicates, and exported the clean dataset under the name
 </div>
 <div id="descriptive-analyses" class="section level3">
 <h3>Descriptive Analyses</h3>
-<p>Below are the descriptive statistics for our datasets. We decided
-against running regression models for a few significant reasons: the
-outcome of rat sightings is not continuous and is technically classified
-as counts, which would prompt us to run a Poisson regression instead of
-a linear regression. We could not, however, reformat our rat sighting
-observations into counts for a Poisson regression model, so we agreed
-that descriptive statistics regarding rat sightings, median income, and
-population would be the most appropriate way for us to work with the
-data.</p>
-<div id="frequency-table" class="section level4">
-<h4>Frequency Table</h4>
+<p>Below are the descriptive statistics for our income datasets. We
+decided against running regression models for a few significant reasons:
+the outcome of rat sightings is not continuous and is technically
+classified as counts, which would prompt us to run a Poisson regression
+instead of a linear regression. We could not, however, reformat our rat
+sighting observations into counts for a Poisson regression model, so we
+agreed that descriptive statistics regarding rat sightings, median
+income, and population would be the most appropriate way for us to work
+with the data.</p>
+<div id="income-frequency-table" class="section level4">
+<h4>Income Frequency Table</h4>
 <p><strong>Highest Frequency Median Income by Borough in
 2020</strong></p>
 <details>
@@ -621,8 +621,8 @@ by borough in the year of 2020. The highest median income value reported
 most frequently is 31,347, from Staten Island, and the lowest is 14,213,
 from the Bronx.</p>
 </div>
-<div id="measures-of-central-tendency" class="section level4">
-<h4>Measures of Central Tendency</h4>
+<div id="income-measures-of-central-tendency" class="section level4">
+<h4>Income Measures of Central Tendency</h4>
 <p><strong>Measures of Central Tendency for Median Income by Borough in
 2020</strong></p>
 <details>
@@ -701,8 +701,8 @@ by borough in 2020. Manhattan has the highest mean, median, standard
 deviation, and maximum. Staten Island, however, has the highest minimum
 reported median income.</p>
 </div>
-<div id="measures-of-dispersion" class="section level4">
-<h4>Measures of Dispersion</h4>
+<div id="income-measures-of-dispersion" class="section level4">
+<h4>Income Measures of Dispersion</h4>
 <p><strong>Measures of Dispersion for Median Income by Borough in
 2020</strong></p>
 <details>
@@ -774,8 +774,8 @@ borough in 2020. Manhattan has the largest range, interquartile range,
 standard deviation, and variance. Staten Island has the lowest values
 for all measures except for the interquartile range.</p>
 </div>
-<div id="quartiles" class="section level4">
-<h4>Quartiles</h4>
+<div id="income-quartiles" class="section level4">
+<h4>Income Quartiles</h4>
 <p><strong>Quartiles for Median Income by Borough in 2020</strong></p>
 <details>
 <summary>
@@ -838,6 +838,282 @@ knitr::kable(quartiles_med_income, align = &quot;l&quot;)</code></pre>
 The largest first quartile value is from Staten Island, but Manhattan
 has the largest median and third quartile values. The Bronx has the
 lowest quartile values.</p>
+<p>Below are the descriptive statistics for our population datasets. We
+decided against running regression models for a few significant reasons:
+the outcome of rat sightings is not continuous and is technically
+classified as counts, which would prompt us to run a Poisson regression
+instead of a linear regression. We could not, however, reformat our rat
+sighting observations into counts for a Poisson regression model, so we
+agreed that descriptive statistics regarding rat sightings, median
+income, and population would be the most appropriate way for us to work
+with the data.</p>
+<p>The NYC 2020 Census reports the total population for each NYC
+borough, but the summation of the individual observations by borough do
+not match the provided totals. We consequently decided to use the
+provided totals for our frequency table, and the individual observations
+to observe the data spread for measures of central tendency and
+dispersion, and the quartiles.</p>
+</div>
+<div id="population-frequency-table" class="section level4">
+<h4>Population Frequency Table</h4>
+<details>
+<summary>
+Code
+</summary>
+<pre class="r"><code>knitr::kable(population_totals_data, align = &quot;l&quot;)</code></pre>
+</details>
+<table>
+<thead>
+<tr class="header">
+<th align="left">borough</th>
+<th align="left">population</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Manhattan</td>
+<td align="left">1694251</td>
+</tr>
+<tr class="even">
+<td align="left">Bronx</td>
+<td align="left">1472654</td>
+</tr>
+<tr class="odd">
+<td align="left">Brooklyn</td>
+<td align="left">2736074</td>
+</tr>
+<tr class="even">
+<td align="left">Queens</td>
+<td align="left">2405464</td>
+</tr>
+<tr class="odd">
+<td align="left">Staten Island</td>
+<td align="left">495747</td>
+</tr>
+</tbody>
+</table>
+<p>This table shows the total population in each NYC borough in 2020.
+Brooklyn has the highest population, and Staten Island has the
+lowest.</p>
+</div>
+<div id="population-measures-of-central-tendency"
+class="section level4">
+<h4>Population Measures of Central Tendency</h4>
+<p><strong>Measures of Central Tendency for Population by
+Borough</strong></p>
+<details>
+<summary>
+Code
+</summary>
+<pre class="r"><code>central_tend_pop = 
+  population_individual_data %&gt;% 
+  group_by(borough) |&gt; 
+  summarise(
+    mean = mean(population),
+    median = median(population),
+    sd = sd(population),
+    min = min(population),
+    max = max(population)
+  )
+
+knitr::kable(central_tend_pop, align = &quot;l&quot;)</code></pre>
+</details>
+<table>
+<thead>
+<tr class="header">
+<th align="left">borough</th>
+<th align="left">mean</th>
+<th align="left">median</th>
+<th align="left">sd</th>
+<th align="left">min</th>
+<th align="left">max</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Bronx</td>
+<td align="left">11033.090</td>
+<td align="left">4445</td>
+<td align="left">23577.51</td>
+<td align="left">0</td>
+<td align="left">188249</td>
+</tr>
+<tr class="even">
+<td align="left">Brooklyn</td>
+<td align="left">10072.834</td>
+<td align="left">3568</td>
+<td align="left">25947.89</td>
+<td align="left">0</td>
+<td align="left">205377</td>
+</tr>
+<tr class="odd">
+<td align="left">Manhattan</td>
+<td align="left">14382.430</td>
+<td align="left">5707</td>
+<td align="left">29724.87</td>
+<td align="left">0</td>
+<td align="left">231983</td>
+</tr>
+<tr class="even">
+<td align="left">Queens</td>
+<td align="left">9632.861</td>
+<td align="left">3515</td>
+<td align="left">26184.56</td>
+<td align="left">0</td>
+<td align="left">269587</td>
+</tr>
+<tr class="odd">
+<td align="left">Staten Island</td>
+<td align="left">10338.189</td>
+<td align="left">4333</td>
+<td align="left">24722.19</td>
+<td align="left">0</td>
+<td align="left">189663</td>
+</tr>
+</tbody>
+</table>
+<p>This table shows the measures of central tendency for population by
+borough. Manhattan reports the highest measures for the mean, median,
+and standard deviation. The highest maximum value, however, is reported
+by Queens, and the borough also has the lowest mean and median.</p>
+</div>
+<div id="population-measures-of-dispersion" class="section level4">
+<h4>Population Measures of Dispersion</h4>
+<p><strong>Measures of Dispersion for Population by Borough</strong></p>
+<details>
+<summary>
+Code
+</summary>
+<pre class="r"><code>disp_pop = 
+  population_individual_data %&gt;%
+  group_by(borough) |&gt; 
+  summarise(
+    range = max(population) - min(population),
+    iqr = IQR(population),
+    sd = sd(population),
+    var = var(population)
+  )
+
+knitr::kable(disp_pop, align = &quot;l&quot;)</code></pre>
+</details>
+<table>
+<thead>
+<tr class="header">
+<th align="left">borough</th>
+<th align="left">range</th>
+<th align="left">iqr</th>
+<th align="left">sd</th>
+<th align="left">var</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Bronx</td>
+<td align="left">188249</td>
+<td align="left">3486</td>
+<td align="left">23577.51</td>
+<td align="left">555898760</td>
+</tr>
+<tr class="even">
+<td align="left">Brooklyn</td>
+<td align="left">205377</td>
+<td align="left">2311</td>
+<td align="left">25947.89</td>
+<td align="left">673293084</td>
+</tr>
+<tr class="odd">
+<td align="left">Manhattan</td>
+<td align="left">231983</td>
+<td align="left">4892</td>
+<td align="left">29724.87</td>
+<td align="left">883567741</td>
+</tr>
+<tr class="even">
+<td align="left">Queens</td>
+<td align="left">269587</td>
+<td align="left">2945</td>
+<td align="left">26184.56</td>
+<td align="left">685631169</td>
+</tr>
+<tr class="odd">
+<td align="left">Staten Island</td>
+<td align="left">189663</td>
+<td align="left">2963</td>
+<td align="left">24722.19</td>
+<td align="left">611186618</td>
+</tr>
+</tbody>
+</table>
+<p>This table depicts the measures of dispersion for population by
+borough. Queens has the greatest range, but Manhattan has the largest
+interquartile range, standard deviation, and variance. The Bronx has the
+lowest range and standard deviation, and Brooklyn has the smallest
+interquartile range.</p>
+</div>
+<div id="population-quartiles" class="section level4">
+<h4>Population Quartiles</h4>
+<p><strong>Quartiles for Population by Borough</strong></p>
+<details>
+<summary>
+Code
+</summary>
+<pre class="r"><code>quartiles_pop = 
+  population_individual_data %&gt;%
+  group_by(borough) |&gt; 
+  summarise(
+    Q1 = quantile(population, 0.25),
+    median = median(population),
+    Q3 = quantile(population, 0.75)
+  )
+
+knitr::kable(quartiles_pop, align = &quot;l&quot;)</code></pre>
+</details>
+<table>
+<thead>
+<tr class="header">
+<th align="left">borough</th>
+<th align="left">Q1</th>
+<th align="left">median</th>
+<th align="left">Q3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Bronx</td>
+<td align="left">2916.0</td>
+<td align="left">4445</td>
+<td align="left">6402.0</td>
+</tr>
+<tr class="even">
+<td align="left">Brooklyn</td>
+<td align="left">2502.0</td>
+<td align="left">3568</td>
+<td align="left">4813.0</td>
+</tr>
+<tr class="odd">
+<td align="left">Manhattan</td>
+<td align="left">3688.5</td>
+<td align="left">5707</td>
+<td align="left">8580.5</td>
+</tr>
+<tr class="even">
+<td align="left">Queens</td>
+<td align="left">2250.0</td>
+<td align="left">3515</td>
+<td align="left">5195.0</td>
+</tr>
+<tr class="odd">
+<td align="left">Staten Island</td>
+<td align="left">2985.0</td>
+<td align="left">4333</td>
+<td align="left">5948.0</td>
+</tr>
+</tbody>
+</table>
+<p>This table shows the quartiles for population by borough. Manhattan
+has the highest values for all quartiles, and Queens has the lowest
+values for the first quartile and median. Brooklyn has the lowest third
+quartile value.</p>
 </div>
 </div>
 <div id="rat-graphs" class="section level3">
