@@ -52,7 +52,7 @@ average_sightings_by_borough <- barplot_rat_data %>%
 ```
 </details>
 
-```{r, echo=FALSE, fig.width=10, fig.height=8}
+```{r, echo=FALSE, message=FALSE, fig.width=10, fig.height=8}
 # Filter data for the years 2015-2020
 barplot_rat_data <- rat_sightings_data %>%
   filter(year_created >= 2015 & year_created <= 2020)
