@@ -8,7 +8,7 @@ output:
       in_header: header.html
 ---
 
-```{r}
+```{r, echo=FALSE, message=FALSE}
 library(tidyverse)
 
 rat_sightings_data <- read.csv("./datasets_clean/rat_sightings_data")
@@ -44,3 +44,5 @@ rat_to_income %>%
   scale_fill_manual(name = "Borough", values = c("Manhattan" = "skyblue", "Bronx" = "orange", "Brooklyn" = "pink", "Queens" = "purple", "Staten Island" = "red")) +
   theme_minimal()
 ```
+
+This plot represents the average number of rats per dollar made in 2020 by median income for each borough of New York City. In this plot we can see that the proportion of rats to median income was highest in Brooklyn and lowest in Staten Island. 
