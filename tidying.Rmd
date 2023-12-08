@@ -101,7 +101,7 @@ There are 662 missing values for both longitude and latitude but we will keep th
 
 # Population Data
 
-##Total Population per Borough
+**Total Population per Borough**
 <details>
   <summary>Code</summary>
 ```{r}
@@ -126,7 +126,7 @@ write_csv(population_totals_data, "datasets_clean/population_totals_data")
 
 The dataset is not missing any values.
 
-##Individual Population Observations
+**Individual Population Observations**
 <details>
   <summary>Code</summary>
 ```{r}
