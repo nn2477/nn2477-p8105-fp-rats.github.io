@@ -44,12 +44,11 @@ Additionally, we first hoped to answer a question related to Mayor Eric Adams, w
 
 
 ### Collaborators 
-**Victoria Mello**  (vsm2118)
+| **Name**         | **UNI**    |
+|:-----------------|:----------:|
+| Victoria Mello   | vsm2118    |
+| Eunsuh Cho       | ec3663     |
+| Maggie Watson    | mgw2144    |
+| Victoria Schliep | vas2145    |
+| Nhu Nguyen       | nn2477     |
 
-**Eunsuh Cho** (ec3663)
-
-**Maggie Watson** (mgw2144)
-
-**Victoria Schliep** (vas2145)
-
-**Nhu Nguyen** (nn2477)

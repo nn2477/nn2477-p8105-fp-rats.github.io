@@ -416,23 +416,41 @@ data.</p>
 <h3>Frequency Table</h3>
 <p><strong>Highest Frequency Median Income by Borough in
 2020</strong></p>
+<details>
+<summary>
+Code
+</summary>
+<pre class="r"><code>med_income_freq = 
+  income_data_2020 %&gt;% 
+  group_by(borough, median_income) |&gt; 
+  summarize(count = n()) |&gt; 
+  arrange(borough, desc(count)) |&gt; 
+  slice_head(n = 1) |&gt; 
+  select(-count) |&gt; 
+  pivot_wider(
+    names_from = borough,
+    values_from = median_income
+  )
+
+knitr::kable(med_income_freq, align = &quot;l&quot;)</code></pre>
+</details>
 <table>
 <thead>
 <tr class="header">
-<th align="right">Bronx</th>
-<th align="right">Brooklyn</th>
-<th align="right">Manhattan</th>
-<th align="right">Queens</th>
-<th align="right">Staten Island</th>
+<th align="left">Bronx</th>
+<th align="left">Brooklyn</th>
+<th align="left">Manhattan</th>
+<th align="left">Queens</th>
+<th align="left">Staten Island</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="right">14213</td>
-<td align="right">19274</td>
-<td align="right">19510</td>
-<td align="right">21889</td>
-<td align="right">31347</td>
+<td align="left">14213</td>
+<td align="left">19274</td>
+<td align="left">19510</td>
+<td align="left">21889</td>
+<td align="left">31347</td>
 </tr>
 </tbody>
 </table>
@@ -445,57 +463,74 @@ from the Bronx.</p>
 <h3>Measures of Central Tendency</h3>
 <p><strong>Measures of Central Tendency for Median Income by Borough in
 2020</strong></p>
+<details>
+<summary>
+Code
+</summary>
+<pre class="r"><code>central_tend_med_income = 
+  income_data_2020 %&gt;% 
+  group_by(borough) |&gt; 
+  summarise(
+    mean = mean(median_income),
+    median = median(median_income),
+    sd = sd(median_income),
+    min = min(median_income),
+    max = max(median_income)
+  )
+
+knitr::kable(central_tend_med_income, align = &quot;l&quot;)</code></pre>
+</details>
 <table>
 <thead>
 <tr class="header">
 <th align="left">borough</th>
-<th align="right">mean</th>
-<th align="right">median</th>
-<th align="right">sd</th>
-<th align="right">min</th>
-<th align="right">max</th>
+<th align="left">mean</th>
+<th align="left">median</th>
+<th align="left">sd</th>
+<th align="left">min</th>
+<th align="left">max</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">Bronx</td>
-<td align="right">21453.90</td>
-<td align="right">19487.0</td>
-<td align="right">6155.772</td>
-<td align="right">14213</td>
-<td align="right">31573</td>
+<td align="left">21453.90</td>
+<td align="left">19487.0</td>
+<td align="left">6155.772</td>
+<td align="left">14213</td>
+<td align="left">31573</td>
 </tr>
 <tr class="even">
 <td align="left">Brooklyn</td>
-<td align="right">28471.44</td>
-<td align="right">25924.0</td>
-<td align="right">9384.312</td>
-<td align="right">19274</td>
-<td align="right">57393</td>
+<td align="left">28471.44</td>
+<td align="left">25924.0</td>
+<td align="left">9384.312</td>
+<td align="left">19274</td>
+<td align="left">57393</td>
 </tr>
 <tr class="odd">
 <td align="left">Manhattan</td>
-<td align="right">47216.40</td>
-<td align="right">45959.5</td>
-<td align="right">24480.616</td>
-<td align="right">19510</td>
-<td align="right">79181</td>
+<td align="left">47216.40</td>
+<td align="left">45959.5</td>
+<td align="left">24480.616</td>
+<td align="left">19510</td>
+<td align="left">79181</td>
 </tr>
 <tr class="even">
 <td align="left">Queens</td>
-<td align="right">29391.57</td>
-<td align="right">28627.5</td>
-<td align="right">5230.139</td>
-<td align="right">21889</td>
-<td align="right">41029</td>
+<td align="left">29391.57</td>
+<td align="left">28627.5</td>
+<td align="left">5230.139</td>
+<td align="left">21889</td>
+<td align="left">41029</td>
 </tr>
 <tr class="odd">
 <td align="left">Staten Island</td>
-<td align="right">35799.00</td>
-<td align="right">35413.0</td>
-<td align="right">3896.337</td>
-<td align="right">31347</td>
-<td align="right">40637</td>
+<td align="left">35799.00</td>
+<td align="left">35413.0</td>
+<td align="left">3896.337</td>
+<td align="left">31347</td>
+<td align="left">40637</td>
 </tr>
 </tbody>
 </table>
@@ -508,51 +543,67 @@ reported median income.</p>
 <h3>Measures of Dispersion</h3>
 <p><strong>Measures of Dispersion for Median Income by Borough in
 2020</strong></p>
+<details>
+<summary>
+Code
+</summary>
+<pre class="r"><code>disp_med_income = 
+  income_data_2020 %&gt;%
+  group_by(borough) %&gt;% 
+  summarise(
+    range = max(median_income) - min(median_income),
+    iqr = IQR(median_income),
+    sd = sd(median_income),
+    var = var(median_income)
+  )
+
+knitr::kable(disp_med_income, align = &quot;l&quot;)</code></pre>
+</details>
 <table>
 <thead>
 <tr class="header">
 <th align="left">borough</th>
-<th align="right">range</th>
-<th align="right">iqr</th>
-<th align="right">sd</th>
-<th align="right">var</th>
+<th align="left">range</th>
+<th align="left">iqr</th>
+<th align="left">sd</th>
+<th align="left">var</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">Bronx</td>
-<td align="right">17360</td>
-<td align="right">10508</td>
-<td align="right">6155.772</td>
-<td align="right">37893530</td>
+<td align="left">17360</td>
+<td align="left">10508</td>
+<td align="left">6155.772</td>
+<td align="left">37893530</td>
 </tr>
 <tr class="even">
 <td align="left">Brooklyn</td>
-<td align="right">38119</td>
-<td align="right">8594</td>
-<td align="right">9384.312</td>
-<td align="right">88065305</td>
+<td align="left">38119</td>
+<td align="left">8594</td>
+<td align="left">9384.312</td>
+<td align="left">88065305</td>
 </tr>
 <tr class="odd">
 <td align="left">Manhattan</td>
-<td align="right">59671</td>
-<td align="right">47372</td>
-<td align="right">24480.616</td>
-<td align="right">599300575</td>
+<td align="left">59671</td>
+<td align="left">47372</td>
+<td align="left">24480.616</td>
+<td align="left">599300575</td>
 </tr>
 <tr class="even">
 <td align="left">Queens</td>
-<td align="right">19140</td>
-<td align="right">5738</td>
-<td align="right">5230.139</td>
-<td align="right">27354350</td>
+<td align="left">19140</td>
+<td align="left">5738</td>
+<td align="left">5230.139</td>
+<td align="left">27354350</td>
 </tr>
 <tr class="odd">
 <td align="left">Staten Island</td>
-<td align="right">9290</td>
-<td align="right">9290</td>
-<td align="right">3896.337</td>
-<td align="right">15181440</td>
+<td align="left">9290</td>
+<td align="left">9290</td>
+<td align="left">3896.337</td>
+<td align="left">15181440</td>
 </tr>
 </tbody>
 </table>
@@ -564,45 +615,60 @@ for all measures except for the interquartile range.</p>
 <div id="quartiles" class="section level3">
 <h3>Quartiles</h3>
 <p><strong>Quartiles for Median Income by Borough in 2020</strong></p>
+<details>
+<summary>
+Code
+</summary>
+<pre class="r"><code>quartiles_med_income = 
+  income_data_2020 %&gt;%
+  group_by(borough) %&gt;% 
+  summarise(
+    Q1 = quantile(median_income, 0.25),
+    median = median(median_income),
+    Q3 = quantile(median_income, 0.75)
+  )
+
+knitr::kable(quartiles_med_income, align = &quot;l&quot;)</code></pre>
+</details>
 <table>
 <thead>
 <tr class="header">
 <th align="left">borough</th>
-<th align="right">Q1</th>
-<th align="right">median</th>
-<th align="right">Q3</th>
+<th align="left">Q1</th>
+<th align="left">median</th>
+<th align="left">Q3</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">Bronx</td>
-<td align="right">15628</td>
-<td align="right">19487.0</td>
-<td align="right">26136</td>
+<td align="left">15628</td>
+<td align="left">19487.0</td>
+<td align="left">26136</td>
 </tr>
 <tr class="even">
 <td align="left">Brooklyn</td>
-<td align="right">22264</td>
-<td align="right">25924.0</td>
-<td align="right">30858</td>
+<td align="left">22264</td>
+<td align="left">25924.0</td>
+<td align="left">30858</td>
 </tr>
 <tr class="odd">
 <td align="left">Manhattan</td>
-<td align="right">24561</td>
-<td align="right">45959.5</td>
-<td align="right">71933</td>
+<td align="left">24561</td>
+<td align="left">45959.5</td>
+<td align="left">71933</td>
 </tr>
 <tr class="even">
 <td align="left">Queens</td>
-<td align="right">25920</td>
-<td align="right">28627.5</td>
-<td align="right">31658</td>
+<td align="left">25920</td>
+<td align="left">28627.5</td>
+<td align="left">31658</td>
 </tr>
 <tr class="odd">
 <td align="left">Staten Island</td>
-<td align="right">31347</td>
-<td align="right">35413.0</td>
-<td align="right">40637</td>
+<td align="left">31347</td>
+<td align="left">35413.0</td>
+<td align="left">40637</td>
 </tr>
 </tbody>
 </table>

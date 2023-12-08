@@ -20,6 +20,22 @@ Below are the descriptive statistics for our datasets. We decided against runnin
 
 ### Frequency Table
 
+<details>
+  <summary>Code</summary>
+```{r, eval=FALSE}
+pop_freq =
+  population_individual_data |> 
+  group_by(borough) |> 
+  summarise(total_population = sum(population)) |> 
+  pivot_wider(
+    names_from = borough,
+    values_from = total_population
+  )
+
+knitr::kable(pop_freq, align = "l")
+```
+</details>
+
 ```{r, message=FALSE, echo=FALSE}
 pop_freq =
   population_individual_data |> 
@@ -30,7 +46,7 @@ pop_freq =
     values_from = total_population
   )
 
-knitr::kable(pop_freq)
+knitr::kable(pop_freq, align = "l")
 ```
 
 This table shows the total population in each NYC borough in 2020. Brooklyn has the highest population, and Staten Island has the lowest.
@@ -38,6 +54,24 @@ This table shows the total population in each NYC borough in 2020. Brooklyn has 
 ### Measures of Central Tendency
 
 **Measures of Central Tendency for Population by Borough**
+
+<details>
+  <summary>Code</summary>
+```{r, eval=FALSE}
+central_tend_pop = 
+  population_individual_data %>% 
+  group_by(borough) |> 
+  summarise(
+    mean = mean(population),
+    median = median(population),
+    sd = sd(population),
+    min = min(population),
+    max = max(population)
+  )
+
+knitr::kable(central_tend_pop, align = "l")
+```
+</details>
 
 ```{r, message=FALSE, echo=FALSE}
 central_tend_pop = 
@@ -51,7 +85,7 @@ central_tend_pop =
     max = max(population)
   )
 
-knitr::kable(central_tend_pop)
+knitr::kable(central_tend_pop, align = "l")
 ```
 
 This table shows the measures of central tendency for population by borough. Manhattan reports the highest measures for the mean, median, and standard deviation. The highest maximum value, however, is reported by Queens, and the borough also has the lowest mean and median.
@@ -59,6 +93,23 @@ This table shows the measures of central tendency for population by borough. Man
 ### Measures of Dispersion
 
 **Measures of Dispersion for Population by Borough**
+
+<details>
+  <summary>Code</summary>
+```{r, eval=FALSE}
+disp_pop = 
+  population_individual_data %>%
+  group_by(borough) |> 
+  summarise(
+    range = max(population) - min(population),
+    iqr = IQR(population),
+    sd = sd(population),
+    var = var(population)
+  )
+
+knitr::kable(disp_pop, align = "l")
+```
+</details>
 
 ```{r, message=FALSE, echo=FALSE}
 disp_pop = 
@@ -71,7 +122,7 @@ disp_pop =
     var = var(population)
   )
 
-knitr::kable(disp_pop)
+knitr::kable(disp_pop, align = "l")
 ```
 
 This table depicts the measures of dispersion for population by borough. Queens has the greatest range, but Manhattan has the largest interquartile range, standard deviation, and variance. The Bronx has the lowest range and standard deviation, and Brooklyn has the smallest interquartile range.
@@ -79,6 +130,22 @@ This table depicts the measures of dispersion for population by borough. Queens 
 ### Quartiles
 
 **Quartiles for Population by Borough** 
+
+<details>
+  <summary>Code</summary>
+```{r, eval=FALSE}
+quartiles_pop = 
+  population_individual_data %>%
+  group_by(borough) |> 
+  summarise(
+    Q1 = quantile(population, 0.25),
+    median = median(population),
+    Q3 = quantile(population, 0.75)
+  )
+
+knitr::kable(quartiles_pop, align = "l")
+```
+</details>
 
 ```{r, message=FALSE, echo=FALSE}
 quartiles_pop = 
@@ -90,7 +157,7 @@ quartiles_pop =
     Q3 = quantile(population, 0.75)
   )
 
-knitr::kable(quartiles_pop)
+knitr::kable(quartiles_pop, align = "l")
 ```
 
 This table shows the quartiles for population by borough. Manhattan has the highest values for all quartiles, and Queens has the lowest values for the first quartile and median. Brooklyn has the lowest third quartile value.

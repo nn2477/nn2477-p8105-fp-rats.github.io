@@ -414,23 +414,38 @@ population would be the most appropriate way for us to work with the
 data.</p>
 <div id="frequency-table" class="section level3">
 <h3>Frequency Table</h3>
+<details>
+<summary>
+Code
+</summary>
+<pre class="r"><code>pop_freq =
+  population_individual_data |&gt; 
+  group_by(borough) |&gt; 
+  summarise(total_population = sum(population)) |&gt; 
+  pivot_wider(
+    names_from = borough,
+    values_from = total_population
+  )
+
+knitr::kable(pop_freq, align = &quot;l&quot;)</code></pre>
+</details>
 <table>
 <thead>
 <tr class="header">
-<th align="right">Bronx</th>
-<th align="right">Brooklyn</th>
-<th align="right">Manhattan</th>
-<th align="right">Queens</th>
-<th align="right">Staten Island</th>
+<th align="left">Bronx</th>
+<th align="left">Brooklyn</th>
+<th align="left">Manhattan</th>
+<th align="left">Queens</th>
+<th align="left">Staten Island</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="right">4402203</td>
-<td align="right">7987757</td>
-<td align="right">5048233</td>
-<td align="right">7118684</td>
-<td align="right">1478361</td>
+<td align="left">4402203</td>
+<td align="left">7987757</td>
+<td align="left">5048233</td>
+<td align="left">7118684</td>
+<td align="left">1478361</td>
 </tr>
 </tbody>
 </table>
@@ -442,57 +457,74 @@ lowest.</p>
 <h3>Measures of Central Tendency</h3>
 <p><strong>Measures of Central Tendency for Population by
 Borough</strong></p>
+<details>
+<summary>
+Code
+</summary>
+<pre class="r"><code>central_tend_pop = 
+  population_individual_data %&gt;% 
+  group_by(borough) |&gt; 
+  summarise(
+    mean = mean(population),
+    median = median(population),
+    sd = sd(population),
+    min = min(population),
+    max = max(population)
+  )
+
+knitr::kable(central_tend_pop, align = &quot;l&quot;)</code></pre>
+</details>
 <table>
 <thead>
 <tr class="header">
 <th align="left">borough</th>
-<th align="right">mean</th>
-<th align="right">median</th>
-<th align="right">sd</th>
-<th align="right">min</th>
-<th align="right">max</th>
+<th align="left">mean</th>
+<th align="left">median</th>
+<th align="left">sd</th>
+<th align="left">min</th>
+<th align="left">max</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">Bronx</td>
-<td align="right">11033.090</td>
-<td align="right">4445</td>
-<td align="right">23577.51</td>
-<td align="right">0</td>
-<td align="right">188249</td>
+<td align="left">11033.090</td>
+<td align="left">4445</td>
+<td align="left">23577.51</td>
+<td align="left">0</td>
+<td align="left">188249</td>
 </tr>
 <tr class="even">
 <td align="left">Brooklyn</td>
-<td align="right">10072.834</td>
-<td align="right">3568</td>
-<td align="right">25947.89</td>
-<td align="right">0</td>
-<td align="right">205377</td>
+<td align="left">10072.834</td>
+<td align="left">3568</td>
+<td align="left">25947.89</td>
+<td align="left">0</td>
+<td align="left">205377</td>
 </tr>
 <tr class="odd">
 <td align="left">Manhattan</td>
-<td align="right">14382.430</td>
-<td align="right">5707</td>
-<td align="right">29724.87</td>
-<td align="right">0</td>
-<td align="right">231983</td>
+<td align="left">14382.430</td>
+<td align="left">5707</td>
+<td align="left">29724.87</td>
+<td align="left">0</td>
+<td align="left">231983</td>
 </tr>
 <tr class="even">
 <td align="left">Queens</td>
-<td align="right">9632.861</td>
-<td align="right">3515</td>
-<td align="right">26184.56</td>
-<td align="right">0</td>
-<td align="right">269587</td>
+<td align="left">9632.861</td>
+<td align="left">3515</td>
+<td align="left">26184.56</td>
+<td align="left">0</td>
+<td align="left">269587</td>
 </tr>
 <tr class="odd">
 <td align="left">Staten Island</td>
-<td align="right">10338.189</td>
-<td align="right">4333</td>
-<td align="right">24722.19</td>
-<td align="right">0</td>
-<td align="right">189663</td>
+<td align="left">10338.189</td>
+<td align="left">4333</td>
+<td align="left">24722.19</td>
+<td align="left">0</td>
+<td align="left">189663</td>
 </tr>
 </tbody>
 </table>
@@ -504,51 +536,67 @@ by Queens, and the borough also has the lowest mean and median.</p>
 <div id="measures-of-dispersion" class="section level3">
 <h3>Measures of Dispersion</h3>
 <p><strong>Measures of Dispersion for Population by Borough</strong></p>
+<details>
+<summary>
+Code
+</summary>
+<pre class="r"><code>disp_pop = 
+  population_individual_data %&gt;%
+  group_by(borough) |&gt; 
+  summarise(
+    range = max(population) - min(population),
+    iqr = IQR(population),
+    sd = sd(population),
+    var = var(population)
+  )
+
+knitr::kable(disp_pop, align = &quot;l&quot;)</code></pre>
+</details>
 <table>
 <thead>
 <tr class="header">
 <th align="left">borough</th>
-<th align="right">range</th>
-<th align="right">iqr</th>
-<th align="right">sd</th>
-<th align="right">var</th>
+<th align="left">range</th>
+<th align="left">iqr</th>
+<th align="left">sd</th>
+<th align="left">var</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">Bronx</td>
-<td align="right">188249</td>
-<td align="right">3486</td>
-<td align="right">23577.51</td>
-<td align="right">555898760</td>
+<td align="left">188249</td>
+<td align="left">3486</td>
+<td align="left">23577.51</td>
+<td align="left">555898760</td>
 </tr>
 <tr class="even">
 <td align="left">Brooklyn</td>
-<td align="right">205377</td>
-<td align="right">2311</td>
-<td align="right">25947.89</td>
-<td align="right">673293084</td>
+<td align="left">205377</td>
+<td align="left">2311</td>
+<td align="left">25947.89</td>
+<td align="left">673293084</td>
 </tr>
 <tr class="odd">
 <td align="left">Manhattan</td>
-<td align="right">231983</td>
-<td align="right">4892</td>
-<td align="right">29724.87</td>
-<td align="right">883567741</td>
+<td align="left">231983</td>
+<td align="left">4892</td>
+<td align="left">29724.87</td>
+<td align="left">883567741</td>
 </tr>
 <tr class="even">
 <td align="left">Queens</td>
-<td align="right">269587</td>
-<td align="right">2945</td>
-<td align="right">26184.56</td>
-<td align="right">685631169</td>
+<td align="left">269587</td>
+<td align="left">2945</td>
+<td align="left">26184.56</td>
+<td align="left">685631169</td>
 </tr>
 <tr class="odd">
 <td align="left">Staten Island</td>
-<td align="right">189663</td>
-<td align="right">2963</td>
-<td align="right">24722.19</td>
-<td align="right">611186618</td>
+<td align="left">189663</td>
+<td align="left">2963</td>
+<td align="left">24722.19</td>
+<td align="left">611186618</td>
 </tr>
 </tbody>
 </table>
@@ -561,45 +609,60 @@ interquartile range.</p>
 <div id="quartiles" class="section level3">
 <h3>Quartiles</h3>
 <p><strong>Quartiles for Population by Borough</strong></p>
+<details>
+<summary>
+Code
+</summary>
+<pre class="r"><code>quartiles_pop = 
+  population_individual_data %&gt;%
+  group_by(borough) |&gt; 
+  summarise(
+    Q1 = quantile(population, 0.25),
+    median = median(population),
+    Q3 = quantile(population, 0.75)
+  )
+
+knitr::kable(quartiles_pop, align = &quot;l&quot;)</code></pre>
+</details>
 <table>
 <thead>
 <tr class="header">
 <th align="left">borough</th>
-<th align="right">Q1</th>
-<th align="right">median</th>
-<th align="right">Q3</th>
+<th align="left">Q1</th>
+<th align="left">median</th>
+<th align="left">Q3</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">Bronx</td>
-<td align="right">2916.0</td>
-<td align="right">4445</td>
-<td align="right">6402.0</td>
+<td align="left">2916.0</td>
+<td align="left">4445</td>
+<td align="left">6402.0</td>
 </tr>
 <tr class="even">
 <td align="left">Brooklyn</td>
-<td align="right">2502.0</td>
-<td align="right">3568</td>
-<td align="right">4813.0</td>
+<td align="left">2502.0</td>
+<td align="left">3568</td>
+<td align="left">4813.0</td>
 </tr>
 <tr class="odd">
 <td align="left">Manhattan</td>
-<td align="right">3688.5</td>
-<td align="right">5707</td>
-<td align="right">8580.5</td>
+<td align="left">3688.5</td>
+<td align="left">5707</td>
+<td align="left">8580.5</td>
 </tr>
 <tr class="even">
 <td align="left">Queens</td>
-<td align="right">2250.0</td>
-<td align="right">3515</td>
-<td align="right">5195.0</td>
+<td align="left">2250.0</td>
+<td align="left">3515</td>
+<td align="left">5195.0</td>
 </tr>
 <tr class="odd">
 <td align="left">Staten Island</td>
-<td align="right">2985.0</td>
-<td align="right">4333</td>
-<td align="right">5948.0</td>
+<td align="left">2985.0</td>
+<td align="left">4333</td>
+<td align="left">5948.0</td>
 </tr>
 </tbody>
 </table>

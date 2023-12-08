@@ -414,65 +414,82 @@ population would be the most appropriate way for us to work with the
 data.</p>
 <div id="frequency-table" class="section level3">
 <h3>Frequency Table</h3>
+<details>
+<summary>
+Code
+</summary>
+<pre class="r"><code>avg_rat_sightings_freq = 
+  rat_sightings_data %&gt;% 
+  mutate(unique_key = as_factor(unique_key)) %&gt;% 
+  group_by(year_created, borough) %&gt;% 
+  summarize(count = n_distinct(unique_key)) %&gt;% 
+  rename(Year = year_created) %&gt;% 
+  pivot_wider(
+    names_from = borough,
+    values_from = count
+  )
+
+knitr::kable(avg_rat_sightings_freq, align = &quot;l&quot;)</code></pre>
+</details>
 <table>
 <thead>
 <tr class="header">
-<th align="right">Year</th>
-<th align="right">Bronx</th>
-<th align="right">Brooklyn</th>
-<th align="right">Manhattan</th>
-<th align="right">Queens</th>
-<th align="right">Staten Island</th>
+<th align="left">Year</th>
+<th align="left">Bronx</th>
+<th align="left">Brooklyn</th>
+<th align="left">Manhattan</th>
+<th align="left">Queens</th>
+<th align="left">Staten Island</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="right">2015</td>
-<td align="right">2931</td>
-<td align="right">4655</td>
-<td align="right">3794</td>
-<td align="right">1880</td>
-<td align="right">539</td>
+<td align="left">2015</td>
+<td align="left">2931</td>
+<td align="left">4655</td>
+<td align="left">3794</td>
+<td align="left">1880</td>
+<td align="left">539</td>
 </tr>
 <tr class="even">
-<td align="right">2016</td>
-<td align="right">3133</td>
-<td align="right">5361</td>
-<td align="right">4082</td>
-<td align="right">2243</td>
-<td align="right">652</td>
+<td align="left">2016</td>
+<td align="left">3133</td>
+<td align="left">5361</td>
+<td align="left">4082</td>
+<td align="left">2243</td>
+<td align="left">652</td>
 </tr>
 <tr class="odd">
-<td align="right">2017</td>
-<td align="right">3600</td>
-<td align="right">7037</td>
-<td align="right">4196</td>
-<td align="right">2779</td>
-<td align="right">775</td>
+<td align="left">2017</td>
+<td align="left">3600</td>
+<td align="left">7037</td>
+<td align="left">4196</td>
+<td align="left">2779</td>
+<td align="left">775</td>
 </tr>
 <tr class="even">
-<td align="right">2018</td>
-<td align="right">3129</td>
-<td align="right">6549</td>
-<td align="right">4277</td>
-<td align="right">2591</td>
-<td align="right">743</td>
+<td align="left">2018</td>
+<td align="left">3129</td>
+<td align="left">6549</td>
+<td align="left">4277</td>
+<td align="left">2591</td>
+<td align="left">743</td>
 </tr>
 <tr class="odd">
-<td align="right">2019</td>
-<td align="right">2781</td>
-<td align="right">6400</td>
-<td align="right">4311</td>
-<td align="right">2513</td>
-<td align="right">755</td>
+<td align="left">2019</td>
+<td align="left">2781</td>
+<td align="left">6400</td>
+<td align="left">4311</td>
+<td align="left">2513</td>
+<td align="left">755</td>
 </tr>
 <tr class="even">
-<td align="right">2020</td>
-<td align="right">2439</td>
-<td align="right">4608</td>
-<td align="right">3640</td>
-<td align="right">1951</td>
-<td align="right">503</td>
+<td align="left">2020</td>
+<td align="left">2439</td>
+<td align="left">4608</td>
+<td align="left">3640</td>
+<td align="left">1951</td>
+<td align="left">503</td>
 </tr>
 </tbody>
 </table>
@@ -485,65 +502,88 @@ boroughs aside from Manhattan peak in 2017.</p>
 <h3>Measures of Central Tendency</h3>
 <p><strong>Measures of Central Tendency for Rat Sightings by
 Year</strong></p>
+<details>
+<summary>
+Code
+</summary>
+<pre class="r"><code>avg_rat_sightings_box = 
+  rat_sightings_data %&gt;% 
+  mutate(unique_key = as_factor(unique_key)) %&gt;% 
+  group_by(year_created, borough) %&gt;% 
+  summarize(count = n_distinct(unique_key)) %&gt;% 
+  rename(year = year_created)
+
+summary_stats_numeric = 
+  avg_rat_sightings_box%&gt;%
+  summarise(
+    mean = mean(count),
+    median = median(count),
+    sd = sd(count),
+    min = min(count),
+    max = max(count)
+  )
+
+knitr::kable(summary_stats_numeric, align = &quot;l&quot;)</code></pre>
+</details>
 <table>
 <thead>
 <tr class="header">
-<th align="right">year</th>
-<th align="right">mean</th>
-<th align="right">median</th>
-<th align="right">sd</th>
-<th align="right">min</th>
-<th align="right">max</th>
+<th align="left">year</th>
+<th align="left">mean</th>
+<th align="left">median</th>
+<th align="left">sd</th>
+<th align="left">min</th>
+<th align="left">max</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="right">2015</td>
-<td align="right">2759.8</td>
-<td align="right">2931</td>
-<td align="right">1612.193</td>
-<td align="right">539</td>
-<td align="right">4655</td>
+<td align="left">2015</td>
+<td align="left">2759.8</td>
+<td align="left">2931</td>
+<td align="left">1612.193</td>
+<td align="left">539</td>
+<td align="left">4655</td>
 </tr>
 <tr class="even">
-<td align="right">2016</td>
-<td align="right">3094.2</td>
-<td align="right">3133</td>
-<td align="right">1789.170</td>
-<td align="right">652</td>
-<td align="right">5361</td>
+<td align="left">2016</td>
+<td align="left">3094.2</td>
+<td align="left">3133</td>
+<td align="left">1789.170</td>
+<td align="left">652</td>
+<td align="left">5361</td>
 </tr>
 <tr class="odd">
-<td align="right">2017</td>
-<td align="right">3677.4</td>
-<td align="right">3600</td>
-<td align="right">2279.961</td>
-<td align="right">775</td>
-<td align="right">7037</td>
+<td align="left">2017</td>
+<td align="left">3677.4</td>
+<td align="left">3600</td>
+<td align="left">2279.961</td>
+<td align="left">775</td>
+<td align="left">7037</td>
 </tr>
 <tr class="even">
-<td align="right">2018</td>
-<td align="right">3457.8</td>
-<td align="right">3129</td>
-<td align="right">2148.034</td>
-<td align="right">743</td>
-<td align="right">6549</td>
+<td align="left">2018</td>
+<td align="left">3457.8</td>
+<td align="left">3129</td>
+<td align="left">2148.034</td>
+<td align="left">743</td>
+<td align="left">6549</td>
 </tr>
 <tr class="odd">
-<td align="right">2019</td>
-<td align="right">3352.0</td>
-<td align="right">2781</td>
-<td align="right">2120.398</td>
-<td align="right">755</td>
-<td align="right">6400</td>
+<td align="left">2019</td>
+<td align="left">3352.0</td>
+<td align="left">2781</td>
+<td align="left">2120.398</td>
+<td align="left">755</td>
+<td align="left">6400</td>
 </tr>
 <tr class="even">
-<td align="right">2020</td>
-<td align="right">2628.2</td>
-<td align="right">2439</td>
-<td align="right">1577.515</td>
-<td align="right">503</td>
-<td align="right">4608</td>
+<td align="left">2020</td>
+<td align="left">2628.2</td>
+<td align="left">2439</td>
+<td align="left">1577.515</td>
+<td align="left">503</td>
+<td align="left">4608</td>
 </tr>
 </tbody>
 </table>
@@ -553,57 +593,81 @@ by year: the mean, median, standard deviation, minimum, and maximum for
 lowest rat sighting values yet.</p>
 <p><strong>Measures of Central Tendency for Rat Sightings by Borough
 (2015-2020)</strong></p>
+<details>
+<summary>
+Code
+</summary>
+<pre class="r"><code>avg_rat_sightings_box = 
+  rat_sightings_data %&gt;% 
+  mutate(unique_key = as_factor(unique_key)) %&gt;% 
+  group_by(year_created, borough) %&gt;% 
+  summarize(count = n_distinct(unique_key)) %&gt;% 
+  rename(year = year_created)
+
+summary_stats_borough = 
+  avg_rat_sightings_box%&gt;%
+  group_by(borough) %&gt;% 
+  summarise(
+    mean = mean(count),
+    median = median(count),
+    sd = sd(count),
+    min = min(count),
+    max = max(count)
+  )
+
+knitr::kable(summary_stats_borough, align = &quot;l&quot;)</code></pre>
+</details>
 <table>
 <thead>
 <tr class="header">
 <th align="left">borough</th>
-<th align="right">mean</th>
-<th align="right">median</th>
-<th align="right">sd</th>
-<th align="right">min</th>
-<th align="right">max</th>
+<th align="left">mean</th>
+<th align="left">median</th>
+<th align="left">sd</th>
+<th align="left">min</th>
+<th align="left">max</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">Bronx</td>
-<td align="right">3002.1667</td>
-<td align="right">3030.0</td>
-<td align="right">390.3191</td>
-<td align="right">2439</td>
-<td align="right">3600</td>
+<td align="left">3002.1667</td>
+<td align="left">3030.0</td>
+<td align="left">390.3191</td>
+<td align="left">2439</td>
+<td align="left">3600</td>
 </tr>
 <tr class="even">
 <td align="left">Brooklyn</td>
-<td align="right">5768.3333</td>
-<td align="right">5880.5</td>
-<td align="right">1036.3169</td>
-<td align="right">4608</td>
-<td align="right">7037</td>
+<td align="left">5768.3333</td>
+<td align="left">5880.5</td>
+<td align="left">1036.3169</td>
+<td align="left">4608</td>
+<td align="left">7037</td>
 </tr>
 <tr class="odd">
 <td align="left">Manhattan</td>
-<td align="right">4050.0000</td>
-<td align="right">4139.0</td>
-<td align="right">274.0898</td>
-<td align="right">3640</td>
-<td align="right">4311</td>
+<td align="left">4050.0000</td>
+<td align="left">4139.0</td>
+<td align="left">274.0898</td>
+<td align="left">3640</td>
+<td align="left">4311</td>
 </tr>
 <tr class="even">
 <td align="left">Queens</td>
-<td align="right">2326.1667</td>
-<td align="right">2378.0</td>
-<td align="right">362.4453</td>
-<td align="right">1880</td>
-<td align="right">2779</td>
+<td align="left">2326.1667</td>
+<td align="left">2378.0</td>
+<td align="left">362.4453</td>
+<td align="left">1880</td>
+<td align="left">2779</td>
 </tr>
 <tr class="odd">
 <td align="left">Staten Island</td>
-<td align="right">661.1667</td>
-<td align="right">697.5</td>
-<td align="right">117.0340</td>
-<td align="right">503</td>
-<td align="right">775</td>
+<td align="left">661.1667</td>
+<td align="left">697.5</td>
+<td align="left">117.0340</td>
+<td align="left">503</td>
+<td align="left">775</td>
 </tr>
 </tbody>
 </table>
@@ -616,58 +680,80 @@ lowest central tendency measures.</p>
 <div id="measures-of-dispersion" class="section level3">
 <h3>Measures of Dispersion</h3>
 <p><strong>Measures of Dispersion for Rat Sightings by Year</strong></p>
+<details>
+<summary>
+Code
+</summary>
+<pre class="r"><code>avg_rat_sightings_box = 
+  rat_sightings_data %&gt;% 
+  mutate(unique_key = as_factor(unique_key)) %&gt;% 
+  group_by(year_created, borough) %&gt;% 
+  summarize(count = n_distinct(unique_key)) %&gt;% 
+  rename(year = year_created)
+
+dispersion_stats = 
+  avg_rat_sightings_box %&gt;%
+  summarise(
+    range = max(count) - min(count),
+    iqr = IQR(count),
+    sd = sd(count),
+    var = var(count)
+  )
+
+knitr::kable(dispersion_stats, align = &quot;l&quot;)</code></pre>
+</details>
 <table>
 <thead>
 <tr class="header">
-<th align="right">year</th>
-<th align="right">range</th>
-<th align="right">iqr</th>
-<th align="right">sd</th>
-<th align="right">var</th>
+<th align="left">year</th>
+<th align="left">range</th>
+<th align="left">iqr</th>
+<th align="left">sd</th>
+<th align="left">var</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="right">2015</td>
-<td align="right">4116</td>
-<td align="right">1914</td>
-<td align="right">1612.193</td>
-<td align="right">2599166</td>
+<td align="left">2015</td>
+<td align="left">4116</td>
+<td align="left">1914</td>
+<td align="left">1612.193</td>
+<td align="left">2599166</td>
 </tr>
 <tr class="even">
-<td align="right">2016</td>
-<td align="right">4709</td>
-<td align="right">1839</td>
-<td align="right">1789.170</td>
-<td align="right">3201130</td>
+<td align="left">2016</td>
+<td align="left">4709</td>
+<td align="left">1839</td>
+<td align="left">1789.170</td>
+<td align="left">3201130</td>
 </tr>
 <tr class="odd">
-<td align="right">2017</td>
-<td align="right">6262</td>
-<td align="right">1417</td>
-<td align="right">2279.961</td>
-<td align="right">5198224</td>
+<td align="left">2017</td>
+<td align="left">6262</td>
+<td align="left">1417</td>
+<td align="left">2279.961</td>
+<td align="left">5198224</td>
 </tr>
 <tr class="even">
-<td align="right">2018</td>
-<td align="right">5806</td>
-<td align="right">1686</td>
-<td align="right">2148.034</td>
-<td align="right">4614049</td>
+<td align="left">2018</td>
+<td align="left">5806</td>
+<td align="left">1686</td>
+<td align="left">2148.034</td>
+<td align="left">4614049</td>
 </tr>
 <tr class="odd">
-<td align="right">2019</td>
-<td align="right">5645</td>
-<td align="right">1798</td>
-<td align="right">2120.398</td>
-<td align="right">4496089</td>
+<td align="left">2019</td>
+<td align="left">5645</td>
+<td align="left">1798</td>
+<td align="left">2120.398</td>
+<td align="left">4496089</td>
 </tr>
 <tr class="even">
-<td align="right">2020</td>
-<td align="right">4105</td>
-<td align="right">1689</td>
-<td align="right">1577.515</td>
-<td align="right">2488555</td>
+<td align="left">2020</td>
+<td align="left">4105</td>
+<td align="left">1689</td>
+<td align="left">1577.515</td>
+<td align="left">2488555</td>
 </tr>
 </tbody>
 </table>
@@ -677,51 +763,74 @@ greatest in 2017. The interquartile range is greatest in 2015 and lowest
 in 2017.</p>
 <p><strong>Measures of Dispersion for Rat Sightings by Borough
 (2015-2020)</strong></p>
+<details>
+<summary>
+Code
+</summary>
+<pre class="r"><code>avg_rat_sightings_box = 
+  rat_sightings_data %&gt;% 
+  mutate(unique_key = as_factor(unique_key)) %&gt;% 
+  group_by(year_created, borough) %&gt;% 
+  summarize(count = n_distinct(unique_key)) %&gt;% 
+  rename(year = year_created)
+
+summary_stats_borough = 
+  avg_rat_sightings_box%&gt;%
+  group_by(borough) %&gt;% 
+  summarise(
+    range = max(count) - min(count),
+    iqr = IQR(count),
+    sd = sd(count),
+    var = var(count)
+  )
+
+knitr::kable(summary_stats_borough, align = &quot;l&quot;)</code></pre>
+</details>
 <table>
 <thead>
 <tr class="header">
 <th align="left">borough</th>
-<th align="right">range</th>
-<th align="right">iqr</th>
-<th align="right">sd</th>
-<th align="right">var</th>
+<th align="left">range</th>
+<th align="left">iqr</th>
+<th align="left">sd</th>
+<th align="left">var</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">Bronx</td>
-<td align="right">1161</td>
-<td align="right">313.50</td>
-<td align="right">390.3191</td>
-<td align="right">152348.97</td>
+<td align="left">1161</td>
+<td align="left">313.50</td>
+<td align="left">390.3191</td>
+<td align="left">152348.97</td>
 </tr>
 <tr class="even">
 <td align="left">Brooklyn</td>
-<td align="right">2429</td>
-<td align="right">1680.25</td>
-<td align="right">1036.3169</td>
-<td align="right">1073952.67</td>
+<td align="left">2429</td>
+<td align="left">1680.25</td>
+<td align="left">1036.3169</td>
+<td align="left">1073952.67</td>
 </tr>
 <tr class="odd">
 <td align="left">Manhattan</td>
-<td align="right">671</td>
-<td align="right">390.75</td>
-<td align="right">274.0898</td>
-<td align="right">75125.20</td>
+<td align="left">671</td>
+<td align="left">390.75</td>
+<td align="left">274.0898</td>
+<td align="left">75125.20</td>
 </tr>
 <tr class="even">
 <td align="left">Queens</td>
-<td align="right">899</td>
-<td align="right">547.50</td>
-<td align="right">362.4453</td>
-<td align="right">131366.57</td>
+<td align="left">899</td>
+<td align="left">547.50</td>
+<td align="left">362.4453</td>
+<td align="left">131366.57</td>
 </tr>
 <tr class="odd">
 <td align="left">Staten Island</td>
-<td align="right">272</td>
-<td align="right">184.75</td>
-<td align="right">117.0340</td>
-<td align="right">13696.97</td>
+<td align="left">272</td>
+<td align="left">184.75</td>
+<td align="left">117.0340</td>
+<td align="left">13696.97</td>
 </tr>
 </tbody>
 </table>
@@ -734,51 +843,72 @@ second highest range.</p>
 <div id="quartiles" class="section level3">
 <h3>Quartiles</h3>
 <p><strong>Quartiles for Rat Sightings by Year</strong></p>
+<details>
+<summary>
+Code
+</summary>
+<pre class="r"><code>avg_rat_sightings_box = 
+  rat_sightings_data %&gt;% 
+  mutate(unique_key = as_factor(unique_key)) %&gt;% 
+  group_by(year_created, borough) %&gt;% 
+  summarize(count = n_distinct(unique_key)) %&gt;% 
+  rename(year = year_created)
+
+quartiles_quantile =
+avg_rat_sightings_box %&gt;%
+  summarise(
+    Q1 = quantile(count, 0.25),
+    median = median(count),
+    Q3 = quantile(count, 0.75)
+  )
+
+knitr::kable(quartiles_quantile, align = &quot;l&quot;)</code></pre>
+</details>
 <table>
 <thead>
 <tr class="header">
-<th align="right">year</th>
-<th align="right">Q1</th>
-<th align="right">median</th>
-<th align="right">Q3</th>
+<th align="left">year</th>
+<th align="left">Q1</th>
+<th align="left">median</th>
+<th align="left">Q3</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="right">2015</td>
-<td align="right">1880</td>
-<td align="right">2931</td>
-<td align="right">3794</td>
+<td align="left">2015</td>
+<td align="left">1880</td>
+<td align="left">2931</td>
+<td align="left">3794</td>
 </tr>
 <tr class="even">
-<td align="right">2016</td>
-<td align="right">2243</td>
-<td align="right">3133</td>
-<td align="right">4082</td>
+<td align="left">2016</td>
+<td align="left">2243</td>
+<td align="left">3133</td>
+<td align="left">4082</td>
 </tr>
 <tr class="odd">
-<td align="right">2017</td>
-<td align="right">2779</td>
-<td align="right">3600</td>
-<td align="right">4196</td>
+<td align="left">2017</td>
+<td align="left">2779</td>
+<td align="left">3600</td>
+<td align="left">4196</td>
 </tr>
 <tr class="even">
-<td align="right">2018</td>
-<td align="right">2591</td>
-<td align="right">3129</td>
-<td align="right">4277</td>
+<td align="left">2018</td>
+<td align="left">2591</td>
+<td align="left">3129</td>
+<td align="left">4277</td>
 </tr>
 <tr class="odd">
-<td align="right">2019</td>
-<td align="right">2513</td>
-<td align="right">2781</td>
-<td align="right">4311</td>
+<td align="left">2019</td>
+<td align="left">2513</td>
+<td align="left">2781</td>
+<td align="left">4311</td>
 </tr>
 <tr class="even">
-<td align="right">2020</td>
-<td align="right">1951</td>
-<td align="right">2439</td>
-<td align="right">3640</td>
+<td align="left">2020</td>
+<td align="left">1951</td>
+<td align="left">2439</td>
+<td align="left">3640</td>
 </tr>
 </tbody>
 </table>
@@ -788,45 +918,67 @@ The first quartile and median values decrease after 2017, but the third
 quartile values increase from 2017 to 2019 until decreasing in 2020.</p>
 <p><strong>Quartiles for Rat Sightings by Borough
 (2015-2020)</strong></p>
+<details>
+<summary>
+Code
+</summary>
+<pre class="r"><code>avg_rat_sightings_box = 
+  rat_sightings_data %&gt;% 
+  mutate(unique_key = as_factor(unique_key)) %&gt;% 
+  group_by(year_created, borough) %&gt;% 
+  summarize(count = n_distinct(unique_key)) %&gt;% 
+  rename(year = year_created)
+
+quartiles_quantile_borough = 
+  avg_rat_sightings_box %&gt;%
+  group_by(borough) %&gt;% 
+  summarise(
+    Q1 = quantile(count, 0.25),
+    median = median(count),
+    Q3 = quantile(count, 0.75)
+  )
+
+knitr::kable(quartiles_quantile_borough, align = &quot;l&quot;)</code></pre>
+</details>
 <table>
 <thead>
 <tr class="header">
 <th align="left">borough</th>
-<th align="right">Q1</th>
-<th align="right">median</th>
-<th align="right">Q3</th>
+<th align="left">Q1</th>
+<th align="left">median</th>
+<th align="left">Q3</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">Bronx</td>
-<td align="right">2818.50</td>
-<td align="right">3030.0</td>
-<td align="right">3132.00</td>
+<td align="left">2818.50</td>
+<td align="left">3030.0</td>
+<td align="left">3132.00</td>
 </tr>
 <tr class="even">
 <td align="left">Brooklyn</td>
-<td align="right">4831.50</td>
-<td align="right">5880.5</td>
-<td align="right">6511.75</td>
+<td align="left">4831.50</td>
+<td align="left">5880.5</td>
+<td align="left">6511.75</td>
 </tr>
 <tr class="odd">
 <td align="left">Manhattan</td>
-<td align="right">3866.00</td>
-<td align="right">4139.0</td>
-<td align="right">4256.75</td>
+<td align="left">3866.00</td>
+<td align="left">4139.0</td>
+<td align="left">4256.75</td>
 </tr>
 <tr class="even">
 <td align="left">Queens</td>
-<td align="right">2024.00</td>
-<td align="right">2378.0</td>
-<td align="right">2571.50</td>
+<td align="left">2024.00</td>
+<td align="left">2378.0</td>
+<td align="left">2571.50</td>
 </tr>
 <tr class="odd">
 <td align="left">Staten Island</td>
-<td align="right">567.25</td>
-<td align="right">697.5</td>
-<td align="right">752.00</td>
+<td align="left">567.25</td>
+<td align="left">697.5</td>
+<td align="left">752.00</td>
 </tr>
 </tbody>
 </table>
