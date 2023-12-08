@@ -13,7 +13,7 @@
 
 <title>Income Data</title>
 
-<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
@@ -419,7 +419,36 @@ div.tocify {
 <div id="average-rat-sightings-to-median-income-by-borough-2020"
 class="section level2">
 <h2>Average Rat Sightings to Median Income by Borough 2020</h2>
-<p><img src="income_files/figure-html/unnamed-chunk-2-1.png" width="960" /></p>
+<details>
+<summary>
+Code
+</summary>
+<pre class="r"><code>avg_rat_sightings_borough = 
+  rat_sightings_data %&gt;% 
+  filter(year_created == 2020) %&gt;% 
+  mutate(unique_key = as_factor(unique_key)) %&gt;% 
+  group_by(borough) %&gt;% 
+  summarize(count = n_distinct(unique_key))
+
+avg_median_income_borough = 
+  income_data_2020 %&gt;% 
+  group_by(borough) %&gt;% 
+  summarise(avg_median_income = mean(median_income))
+
+rat_to_income = 
+  left_join(avg_rat_sightings_borough, avg_median_income_borough, by = &quot;borough&quot;) %&gt;% 
+  mutate(rat_income = count / avg_median_income)
+
+rat_to_income %&gt;% 
+  ggplot(aes(x = borough, y = rat_income, fill = borough))+
+  geom_bar(stat = &quot;identity&quot;)+
+  labs(title = &quot;Rat Per Dollar by Borough in 2020&quot;,
+      x = &quot;Borough&quot;,
+      y = &quot;Rat Per Dollar Ratio&quot;) +
+  scale_fill_manual(name = &quot;Borough&quot;, values = c(&quot;Manhattan&quot; = &quot;skyblue&quot;, &quot;Bronx&quot; = &quot;orange&quot;, &quot;Brooklyn&quot; = &quot;pink&quot;, &quot;Queens&quot; = &quot;purple&quot;, &quot;Staten Island&quot; = &quot;red&quot;)) +
+  theme_minimal()</code></pre>
+</details>
+<p><img src="income_files/figure-html/unnamed-chunk-3-1.png" width="960" /></p>
 <p>This plot represents the average number of rats per dollar made in
 2020 by median income for each borough of New York City. These
 proportions were calculated by divding the number of rat sightings in

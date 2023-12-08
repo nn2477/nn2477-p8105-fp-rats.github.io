@@ -35,7 +35,7 @@ options(
 # Income Data 
 <details>
   <summary>Code</summary>
-```{r message=FALSE}
+```{r, message=FALSE}
 income_data_2020 = 
   read_csv("./datasets/Neighborhood_Financial_Health_Digital_Mapping_and_Data_Tool_20231125.csv") %>% 
   janitor::clean_names() %>% 

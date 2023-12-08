@@ -4,8 +4,7 @@ output:
   html_document:
     toc: true
     toc_float: true
-    includes:
-      in_header: header.html
+    favicon: "favicon.ico"
 ---
 
 
@@ -58,7 +57,7 @@ options(
 * A video introducing our webpage in details
 * 
 
-### Analyses, Visualization,& Challenges 
+### Analyses, Visualization, & Challenges 
 #### Planned Analyses
 * General rat sighting analysis
 * Change in number of rat sightings by year 
