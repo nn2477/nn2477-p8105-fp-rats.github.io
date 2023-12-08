@@ -306,7 +306,7 @@ central_tend_pop =
 
 knitr::kable(central_tend_pop)
 ```
-This table shows the measures of central tendency for population by borough.
+This table shows the measures of central tendency for population by borough. Manhattan reports the highest measures for the mean, median, and standard deviation. The highest maximum value, however, is reported by Queens, and the borough also has the lowest mean and median.
 
 ### Measures of Dispersion
 
@@ -325,6 +325,7 @@ disp_pop =
 
 knitr::kable(disp_pop)
 ```
+This table depicts the measures of dispersion for population by borough. Queens has the greatest range, but Manhattan has the largest interquartile range, standard deviation, and variance. The Bronx has the lowest range and standard deviation, and Brooklyn has the smallest interquartile range.
 
 ### Quartiles
 
@@ -342,3 +343,4 @@ quartiles_pop =
 
 knitr::kable(quartiles_pop)
 ```
+This table shows the quartiles for population by borough. Manhattan has the highest values for all quartiles, and Queens has the lowest values for the first quartile and median. Brooklyn has the lowest third quartile value.
