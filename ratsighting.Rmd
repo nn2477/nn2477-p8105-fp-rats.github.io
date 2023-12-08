@@ -1,5 +1,5 @@
 ---
-title: "Manhattan Rat Sighting Data"
+title: "Rat Sightings Data"
 output: 
   html_document:
     toc: true
