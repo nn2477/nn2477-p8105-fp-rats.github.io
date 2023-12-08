@@ -448,14 +448,15 @@ fabric of the city as dollar slices and delayed trains. Putting the
 lovable pizza rat aside, the presence of rats presents a challenge to
 public health. They are known to carry diseases that can be spread
 directly and indirectly through humans, erode critical infrastructure,
-and generally impact quality of life. For this project, we set out to
-determine the veracity of whether humans or rats really control New
-York. Additionally, we examined whether rats disproportionately impact
-the lives of marginalized groups: low-income individuals, racial and
-ethnic populations, and individuals with disabilities. Although every
-New Yorker has the occasional run-in with rats, we sought to understand
-whether certain groups face increased exposure. We hope that this
-project contributes to the overall question: who runs this city?</p>
+and generally impact quality of life.</p>
+<p>For this project, we set out to determine the veracity of whether
+humans or rats really control New York. Additionally, we examined
+whether rats disproportionately impact the lives of marginalized groups:
+low-income individuals, racial and ethnic populations, and individuals
+with disabilities. Although every New Yorker has the occasional run-in
+with rats, we sought to understand whether certain groups face increased
+exposure. We hope that this project contributes to the overall question:
+who runs this city?</p>
 </div>
 <div id="related-work" class="section level3">
 <h3>Related Work</h3>
@@ -495,6 +496,10 @@ to conduct this analysis was not readily available.</p>
 </div>
 <div id="data-tidying" class="section level3">
 <h3>Data Tidying</h3>
+<p>We used several datasets for this project: City of New York
+Neighborhood Financial Health Digital Mapping and Data Tool for income
+data, City of New York Rat Sighting Data for rat data, and Census Data
+for population information.</p>
 <p>Income Data</p>
 <p>Income data was important for us to have access to so that we could
 determine potential linkages between income and rat prevalence. Our
@@ -509,10 +514,10 @@ variables:</p>
 <p>We checked for missing values and any typos in neighborhood names,
 and then exported the clean dataset.</p>
 <p>Rat Sighting Data</p>
-<p>The City of New York Rat Sighting Data was a key dataset for us, and
-can be accessed at the link above. This dataset includes reports of rat
-sightings in New York City from 2010 to the present. At the time we
-accessed it, it had last been updated on November 25, 2023.</p>
+<p>The City of New York Rat Sighting Data was a key dataset for us. This
+dataset includes reports of rat sightings in New York City from 2010 to
+the present. At the time we accessed it, it had last been updated on
+November 25, 2023.</p>
 <p>This entire dataset was downloaded to CSV. While we initially tried
 to read it in and commit it to GitHub in its entirely, the dataset
 proved to be too large. As such, it required that we filter and reduce
@@ -542,6 +547,18 @@ and <code>unique_key</code> was used to create count data estimates for
 exploratory analyses in smaller analysis data manipulations. We then
 exported the clean dataset.</p>
 <p>Population Data</p>
+<p>Our last dataset is the population data, which required adjustments
+to suit our data analysis goals. The raw dataset was imported and tidied
+to clean the names and select the <code>borough</code> and
+<code>pop_20</code> variables. We checked for missing values and then
+exported the dataset. This dataset provided us the total population for
+each borough in 2020, and is named <code>population_data.</code></p>
+<p>We also used the same raw population data to create a second
+population dataset, which was cleaned to retain the each neighborhood
+level observation. We cleaned the names, again selected
+<code>borough</code> and <code>pop_20</code> variables, removed
+duplicates, and exported the clean dataset under the name
+<code>population_individual_data.</code></p>
 </div>
 <div id="exploratory-analyses" class="section level3">
 <h3>Exploratory Analyses</h3>

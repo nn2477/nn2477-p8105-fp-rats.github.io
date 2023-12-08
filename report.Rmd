@@ -42,6 +42,7 @@ options(
 ### Motivation
 
 In October 2022, New York’s recently installed Commissioner of the Department of Sanitation, Jessica Tisch, boldly proclaimed “The rats don’t run this city, we do.” To New Yorkers, this statement was more wishful thinking than it was grounded in reality. Rats are as much of a fabric of the city as dollar slices and delayed trains. Putting the lovable pizza rat aside, the presence of rats presents a challenge to public health. They are known to carry diseases that can be spread directly and indirectly through humans, erode critical infrastructure, and generally impact quality of life. 
+
 For this project, we set out to determine the veracity of whether humans or rats really control New York. Additionally, we examined whether rats disproportionately impact the lives of marginalized groups: low-income individuals, racial and ethnic populations, and individuals with disabilities. Although every New Yorker has the occasional run-in with rats, we sought to understand whether certain groups face increased exposure. We hope that this project contributes to the overall question: who runs this city?
 
 
@@ -57,6 +58,9 @@ Additionally, we first hoped to answer a question related to Mayor Eric Adams, w
 
 
 ### Data Tidying
+
+We used several datasets for this project: City of New York Neighborhood Financial Health Digital Mapping and Data Tool for income data, City of New York Rat Sighting Data for rat data, and Census Data for population information.
+
 
 Income Data
 
@@ -77,7 +81,7 @@ We checked for missing values and any typos in neighborhood names, and then expo
 
 Rat Sighting Data
 
-The City of New York Rat Sighting Data was a key dataset for us, and can be accessed at the link above. This dataset includes reports of rat sightings in New York City from 2010 to the present. At the time we accessed it, it had last been updated on November 25, 2023.
+The City of New York Rat Sighting Data was a key dataset for us. This dataset includes reports of rat sightings in New York City from 2010 to the present. At the time we accessed it, it had last been updated on November 25, 2023.
 
 This entire dataset was downloaded to CSV. While we initially tried to read it in and commit it to GitHub in its entirely, the dataset proved to be too large. As such, it required that we filter and reduce that dataset to variables that were only of interest to our research questions. We then imported the dataset into R and further reduced the file to the following key variables:
 
@@ -107,6 +111,10 @@ This left us with the following variables:
 We then filtered the data to only the years between 2015 and 2019. We checked for missing values, which were only identified in the longitude and latitude variables, and we decided not to remove these values. `year_created` and `month_created` were changed into factor variables rather than numeric for use in specific analyses, and `unique_key` was used to create count data estimates for exploratory analyses in smaller analysis data manipulations. We then exported the clean dataset.
 
 Population Data
+
+Our last dataset is the population data, which required adjustments to suit our data analysis goals. The raw dataset was imported and tidied to clean the names and select the `borough` and `pop_20` variables. We checked for missing values and then exported the dataset. This dataset provided us the total population for each borough in 2020, and is named `population_data.`
+
+We also used the same raw population data to create a second population dataset, which was cleaned to retain the each neighborhood level observation. We cleaned the names, again selected `borough` and `pop_20` variables, removed duplicates, and exported the clean dataset under the name `population_individual_data.`
 
 ### Exploratory Analyses
 
