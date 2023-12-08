@@ -6,6 +6,9 @@ output:
     toc_float: true
 ---
 
+Below are the descriptive statistics for our datasets. We decided against running regression models for a few significant reasons: the outcome of rat sightings is not continuous and is technically classified as counts, which would prompt us to run a Poisson regression instead of a linear regression. We could not, however, reformat our rat sighting observations into counts for a Poisson regression model, so we agreed that descriptive statistics regarding rat sightings, median income, and population would be the most appropriate way for us to work with the data.
+
+
 ```{r, message=FALSE, echo=FALSE}
 library(tidyverse)
 
@@ -33,6 +36,7 @@ avg_rat_sightings_freq =
 
 knitr::kable(avg_rat_sightings_freq)
 ```
+The table shows the frequency of rat sightings in the five NYC boroughs by year, from 2015 to 2020. Rat sighting frequency generally is highest in Brooklyn and lowest in Staten Island. Rat sightings in all boroughs aside from Manhattan peak in 2017.
 
 ### Measures of Central Tendency
 
@@ -58,6 +62,8 @@ summary_stats_numeric =
 
 knitr::kable(summary_stats_numeric)
 ```
+This table depicts the measures of central tendency for rat sightings by year: the mean, median, standard deviation, minimum, and maximum for 2015 to 2020. All measures peak in the year 2017, and 2020 presents the lowest rat sighting values yet.
+
 
 **Measures of Central Tendency for Rat Sightings by Borough (2015-2020)**
 
@@ -82,6 +88,7 @@ summary_stats_borough =
 
 knitr::kable(summary_stats_borough)
 ```
+This table depicts the measures of central tendency for rat sightings by borough: the mean, median, standard deviation, minimum, and maximum for 2015 to 2020. Brooklyn presents the highest values for all measures, with Manhattan having the second-highest values. Staten Island has the lowest central tendency measures.
 
 ### Measures of Dispersion 
 
@@ -106,6 +113,7 @@ dispersion_stats =
 
 knitr::kable(dispersion_stats)
 ```
+This table shows the measures of dispersion for rat sightings by year, from 2015 to 2020. The range, standard deviation, and variance are greatest in 2017. The interquartile range is greatest in 2015 and lowest in 2017.
 
 **Measures of Dispersion for Rat Sightings by Borough (2015-2020)**
 
@@ -129,6 +137,7 @@ summary_stats_borough =
 
 knitr::kable(summary_stats_borough)
 ```
+This table shows the measures of dispersion for rat sightings by borough, from 2015 to 2020. Brooklyn has the highest values for all measures (range, interquartile range, standard deviation, and variance). Staten Island has the lowest values for all measures. The Bronx has the second highest range.
 
 ### Quartiles
 
@@ -152,6 +161,7 @@ avg_rat_sightings_box %>%
 
 knitr::kable(quartiles_quantile)
 ```
+This table depicts the quartiles for rat sightings from 2015 to 2020. The first quartile, median, and third quartile all increase until 2017. The first quartile and median values decrease after 2017, but the third quartile values increase from 2017 to 2019 until decreasing in 2020.
 
 **Quartiles for Rat Sightings by Borough (2015-2020)**
 
@@ -174,6 +184,7 @@ quartiles_quantile_borough =
 
 knitr::kable(quartiles_quantile_borough)
 ```
+This table depicts the quartiles for rat sightings by borough from 2015 to 2020. Brooklyn has the highest values for all quartiles, and Staten Island has the lowest.
 
 
 
@@ -188,7 +199,7 @@ med_income_freq =
   income_data_2020 %>% 
   group_by(borough, median_income) |> 
   summarize(count = n()) |> 
-  arrange(borough, desc(count)) |> 
+  arrange(desc(count)) |> 
   slice_head(n = 1) |> 
   select(-count) |> 
   pivot_wider(
@@ -198,6 +209,7 @@ med_income_freq =
 
 knitr::kable(med_income_freq)
 ```
+This table shows the median income that was reported most frequently by borough in the year of 2020. The highest median income value reported most frequently is 31,347, from Staten Island, and the lowest is 14,213, from the Bronx.
 
 ### Measures of Central Tendency
 
@@ -217,6 +229,7 @@ central_tend_med_income =
 
 knitr::kable(central_tend_med_income)
 ```
+This table depicts the measures of central tendency for median income by borough in 2020. Manhattan has the highest mean, median, standard deviation, and maximum. Staten Island, however, has the highest minimum reported median income.
 
 ### Measures of Dispersion
 
@@ -235,6 +248,7 @@ disp_med_income =
 
 knitr::kable(disp_med_income)
 ```
+This table depicts the measures of dispersion for median income by borough in 2020. Manhattan has the largest range, interquartile range, standard deviation, and variance. Staten Island has the lowest values for all measures except for the interquartile range.
 
 ### Quartiles
 
@@ -252,6 +266,7 @@ quartiles_med_income =
 
 knitr::kable(quartiles_med_income)
 ```
+This table shows the quartiles for median income by borough in 2020. The largest first quartile value is from Staten Island, but Manhattan has the largest median and third quartile values. The Bronx has the lowest quartile values.
 
 
 
@@ -271,6 +286,7 @@ pop_freq =
 
 knitr::kable(pop_freq)
 ```
+This table shows the total population in each NYC borough in 2020. Brooklyn has the highest population, and Staten Island has the lowest.
 
 ### Measures of Central Tendency
 
@@ -290,6 +306,7 @@ central_tend_pop =
 
 knitr::kable(central_tend_pop)
 ```
+This table shows the measures of central tendency for population by borough.
 
 ### Measures of Dispersion
 

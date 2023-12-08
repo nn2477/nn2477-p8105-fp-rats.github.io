@@ -137,7 +137,8 @@ population_individual_data =
   slice(-(1:6)) |> 
   rename(population = pop_20) |> 
   filter(
-    borough %in% c("Manhattan", "Bronx", "Brooklyn", "Queens", "Staten Island"))
+    borough %in% c("Manhattan", "Bronx", "Brooklyn", "Queens", "Staten Island")) |> 
+  distinct()
 
 ## Check for missing values
 

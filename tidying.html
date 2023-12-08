@@ -13,7 +13,7 @@
 
 <title>Data Cleaning/Tidying</title>
 
-<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
@@ -535,7 +535,8 @@ Code
   slice(-(1:6)) |&gt; 
   rename(population = pop_20) |&gt; 
   filter(
-    borough %in% c(&quot;Manhattan&quot;, &quot;Bronx&quot;, &quot;Brooklyn&quot;, &quot;Queens&quot;, &quot;Staten Island&quot;))
+    borough %in% c(&quot;Manhattan&quot;, &quot;Bronx&quot;, &quot;Brooklyn&quot;, &quot;Queens&quot;, &quot;Staten Island&quot;)) |&gt; 
+  distinct()
 
 ## Check for missing values
 
