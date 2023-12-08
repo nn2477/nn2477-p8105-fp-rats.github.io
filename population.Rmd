@@ -7,7 +7,7 @@ output:
     favicon: "favicon.ico"
 ---
 
-![Spotted: NYC Subway Rat in the Wild](images/rat.jpeg)
+![](https://hips.hearstapps.com/hmg-prod/images/rats-an-1-655b7da19ac67.jpg?crop=0.893xw:1.00xh;0.107xw,0&resize=768:*)
 
 ```{r, include=FALSE}
 library(tidyverse)

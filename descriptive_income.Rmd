@@ -7,6 +7,8 @@ output:
     favicon: "favicon.ico"
 ---
 
+![](https://turcopolier.typepad.com/.a/6a00d8341c72e153ef0263e95d978c200b-800wi)
+
 ```{r, message=FALSE, echo=FALSE}
 library(tidyverse)
 

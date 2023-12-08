@@ -7,6 +7,8 @@ output:
     favicon: "favicon.ico"
 ---
 
+![](https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1440,w_2560,x_0,y_0/dpr_2.0/c_limit,w_740/fl_lossy,q_auto/v1510850361/171116-Yuhus-giant-rats-tease_zteml8)
+
 Below are the descriptive statistics for our datasets. We decided against running regression models for a few significant reasons: the outcome of rat sightings is not continuous and is technically classified as counts, which would prompt us to run a Poisson regression instead of a linear regression. We could not, however, reformat our rat sighting observations into counts for a Poisson regression model, so we agreed that descriptive statistics regarding rat sightings, median income, and population would be the most appropriate way for us to work with the data.
 
 ```{r, message=FALSE, echo=FALSE}
