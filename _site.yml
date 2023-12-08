@@ -13,9 +13,9 @@ navbar:
         href: tidying.html
       - text: "Rat Sighting in Manhattan"
         href: ratsighting.html
-      - text: "Income Data"
+      - text: "Rat Sighting by Income"
         href: income.html
-      - text: "Population Data"
+      - text: "Rat Sighting by Population"
         href: population.html
     - text: "Descriptive Analysis"
       menu:
