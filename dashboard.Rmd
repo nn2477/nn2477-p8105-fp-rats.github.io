@@ -31,31 +31,139 @@ library(flexdashboard)
 library(tidyverse)
 library(plotly)
 
+rat_sightings_data <- read.csv("./datasets_clean/rat_sightings_data")
+population_data <- read.csv("./datasets_clean/population_data")
+
 ```
 
 
-Column {data-width=650}
+{data-width=650}
 -----------------------------------------------------------------------
 
-### Chart A
+### Average Annual Rat Sightings across Boroughs 
 
 ```{r}
- 
+ # Filter data for the years 2015-2020
+barplot_rat_data <- rat_sightings_data %>%
+  filter(year_created >= 2015 & year_created <= 2020)
+
+# Calculate the average annual rat sightings by borough
+average_sightings_by_borough <- barplot_rat_data %>%
+  group_by(year_created, borough) %>%
+  summarise(average_sightings = n() / length(unique(month_created)))
+
+# Create a interactive bar plot
+plot_ly(
+  data = average_sightings_by_borough,
+  x = ~borough,
+  y = ~average_sightings,
+  type = "bar",
+  color = ~factor(year_created),
+  colors = c("darkgreen", "orange", "skyblue", "pink", "purple", "red"),
+  marker = list(line = list(color = "black"))
+) %>%
+  layout(
+    title = "Average Annual Rat Sightings by Borough (2015-2020)",
+    xaxis = list(title = "Borough"),
+    yaxis = list(title = "Average Annual Rat Sightings"),
+    showlegend = TRUE
+  )
 ```
 
-Column {data-width=350}
+{data-width=350}
 -----------------------------------------------------------------------
 
-### Chart B
+### Residential Rat Sightings by Borough
 
 ```{r}
- 
+# Specify the desired location types
+desired_location_types <- c(
+  "3+ Family Apt. Building", 
+  "1-2 Family Dwelling", 
+  "3+ Family Mixed Use Building", 
+  "1-2 Family Mixed Use Building", 
+  "3+ Family Apartment Building", 
+  "Single Room Occupancy (SRO)", 
+  "Apartment", 
+  "Residence", 
+  "1-3 Family Dwelling",
+  "Residential Property",
+  "1-3 Family Mixed Use Building",
+  "3+ Family Apt., Private House"
+)
+
+# Create a new dataset with only residential sightings
+residential_sightings <- rat_sightings_data %>%
+  filter(location_type %in% desired_location_types)
+  
+# Step 1: Calculate the count of residential rat sightings by borough
+residential_counts <- residential_sightings %>%
+  group_by(borough) %>%
+  summarise(residential_count = n())
+
+# Step 2: Calculate the total count of rat sightings by borough
+total_counts <- rat_sightings_data %>%
+  group_by(borough) %>%
+  summarise(total_count = n())
+
+# Step 3: Merge the two datasets and calculate the proportion
+borough_proportions <- merge(residential_counts, total_counts, by = "borough", all.x = TRUE) %>%
+  mutate(proportion_residential = residential_count / total_count)
+
+# Print the result
+knitr::kable(borough_proportions)
+
+# Create an interactive bar plot
+plot_ly(
+  data = borough_proportions,
+  x = ~borough,
+  y = ~proportion_residential,
+  type = "bar",
+  marker = list(color = c("skyblue", "orange", "pink", "purple", "red"))
+) %>%
+  layout(
+    title = "Proportion of Residential Rat Sightings by Borough",
+    xaxis = list(title = "Borough"),
+    yaxis = list(title = "Proportion"),
+    showlegend = FALSE
+  )
 ```
 
-### Chart C
+### Rat Sightings Distribution by Year by Borough
 
 ```{r}
- 
+avg_rat_sightings_box = 
+  rat_sightings_data %>% 
+  mutate(unique_key = as_factor(unique_key)) %>% 
+  group_by(year_created, borough) %>% 
+  summarize(count = n_distinct(unique_key))
+
+avg_rat_sightings_box %>% 
+  ggplot(aes(x = year_created, y = count, color = borough)) +
+  geom_boxplot() +
+  labs(title = "Distribution of Number of Rat Sightings by Year (2015-2020)",
+      x = "Year",
+      y = "Number of Rat Sightings") +
+  scale_color_manual(name = "Borough", values = c("Manhattan" = "skyblue", "Bronx" = "orange", "Brooklyn" = "pink", "Queens" = "purple", "Staten Island" = "red")) +
+  theme_minimal() +
+  theme(legend.position = "right")
+
+
+## Plotly Box Plot
+plot_ly(
+  data = avg_rat_sightings_box,
+  y = ~count,
+  color = ~borough,
+  type = "box",
+  colors = c("skyblue", "orange", "pink", "purple", "red")
+) %>%
+  layout(
+    title = "Distribution of Number of Rat Sightings by Year (2015-2020)",
+    xaxis = list(title = "Year"),
+    yaxis = list(title = "Number of Rat Sightings"),
+    legend = list(title = "Borough"),
+    showlegend = TRUE
+  )
 ```
 
 
