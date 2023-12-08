@@ -20,35 +20,19 @@ income_data_2020 <- read.csv("./datasets_clean/income_data_2020")
 
 Below are the descriptive statistics for our datasets. We decided against running regression models for a few significant reasons: the outcome of rat sightings is not continuous and is technically classified as counts, which would prompt us to run a Poisson regression instead of a linear regression. We could not, however, reformat our rat sighting observations into counts for a Poisson regression model, so we agreed that descriptive statistics regarding rat sightings, median income, and population would be the most appropriate way for us to work with the data.
 
+The NYC 2020 Census reports the total population for each NYC borough, but the summation of the individual observations by borough do not match the provided totals. We consequently decided to use the provided totals for our frequency table, and the individual observations to observe the data spread for measures of central tendency and dispersion, and the quartiles.
+
 ### Frequency Table
 
 <details>
   <summary>Code</summary>
 ```{r, eval=FALSE}
-pop_freq =
-  population_individual_data |> 
-  group_by(borough) |> 
-  summarise(total_population = sum(population)) |> 
-  pivot_wider(
-    names_from = borough,
-    values_from = total_population
-  )
-
-knitr::kable(pop_freq, align = "l")
+knitr::kable(population_totals_data, align = "l")
 ```
 </details>
 
 ```{r, message=FALSE, echo=FALSE}
-pop_freq =
-  population_individual_data |> 
-  group_by(borough) |> 
-  summarise(total_population = sum(population)) |> 
-  pivot_wider(
-    names_from = borough,
-    values_from = total_population
-  )
-
-knitr::kable(pop_freq, align = "l")
+knitr::kable(population_totals_data, align = "l")
 ```
 
 This table shows the total population in each NYC borough in 2020. Brooklyn has the highest population, and Staten Island has the lowest.

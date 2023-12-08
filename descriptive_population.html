@@ -13,7 +13,7 @@
 
 <title>Population Data</title>
 
-<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
@@ -414,40 +414,47 @@ observations into counts for a Poisson regression model, so we agreed
 that descriptive statistics regarding rat sightings, median income, and
 population would be the most appropriate way for us to work with the
 data.</p>
+<p>The NYC 2020 Census reports the total population for each NYC
+borough, but the summation of the individual observations by borough do
+not match the provided totals. We consequently decided to use the
+provided totals for our frequency table, and the individual observations
+to observe the data spread for measures of central tendency and
+dispersion, and the quartiles.</p>
 <div id="frequency-table" class="section level3">
 <h3>Frequency Table</h3>
 <details>
 <summary>
 Code
 </summary>
-<pre class="r"><code>pop_freq =
-  population_individual_data |&gt; 
-  group_by(borough) |&gt; 
-  summarise(total_population = sum(population)) |&gt; 
-  pivot_wider(
-    names_from = borough,
-    values_from = total_population
-  )
-
-knitr::kable(pop_freq, align = &quot;l&quot;)</code></pre>
+<pre class="r"><code>knitr::kable(population_totals_data, align = &quot;l&quot;)</code></pre>
 </details>
 <table>
 <thead>
 <tr class="header">
-<th align="left">Bronx</th>
-<th align="left">Brooklyn</th>
-<th align="left">Manhattan</th>
-<th align="left">Queens</th>
-<th align="left">Staten Island</th>
+<th align="left">borough</th>
+<th align="left">population</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">4402203</td>
-<td align="left">7987757</td>
-<td align="left">5048233</td>
-<td align="left">7118684</td>
-<td align="left">1478361</td>
+<td align="left">Manhattan</td>
+<td align="left">1694251</td>
+</tr>
+<tr class="even">
+<td align="left">Bronx</td>
+<td align="left">1472654</td>
+</tr>
+<tr class="odd">
+<td align="left">Brooklyn</td>
+<td align="left">2736074</td>
+</tr>
+<tr class="even">
+<td align="left">Queens</td>
+<td align="left">2405464</td>
+</tr>
+<tr class="odd">
+<td align="left">Staten Island</td>
+<td align="left">495747</td>
 </tr>
 </tbody>
 </table>
