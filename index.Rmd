@@ -46,7 +46,7 @@ Additionally, we first hoped to answer a question related to Mayor Eric Adams, w
 
 ### Collaborators 
 | **Name**         | **UNI**    |
-|:-----------------|:----------:|
+|:-----------------|:----------|
 | Victoria Mello   | vsm2118    |
 | Eunsuh Cho       | ec3663     |
 | Maggie Watson    | mgw2144    |

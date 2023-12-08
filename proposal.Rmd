@@ -32,7 +32,7 @@ options(
 ### Team Members 
 
 | **Name**         | **UNI**    |
-|:-----------------|:----------:|
+|:-----------------|:----------|
 | Victoria Mello   | vsm2118    |
 | Eunsuh Cho       | ec3663     |
 | Maggie Watson    | mgw2144    |
