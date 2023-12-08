@@ -371,7 +371,6 @@ Below are the descriptive statistics for our income datasets. We decided against
 
 ```{r}
 ```{r, message=FALSE, echo=FALSE}
-library(tidyverse)
 
 rat_sightings_data <- read.csv("./datasets_clean/rat_sightings_data")
 population_individual_data <- read.csv("./datasets_clean/population_individual_data")
