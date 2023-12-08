@@ -45,4 +45,4 @@ rat_to_income %>%
   theme_minimal()
 ```
 
-This plot represents the average number of rats per dollar made in 2020 by median income for each borough of New York City. In this plot we can see that the proportion of rats to median income was highest in Brooklyn and lowest in Staten Island. 
+This plot represents the average number of rats per dollar made in 2020 by median income for each borough of New York City. These proportions were calculated by divding the number of rat sightings in 2020 in each borough by mean median income value for each borough in the same year. In this plot we can see that the proportion of rats to median income was highest in Brooklyn and lowest in Staten Island. 
