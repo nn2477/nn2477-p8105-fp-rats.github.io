@@ -1,7 +1,9 @@
 ---
-title: "descriptive"
-output: html_document
-date: "2023-12-07"
+title: 
+output: 
+  html_document:
+    toc: true
+    toc_float: true
 ---
 
 ```{r, message=FALSE, echo=FALSE}
@@ -13,9 +15,9 @@ population_totals_data <- read.csv("./datasets_clean/population_totals_data")
 income_data_2020 <- read.csv("./datasets_clean/income_data_2020")
 ```
 
-# Rat Sightings Data
+# Rat Sighting Data
 
-## Frequency Table
+### Frequency Table
 
 ```{r, message=FALSE, echo=FALSE}
 avg_rat_sightings_freq = 
@@ -32,9 +34,9 @@ avg_rat_sightings_freq =
 knitr::kable(avg_rat_sightings_freq)
 ```
 
-## Measures of Central Tendency
+### Measures of Central Tendency
 
-Measures of Central Tendency for Rat Sightings by Year
+**Measures of Central Tendency for Rat Sightings by Year**
 
 ```{r, message=FALSE, echo=FALSE}
 avg_rat_sightings_box = 
@@ -57,7 +59,7 @@ summary_stats_numeric =
 knitr::kable(summary_stats_numeric)
 ```
 
-Measures of Central Tendency for Rat Sightings by Borough (2015-2020)
+**Measures of Central Tendency for Rat Sightings by Borough (2015-2020)**
 
 ```{r, message=FALSE, echo=FALSE}
 avg_rat_sightings_box = 
@@ -81,9 +83,9 @@ summary_stats_borough =
 knitr::kable(summary_stats_borough)
 ```
 
-## Measures of Dispersion 
+### Measures of Dispersion 
 
-Measures of Dispersion for Rat Sightings by Year
+**Measures of Dispersion for Rat Sightings by Year**
 
 ```{r, message=FALSE, echo=FALSE}
 avg_rat_sightings_box = 
@@ -105,7 +107,7 @@ dispersion_stats =
 knitr::kable(dispersion_stats)
 ```
 
-Measures of Dispersion for Rat Sightings by Borough (2015-2020)
+**Measures of Dispersion for Rat Sightings by Borough (2015-2020)**
 
 ```{r, message=FALSE, echo=FALSE}
 avg_rat_sightings_box = 
@@ -128,9 +130,9 @@ summary_stats_borough =
 knitr::kable(summary_stats_borough)
 ```
 
-## Quartiles
+### Quartiles
 
-Quartiles for Rat Sightings by Year
+**Quartiles for Rat Sightings by Year**
 
 ```{r, message=FALSE, echo=FALSE}
 avg_rat_sightings_box = 
@@ -151,7 +153,7 @@ avg_rat_sightings_box %>%
 knitr::kable(quartiles_quantile)
 ```
 
-Quartiles for Rat Sightings by Borough (2015-2020)
+**Quartiles for Rat Sightings by Borough (2015-2020)**
 
 ```{r, message=FALSE, echo=FALSE}
 avg_rat_sightings_box = 
@@ -177,9 +179,9 @@ knitr::kable(quartiles_quantile_borough)
 
 # Income Data
 
-## Frequency Table
+### Frequency Table
 
-Highest Frequency Median Income by Borough in 2020
+**Highest Frequency Median Income by Borough in 2020**
 
 ```{r, message=FALSE, echo=FALSE}
 med_income_freq = 
@@ -197,9 +199,9 @@ med_income_freq =
 knitr::kable(med_income_freq)
 ```
 
-## Measures of Central Tendency
+### Measures of Central Tendency
 
-Measures of Central Tendency for Median Income by Borough in 2020
+**Measures of Central Tendency for Median Income by Borough in 2020**
 
 ```{r, message=FALSE, echo=FALSE}
 central_tend_med_income = 
@@ -216,9 +218,9 @@ central_tend_med_income =
 knitr::kable(central_tend_med_income)
 ```
 
-## Measures of Dispersion
+### Measures of Dispersion
 
-Measures of Dispersion for Median Income by Borough in 2020
+**Measures of Dispersion for Median Income by Borough in 2020**
 
 ```{r, message=FALSE, echo=FALSE}
 disp_med_income = 
@@ -234,9 +236,9 @@ disp_med_income =
 knitr::kable(disp_med_income)
 ```
 
-## Quartiles
+### Quartiles
 
-Quartiles for Median Income by Borough in 2020
+**Quartiles for Median Income by Borough in 2020**
 
 ```{r, message=FALSE, echo=FALSE}
 quartiles_med_income = 
@@ -255,7 +257,7 @@ knitr::kable(quartiles_med_income)
 
 # Population Data
 
-## Frequency Table
+### Frequency Table
 
 ```{r, message=FALSE, echo=FALSE}
 pop_freq =
@@ -270,9 +272,9 @@ pop_freq =
 knitr::kable(pop_freq)
 ```
 
-## Measures of Central Tendency
+### Measures of Central Tendency
 
-Measures of Central Tendency for Population by Borough
+**Measures of Central Tendency for Population by Borough**
 
 ```{r, message=FALSE, echo=FALSE}
 central_tend_pop = 
@@ -289,9 +291,9 @@ central_tend_pop =
 knitr::kable(central_tend_pop)
 ```
 
-## Measures of Dispersion
+### Measures of Dispersion
 
-Measures of Dispersion for Population by Borough
+**Measures of Dispersion for Population by Borough**
 
 ```{r, message=FALSE, echo=FALSE}
 disp_pop = 
@@ -307,9 +309,9 @@ disp_pop =
 knitr::kable(disp_pop)
 ```
 
-## Quartiles
+### Quartiles
 
-Quartiles for Population by Borough
+**Quartiles for Population by Borough** 
 
 ```{r, message=FALSE, echo=FALSE}
 quartiles_pop = 

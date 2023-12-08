@@ -1,0 +1,91 @@
+---
+title: Income Data
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+```{r, message=FALSE, echo=FALSE}
+library(tidyverse)
+
+rat_sightings_data <- read.csv("./datasets_clean/rat_sightings_data")
+population_individual_data <- read.csv("./datasets_clean/population_individual_data")
+population_totals_data <- read.csv("./datasets_clean/population_totals_data")
+income_data_2020 <- read.csv("./datasets_clean/income_data_2020")
+```
+
+
+### Frequency Table
+
+**Highest Frequency Median Income by Borough in 2020**
+
+```{r, message=FALSE, echo=FALSE}
+med_income_freq = 
+  income_data_2020 %>% 
+  group_by(borough, median_income) |> 
+  summarize(count = n()) |> 
+  arrange(borough, desc(count)) |> 
+  slice_head(n = 1) |> 
+  select(-count) |> 
+  pivot_wider(
+    names_from = borough,
+    values_from = median_income
+  )
+
+knitr::kable(med_income_freq)
+```
+
+### Measures of Central Tendency
+
+**Measures of Central Tendency for Median Income by Borough in 2020**
+
+```{r, message=FALSE, echo=FALSE}
+central_tend_med_income = 
+  income_data_2020 %>% 
+  group_by(borough) |> 
+  summarise(
+    mean = mean(median_income),
+    median = median(median_income),
+    sd = sd(median_income),
+    min = min(median_income),
+    max = max(median_income)
+  )
+
+knitr::kable(central_tend_med_income)
+```
+
+### Measures of Dispersion
+
+**Measures of Dispersion for Median Income by Borough in 2020**
+
+```{r, message=FALSE, echo=FALSE}
+disp_med_income = 
+  income_data_2020 %>%
+  group_by(borough) %>% 
+  summarise(
+    range = max(median_income) - min(median_income),
+    iqr = IQR(median_income),
+    sd = sd(median_income),
+    var = var(median_income)
+  )
+
+knitr::kable(disp_med_income)
+```
+
+### Quartiles
+
+**Quartiles for Median Income by Borough in 2020**
+
+```{r, message=FALSE, echo=FALSE}
+quartiles_med_income = 
+  income_data_2020 %>%
+  group_by(borough) %>% 
+  summarise(
+    Q1 = quantile(median_income, 0.25),
+    median = median(median_income),
+    Q3 = quantile(median_income, 0.75)
+  )
+
+knitr::kable(quartiles_med_income)
+```

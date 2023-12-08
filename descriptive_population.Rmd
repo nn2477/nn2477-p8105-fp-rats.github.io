@@ -1,0 +1,86 @@
+---
+title: Population Data
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+```{r, message=FALSE, echo=FALSE}
+library(tidyverse)
+
+rat_sightings_data <- read.csv("./datasets_clean/rat_sightings_data")
+population_individual_data <- read.csv("./datasets_clean/population_individual_data")
+population_totals_data <- read.csv("./datasets_clean/population_totals_data")
+income_data_2020 <- read.csv("./datasets_clean/income_data_2020")
+```
+
+
+### Frequency Table
+
+```{r, message=FALSE, echo=FALSE}
+pop_freq =
+  population_individual_data |> 
+  group_by(borough) |> 
+  summarise(total_population = sum(population)) |> 
+  pivot_wider(
+    names_from = borough,
+    values_from = total_population
+  )
+
+knitr::kable(pop_freq)
+```
+
+### Measures of Central Tendency
+
+**Measures of Central Tendency for Population by Borough**
+
+```{r, message=FALSE, echo=FALSE}
+central_tend_pop = 
+  population_individual_data %>% 
+  group_by(borough) |> 
+  summarise(
+    mean = mean(population),
+    median = median(population),
+    sd = sd(population),
+    min = min(population),
+    max = max(population)
+  )
+
+knitr::kable(central_tend_pop)
+```
+
+### Measures of Dispersion
+
+**Measures of Dispersion for Population by Borough**
+
+```{r, message=FALSE, echo=FALSE}
+disp_pop = 
+  population_individual_data %>%
+  group_by(borough) |> 
+  summarise(
+    range = max(population) - min(population),
+    iqr = IQR(population),
+    sd = sd(population),
+    var = var(population)
+  )
+
+knitr::kable(disp_pop)
+```
+
+### Quartiles
+
+**Quartiles for Population by Borough** 
+
+```{r, message=FALSE, echo=FALSE}
+quartiles_pop = 
+  population_individual_data %>%
+  group_by(borough) |> 
+  summarise(
+    Q1 = quantile(population, 0.25),
+    median = median(population),
+    Q3 = quantile(population, 0.75)
+  )
+
+knitr::kable(quartiles_pop)
+```

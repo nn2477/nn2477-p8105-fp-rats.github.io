@@ -1,7 +1,8 @@
 ---
-title: "NYC Rat Graphs"
+title: "NYC Rat Sighting Interactive Graphs"
 output: 
   flexdashboard::flex_dashboard:
+    theme: journal
     orientation: columns
     vertical_layout: fill
 ---
@@ -109,9 +110,6 @@ total_counts <- rat_sightings_data %>%
 # Step 3: Merge the two datasets and calculate the proportion
 borough_proportions <- merge(residential_counts, total_counts, by = "borough", all.x = TRUE) %>%
   mutate(proportion_residential = residential_count / total_count)
-
-# Print the result
-knitr::kable(borough_proportions)
 
 # Create an interactive bar plot
 plot_ly(

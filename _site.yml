@@ -18,12 +18,18 @@ navbar:
       - text: "Population Data"
         href: population.html
     - text: "Descriptive Analysis"
-      href: descriptive.html
+      menu:
+      - text: "Rat Sighting Data"
+        href: descriptive_ratsighting.html
+      - text: "Income Data"
+        href: descriptive_income.html
+      - text: "Population Data"
+        href: descriptive_population.html
     - text: "Rat Sighting App"
       href: https://nn2477.shinyapps.io/rat_sighting_map_app
     - text: "Report"
       href: report.html
-    - text: "NYC Rat Sighting Interactive Graphs"
+    - text: "NYC Rat Graphs"
       href: dashboard.html
     - icon: fa-brands fa-square-youtube
       href: https://github.com/nn2477/p8105-fp-rats.github.io
